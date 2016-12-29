@@ -20,7 +20,19 @@ const store = new Vuex.Store(storeConfig)
 const router = new VueRouter({
   routes: routes
 })
-
+//  resource配置项
+//  模拟表单提交
+Vue.http.options.emulateJSON = true
+//  增加默认请求前缀
+Vue.http.options.root = 'http://www.kittyjs.com/static/api'
+//  中断器
+Vue.http.interceptors.push((request, next) => {
+  // continue to next interceptor
+  next((response) => {
+    // 预解析数据
+    response.data = JSON.parse(response.data)
+  })
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -28,4 +40,11 @@ new Vue({
   router,
   template: '<App/>',
   components: { App }
+})
+
+//  全局过滤器
+const baseUrl = 'https://fuss10.elemecdn.com'
+Vue.filter('transformImgUrl', (path) => {
+  //  转换首页食物分类的图片路径
+  return baseUrl + path
 })
