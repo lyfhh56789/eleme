@@ -87,7 +87,8 @@ module.exports = {
     loaders: utils.cssLoaders({ sourceMap: useCssSourceMap }),
     postcss: [
       require('autoprefixer')({
-        browsers: ['last 2 versions']
+        //  为全球统计有超过5%的使用率的浏览器,自动添加前缀
+        browsers: ["> 5%",'last 2 versions']
       })
     ]
   }
