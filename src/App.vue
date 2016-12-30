@@ -28,7 +28,18 @@ html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  font-size: 32px;
+  font-size: 64px;
+}
+body {
+  /*  避免一些字体继承html过大的问题 */
+  font-size: 24px;
+}
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  font-weight: 400;
+}
+img {
+  width: 100%;
 }
 a {
   outline: none;

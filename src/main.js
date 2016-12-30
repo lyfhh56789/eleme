@@ -5,15 +5,19 @@ import App from './App'
 import Vuex from 'vuex'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
+import infiniteScroll from 'vue-infinite-scroll'
 
 //  引入vuex.Store配置
 import storeConfig from './global/store'
 //  路由配置
 import routes from './global/routes'
+//  引入全局过滤器
+import filter from './global/filter'
 
 Vue.use(Vuex)
 Vue.use(VueResource)
 Vue.use(VueRouter)
+Vue.use(infiniteScroll)
 //  创建store
 const store = new Vuex.Store(storeConfig)
 //  创建路由实例
@@ -40,11 +44,4 @@ new Vue({
   router,
   template: '<App/>',
   components: { App }
-})
-
-//  全局过滤器
-const baseUrl = 'https://fuss10.elemecdn.com'
-Vue.filter('transformImgUrl', (path) => {
-  //  转换首页食物分类的图片路径
-  return baseUrl + path
 })

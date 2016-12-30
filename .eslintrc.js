@@ -17,6 +17,19 @@ module.exports = {
     // allow async-await
     'generator-star-spacing': 0,
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    //  方法声明括号前后的空格
+    'space-before-function-paren': 0,
+    'space-before-blocks': 0,
+    //  多余的逗号
+    'comma-dangle': 0,
+    //  结尾分号
+    'semi': 0,
+    //  中缀操作符周围要不要有空格
+    "space-infix-ops": 0,
+    //  没有使用的变量仅做提示
+    "no-unused-vars": 1,
+    //  比较不必使用全等比较运算符
+    "eqeqeq": 0,
   }
 }

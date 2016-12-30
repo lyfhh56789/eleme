@@ -5,7 +5,7 @@
         <template v-for="(item,index) in foods">
           <a v-if="index < foods.length/2" href="javascript:">
             <div class="container">
-              <img :src="item.image_url | transformImgUrl">
+              <img :src="item.image_url | transformImgUrl(0)">
             </div>
             <span class="title">{{ item.title }}</span>
           </a>
@@ -15,7 +15,7 @@
         <template v-for="(item,index) in foods">
           <a v-if="index >= foods.length/2" href="javascript:">
             <div class="container">
-              <img :src="item.image_url | transformImgUrl">
+              <img :src="item.image_url | transformImgUrl(0)">
             </div>
             <span class="title">{{ item.title }}</span>
           </a>
