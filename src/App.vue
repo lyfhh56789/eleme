@@ -28,6 +28,7 @@ html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  touch-action: manipulation;
   font-size: 64px;
 }
 body {
@@ -37,6 +38,14 @@ body {
 h1, h2, h3, h4, h5, h6, p {
   margin: 0;
   font-weight: 400;
+}
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
 }
 img {
   width: 100%;

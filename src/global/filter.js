@@ -10,11 +10,10 @@ Vue.filter('transformImgUrl', (path, type) => {
     return baseUrl + path
   } else if (type == 1){
     //  商家缩略图
-    let reg = /gif|jpg|jpeg|png|GIF|JPG|PNG$/i; // 匹配图片后缀
+    let reg = /gif|jpe?g|png$/i; // 匹配图片后缀
     let extension = path.match(reg)[0];
     let restfulUrl = '/' + path.substring(0, 1) + '/' + path.substring(1, 3) + '/' + path.substring(3)
-    //  增加截取的大小
-    return baseUrl + restfulUrl + '.' + extension + '?imageMogr/format/webp/thumbnail/!130x130r/gravity/Center/crop/130x130/'
+    return baseUrl + restfulUrl + '.' + extension
   }
 })
 Vue.filter('transformDistance', (distance) => {

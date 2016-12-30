@@ -6,6 +6,11 @@ var routes = [
     path: '/',
     component: require('../components/index.vue')
   },
+  {//  商家详情
+    path: '/shop/:shopId',
+    name: 'shop',
+    component: require('../components/shop/shopDetail.vue')
+  },
   {//  所有未定义路由跳转到首页
     path: '*',
     redirect: '/'

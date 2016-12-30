@@ -1,7 +1,7 @@
 <template>
-  <section class="item">
+  <section @click="gotoDetail(item.id)" class="item">
     <div class="left-wrap">
-      <img class="logo" :src="item.image_path | transformImgUrl(1)">
+      <img class="logo" :src="item.image_path | transformImgUrl(1)  + '?imageMogr/format/webp/thumbnail/!130x130r/gravity/Center/crop/130x130/'">
     </div>
     <div class="right-wrap">
       <section class="line">
@@ -332,6 +332,14 @@
       }
     },
     methods: {
+      gotoDetail(id){
+        this.$router.push({
+          name: 'shop',
+          params: {
+            shopId: id
+          }
+        })
+      },
     },
     mounted () {
     },
