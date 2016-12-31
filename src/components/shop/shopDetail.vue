@@ -58,7 +58,7 @@
           <span class="shopnav-title">商家</span>
         </a>
       </div>
-      <menu-view :list=menuList></menu-view>
+      <menu-view></menu-view>
     </div>
   </div>
 </template>
@@ -399,7 +399,6 @@
       return {
         shop: {},
         activities: [], // 活动列表
-        menuList: [],
       }
     },
     methods: {
@@ -411,8 +410,8 @@
       },
       loadMenuList(){
         //  获取菜单数据
-        this.$http({url: 'eleme_api.php', params: {api_str: 'shopping/v2/menu?restaurant_id=1248757'}}).then(function (res) {
-          this.menuList = res.data;
+        this.$http({url: 'eleme_api.php', params: {api_str: 'shopping/v2/menu?restaurant_id='+ this.$route.params.shopId}}).then(function (res) {
+          this.$store.commit('shopMenuList', res.data)
         })
       },
       transImgUrl(path){

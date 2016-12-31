@@ -8,1057 +8,81 @@
       <div class="menuview-main">
         <main>
           <ul class="menu-nav">
-            <li class="active">
-              <img class="category-icon" src="//fuss10.elemecdn.com/4/73/5c4342691749b8e1a531149a46117jpeg.jpeg">
-              <span class="category-name">优惠</span></li>
-            <li class="noicon"><span class="category-quantity">4</span> <span
-              class="category-name">天天特价享</span></li>
-            <li class="noicon"><span class="category-name">超值套餐</span></li>
-            <li class="noicon"><span class="category-name">主食类</span></li>
-            <li class="noicon"><span class="category-name">小食类</span></li>
-            <li class="noicon"><span class="category-name">烤出你的最爱</span></li>
-            <li class="noicon"><span class="category-quantity">6</span> <span
-              class="category-name">饮料</span></li>
-            <li class="noicon"><span class="category-name">圣诞5折特惠套餐</span></li>
+            <template v-for="(item, index) in list">
+              <li :class="{'noicon': index !== activeMenu, 'active': index === activeMenu}" @click="scrollIntoView(index)">
+                <img v-if="item.icon_url != ''" class="category-icon" :src="item.icon_url | transformImgUrl(1)">
+                <!--<span class="category-quantity">1</span>-->
+                <span class="category-name">{{ item.name }}</span>
+              </li>
+            </template>
           </ul>
           <section class="container menu-list">
             <div class="scroller">
-              <dl>
-                <dt>
-                <div class="category-title"><strong class="category-name">优惠</strong>
-                  <span class="category-description">美味又实惠, 大家快来抢!</span></div>
-                <div class="category-more"><span class="icon"></span>
-                  <p class="popup popup-transition" style="display: none;"><span>优惠</span>
-                    <span>美味又实惠, 大家快来抢!</span></p></div>
-                </dt>
-                <dd class="new"><span class="foodimg"><img
-                                                                                         src="//fuss10.elemecdn.com/c/93/dc1638449c75edcc64d99e4b2b538jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>圣诞双人套餐</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="fooddescription">香辣鸡腿堡+老北京鸡肉卷+红豆芋卷+上校鸡块+2杯中可</p>
-                    <p class="foodsales"><span>月售93份</span> <span
-                     >好评率100%</span></p>
-                    <p class="foodactivity"><span style="color: rgb(240, 115, 115);">5折，限1份</span><span
-                     ></span></p><strong class="foodprice"><span>19</span>
-                    <del class="foodprice-origin">¥38</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton soldout">已售完</span> </span></div>
-                  </section>
-                </dd>
-                <dd class="new"><span class="foodimg"><img
-                                                                                         src="//fuss10.elemecdn.com/a/23/1d34cab83e71b1b45b3b3b9cbf842jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>圣诞单人套餐(香辣鸡腿堡+鸡米花+中可)</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="fooddescription">香辣鸡腿堡+鸡米花+1杯中可</p>
-                    <p class="foodsales"><span>月售164份</span> <span
-                     >好评率60%</span></p>
-                    <p class="foodactivity"><span style="color: rgb(240, 115, 115);">5折，限1份</span><span
-                     ></span></p><strong class="foodprice"><span>10</span>
-                    <del class="foodprice-origin">¥20</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton soldout">已售完</span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/4/e6/bfabd4244bb8ae02b4f067adcfd96jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>香辣鸡腿堡+蜂蜜绿茶</span></header>
-                    <p class="foodsales"><span>月售6份</span></p>
-                    <p class="foodactivity"><span style="color: rgb(241, 136, 79);">限10000份</span><span
-                     ></span></p><strong class="foodprice"><span>10</span>
-                    <del class="foodprice-origin">¥16</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton"><a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg></a> <span
-                      class="entityquantity">1</span> <a href="javascript:"><svg
-                     ><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                          xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/0/53/393eee2a0857e6d2a726434586732jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>香辣鸡腿堡+墨西哥鸡肉卷+蜂蜜绿茶</span></header>
-                    <p class="foodsales"><span>月售22份</span></p>
-                    <p class="foodactivity"><span style="color: rgb(241, 136, 79);">限10000份</span><span
-                     ></span></p><strong class="foodprice"><span>15</span>
-                    <del class="foodprice-origin">¥24.5</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton"><a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg></a> <span
-                      class="entityquantity">1</span> <a href="javascript:"><svg
-                     ><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                          xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd class="new"><span class="foodimg"><img
-                                                                                         src="//fuss10.elemecdn.com/d/c8/9800a42d65408d4be20542519dfbdjpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>藤椒扒翅+红豆芋卷</span></header>
-                    <p class="foodsales"><span>月售14份</span></p>
-                    <p class="foodactivity"><span style="color: rgb(241, 136, 79);">限10000份</span><span
-                     ></span></p><strong class="foodprice"><span>9</span>
-                    <del class="foodprice-origin">¥11</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton"><a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg></a> <span
-                      class="entityquantity">1</span> <a href="javascript:"><svg
-                     ><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                          xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd class="new"><span class="foodimg"><img
-                                                                                         src="//fuss10.elemecdn.com/6/43/4f6dc4408bf8a764e4c5dbb6be443jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>豪华单人餐（超脆藤椒汉堡套餐）</span></header>
-                    <p class="foodsales"><span>月售1份</span></p>
-                    <p class="foodactivity"><span style="color: rgb(241, 136, 79);">限10000份</span><span
-                     ></span></p><strong class="foodprice"><span>17</span>
-                    <del class="foodprice-origin">¥23</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton"><a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg></a> <span
-                      class="entityquantity">1</span> <a href="javascript:"><svg
-                     ><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                          xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/e/6c/21d10c05c6713a396e7d031e2e19ejpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>啤酒炸鸡送香辣鸡腿汉堡</span></header>
-                    <p class="foodsales"><span>月售30份</span> <span
-                     >好评率100%</span></p>
-                    <p class="foodactivity"><span style="color: rgb(241, 136, 79);">限10000份</span><span
-                     ></span></p><strong class="foodprice"><span>20</span>
-                    <del class="foodprice-origin">¥27</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/e/3e/e5cd0331bd05c9cfef11eb982948cjpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>双人套餐送香辣鸡腿堡</span></header>
-                    <p class="foodsales"><span>月售5份</span></p>
-                    <p class="foodactivity"><span style="color: rgb(241, 136, 79);">限10000份</span><span
-                     ></span></p><strong class="foodprice"><span>35</span>
-                    <del class="foodprice-origin">¥55.5</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/b/5a/44d2533288eedc8a8a313be420f4fjpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>全家福套餐送香辣鸡腿堡</span></header>
-                    <p class="foodsales"><span>月售1份</span> <span
-                     >好评率100%</span></p>
-                    <p class="foodactivity"><span style="color: rgb(241, 136, 79);">限10000份</span><span
-                     ></span></p><strong class="foodprice"><span>65</span>
-                    <del class="foodprice-origin">¥86.5</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-              </dl>
-              <dl>
-                <dt>
-                <div class="category-title"><strong class="category-name">天天特价享</strong>
-                  <span class="category-description"></span></div>
-                <div class="category-more"><span class="icon"></span>
-                  <p class="popup popup-transition" style="display: none;"><span
-                   >天天特价享</span> <span></span></p></div>
-                </dt>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/4/e6/bfabd4244bb8ae02b4f067adcfd96jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>香辣鸡腿堡+蜂蜜绿茶</span></header>
-                    <p class="foodsales"><span>月售6份</span></p>
-                    <p class="foodactivity"><span style="color: rgb(241, 136, 79);">限10000份</span><span
-                     ></span></p><strong class="foodprice"><span>10</span>
-                    <del class="foodprice-origin">¥16</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton"><a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg></a> <span
-                      class="entityquantity">1</span> <a href="javascript:"><svg
-                     ><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                          xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/0/53/393eee2a0857e6d2a726434586732jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>香辣鸡腿堡+墨西哥鸡肉卷+蜂蜜绿茶</span></header>
-                    <p class="foodsales"><span>月售22份</span></p>
-                    <p class="foodactivity"><span style="color: rgb(241, 136, 79);">限10000份</span><span
-                     ></span></p><strong class="foodprice"><span>15</span>
-                    <del class="foodprice-origin">¥24.5</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton"><a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg></a> <span
-                      class="entityquantity">1</span> <a href="javascript:"><svg
-                     ><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                          xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd class="new"><span class="foodimg"><img
-                                                                                         src="//fuss10.elemecdn.com/d/c8/9800a42d65408d4be20542519dfbdjpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>藤椒扒翅+红豆芋卷</span></header>
-                    <p class="foodsales"><span>月售14份</span></p>
-                    <p class="foodactivity"><span style="color: rgb(241, 136, 79);">限10000份</span><span
-                     ></span></p><strong class="foodprice"><span>9</span>
-                    <del class="foodprice-origin">¥11</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton"><a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg></a> <span
-                      class="entityquantity">1</span> <a href="javascript:"><svg
-                     ><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                          xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd class="new"><span class="foodimg"><img
-                                                                                         src="//fuss10.elemecdn.com/6/43/4f6dc4408bf8a764e4c5dbb6be443jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>豪华单人餐（超脆藤椒汉堡套餐）</span></header>
-                    <p class="foodsales"><span>月售1份</span></p>
-                    <p class="foodactivity"><span style="color: rgb(241, 136, 79);">限10000份</span><span
-                     ></span></p><strong class="foodprice"><span>17</span>
-                    <del class="foodprice-origin">¥23</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton"><a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg></a> <span
-                      class="entityquantity">1</span> <a href="javascript:"><svg
-                     ><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                          xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/e/6c/21d10c05c6713a396e7d031e2e19ejpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>啤酒炸鸡送香辣鸡腿汉堡</span></header>
-                    <p class="foodsales"><span>月售30份</span> <span
-                     >好评率100%</span></p>
-                    <p class="foodactivity"><span style="color: rgb(241, 136, 79);">限10000份</span><span
-                     ></span></p><strong class="foodprice"><span>20</span>
-                    <del class="foodprice-origin">¥27</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/e/3e/e5cd0331bd05c9cfef11eb982948cjpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>双人套餐送香辣鸡腿堡</span></header>
-                    <p class="foodsales"><span>月售5份</span></p>
-                    <p class="foodactivity"><span style="color: rgb(241, 136, 79);">限10000份</span><span
-                     ></span></p><strong class="foodprice"><span>35</span>
-                    <del class="foodprice-origin">¥55.5</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/b/5a/44d2533288eedc8a8a313be420f4fjpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>全家福套餐送香辣鸡腿堡</span></header>
-                    <p class="foodsales"><span>月售1份</span> <span
-                     >好评率100%</span></p>
-                    <p class="foodactivity"><span style="color: rgb(241, 136, 79);">限10000份</span><span
-                     ></span></p><strong class="foodprice"><span>65</span>
-                    <del class="foodprice-origin">¥86.5</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-              </dl>
-              <dl>
-                <dt>
-                <div class="category-title"><strong class="category-name">超值套餐</strong>
-                  <span class="category-description">超值套餐价格比单点要省4-15元不等哦</span></div>
-                <div class="category-more"><span class="icon"></span>
-                  <p class="popup popup-transition" style="display: none;"><span
-                   >超值套餐</span> <span>超值套餐价格比单点要省4-15元不等哦</span></p></div>
-                </dt>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/6/7d/c7178ad21fa9f5923f8d45eea93b5jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>香辣鸡腿堡+薯条+中可乐</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="foodsales"><span>月售30份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >15</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/6/7d/c7178ad21fa9f5923f8d45eea93b5jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>劲脆香鸡堡+薯条+中可乐</span></header>
-                    <p class="foodsales"><span>月售11份</span></p><strong class="foodprice"
-                                                                                                    ><span
-                   >15</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/8/35/9fbad1b2c91672c92611df59b2cc9jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>奥尔良烤鸡腿堡套餐</span></header>
-                    <p class="fooddescription">奥尔良烤鸡腿堡+薯条+中可乐</p>
-                    <p class="foodsales"><span>月售10份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >17</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/4/d9/0187968d7bad72aaf2f16ce0083bbjpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>老北京鸡肉卷套餐</span></header>
-                    <p class="fooddescription">老北京鸡肉卷+薯条+中可乐</p>
-                    <p class="foodsales"><span>月售7份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >15</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/1/90/910ffcb22671deeaff09a896945d2jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>汉堡鸡翅套餐</span></header>
-                    <p class="fooddescription">香辣鸡腿堡+香辣鸡翅2块+中可乐</p>
-                    <p class="foodsales"><span>月售18份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >17</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/e/b7/f4e3f0632418187d27b0074f25097jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>香辣鸡翅套餐</span></header>
-                    <p class="fooddescription">（香辣鸡翅4块+薯条+中可乐）</p>
-                    <p class="foodsales"><span>月售4份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >19</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/c/bd/8b061f8ae97869e53669a40c0d5f8jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>儿童套餐</span></header>
-                    <p class="fooddescription">上校鸡块＋无骨鸡柳＋薯条＋中可乐</p>
-                    <p class="foodsales"><span>月售3份</span></p><strong class="foodprice"
-                                                                                                   ><span
-                   >17</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/e/40/da30c0c0be44973769e418293e035jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>啤酒炸鸡套餐</span></header>
-                    <p class="fooddescription">啤酒炸鸡+薯条+中可乐</p>
-                    <p class="foodsales"><span>月售16份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >25</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/e/40/da30c0c0be44973769e418293e035jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>奥尔良蜜汁鸡套餐</span></header>
-                    <p class="fooddescription">奥尔良蜜汁鸡+薯条+中可乐</p>
-                    <p class="foodsales"><span>月售37份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >25</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/7/fc/ae3099482b4f32bf30d0270facf45jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>双人套餐</span></header>
-                    <p class="fooddescription">香辣鸡腿堡+墨西哥鸡肉卷+鸡米花+2块鸡翅+薯条+2中可</p>
-                    <p class="foodsales"><span>月售16份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >35</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/6/81/4f66a3baff2d9ab48afd8ecf48f52jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>全家福套餐</span></header>
-                    <p class="fooddescription">奥尔良蜜汁鸡＋２香辣鸡腿堡＋鸡肉卷＋鸡米花＋上校鸡块＋薯条＋3中可</p>
-                    <p class="foodsales"><span>月售3份</span></p><strong class="foodprice"
-                                                                                                   ><span
-                   >65</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/4/d9/0187968d7bad72aaf2f16ce0083bbjpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>墨西哥鸡肉卷套餐</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="foodsales"><span>月售5份</span></p><strong class="foodprice"
-                                                                                                   ><span
-                   >15</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-              </dl>
-              <dl>
-                <dt>
-                <div class="category-title"><strong class="category-name">主食类</strong>
-                  <span class="category-description"></span></div>
-                <div class="category-more"><span class="icon"></span>
-                  <p class="popup popup-transition" style="display: none;"><span
-                   >主食类</span> <span></span></p></div>
-                </dt>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/a/02/4daddac6e645dfc3f3d6abff06584jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>蜜恋大鸡排</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="foodsales"><span>月售32份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >9</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd class="new"><span class="foodimg"><img
-                                                                                         src="//fuss10.elemecdn.com/e/76/96a4db68a5d4b01eb9880cd6dc859jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>牛排汉堡</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="foodsales"><span>月售21份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >6</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/b/1f/ef33e44b0c2ce0beac9b3ccc17fa8jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>香辣鸡腿汉堡</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="foodsales"><span>月售17份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >9</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/a/41/b0fcae532d44beac20a753cea34fdjpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>劲脆香鸡堡</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="foodsales"><span>月售7份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >9</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/8/fa/d64b38362614d9d1a02d26f99635ejpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>墨西哥鸡肉卷</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="foodsales"><span>月售21份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >8.5</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/e/c9/d03796284db4ab625d13fd94f1952jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>好多虾堡</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="foodsales"><span>月售11份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >9</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/d/4c/f45ead728b4defd0a606dde0afaa9jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>奥尔良烤鸡腿堡</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="foodsales"><span>月售10份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >10</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/7/5b/4a835cd9bf2260f7ee35339e73e72jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>老北京鸡肉卷</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="foodsales"><span>月售8份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >9</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/3/bd/93b00913f0ee77100793bf9a72f41jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>双层鸡腿汉堡</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="foodsales"><span>月售13份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >12</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/6/a9/1fb825c75dfa434edf1e02d79d2b8jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>啤酒炸鸡</span></header>
-                    <p class="foodsales"><span>月售13份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >18</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd class="new"><span class="foodimg"><img
-                                                                                         src="//fuss10.elemecdn.com/2/29/bdff7a2730365921028e20a9229eejpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>藤椒汉堡</span></header>
-                    <p class="foodsales"><span>月售1份</span></p><strong class="foodprice"
-                                                                                                   ><span
-                   >10</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-              </dl>
-              <dl>
-                <dt>
-                <div class="category-title"><strong class="category-name">小食类</strong>
-                  <span class="category-description"></span></div>
-                <div class="category-more"><span class="icon"></span>
-                  <p class="popup popup-transition" style="display: none;"><span
-                   >小食类</span> <span></span></p></div>
-                </dt>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/a/42/f849e5a98efce9f604747c5924308jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>南瓜饼（3个/份）</span></header>
-                    <p class="foodsales"><span>月售23份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >4</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/e/3a/11b5694b3c674d7fac06511bb21dbjpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>红豆芋卷（2个/份）</span></header>
-                    <p class="foodsales"><span>月售25份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >4</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/0/48/02ede269a15537aca18afcf90b0a0jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>薯条</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="foodsales"><span>月售31份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >6</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/4/fb/1e512a189f0a489db4d393328c67ajpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>深海鳕鱼条（2条/份）</span></header>
-                    <p class="foodsales"><span>月售9份</span></p><strong class="foodprice"
-                                                                                                   ><span
-                   >6</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/9/ad/90e91bec9de6f7d102f454f4b73c5jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>牛肉酥</span></header>
-                    <p class="foodsales"><span>月售13份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >4</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/c/23/907c404ec0d9d9f2f3efdadfbd7a9jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>上校鸡块（5个/块）</span></header>
-                    <p class="foodsales"><span>月售28份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >6</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/e/81/ceda25235330306f82bd1c16989cajpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>无骨鸡柳</span></header>
-                    <p class="foodsales"><span>月售12份</span></p><strong class="foodprice"
-                                                                                                    ><span
-                   >6</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/0/c2/f83d517acab1d5e1061c90a35db25jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>香酥鸡腿</span></header>
-                    <p class="foodsales"><span>月售13份</span></p><strong class="foodprice"
-                                                                                                    ><span
-                   >6</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/f/de/6a56ae0603f8ed4128ccf9000fffajpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>鸡米花</span></header>
-                    <p class="foodsales"><span>月售33份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >6</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/2/0b/d173de5f2b91bce23f1b31c6c22b0jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>辣子鸡块</span></header>
-                    <p class="foodsales"><span>月售16份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >6</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/0/b0/5af708d3e0a941cf29693a80d01ccjpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>香辣鸡翅</span></header>
-                    <p class="foodsales"><span>月售36份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >7</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/6/3b/25152ba4ce8d058dea3f57bd2869ajpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>奥尔良烤翅</span></header>
-                    <p class="foodsales"><span>月售20份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >7.5</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/2/23/010f99525e4d425871721b38dc61fjpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>奥尔良烤翅2对</span></header>
-                    <p class="foodsales"><span>月售23份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >13</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>百事可乐</span></header>
-                    <p class="foodsales"><span>月售1份</span></p><strong class="foodprice"
-                                                                                                   ><span
-                   >5</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-              </dl>
-              <dl>
-                <dt>
-                <div class="category-title"><strong class="category-name">烤出你的最爱</strong>
-                  <span class="category-description"></span></div>
-                <div class="category-more"><span class="icon"></span>
-                  <p class="popup popup-transition" style="display: none;"><span
-                   >烤出你的最爱</span> <span></span></p></div>
-                </dt>
-                <dd class="new"><span class="foodimg"><img
-                                                                                         src="//fuss10.elemecdn.com/8/6b/99d8d5200b327dd05ecf8d9e5723fjpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>奥尔良烤肉卷</span></header>
-                    <p class="fooddescription">奥尔良烤肉卷--香嫩多汁</p>
-                    <p class="foodsales"><span>月售15份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >9</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-              </dl>
-              <dl>
-                <dt>
-                <div class="category-title"><strong class="category-name">饮料</strong>
-                  <span class="category-description"></span></div>
-                <div class="category-more"><span class="icon"></span>
-                  <p class="popup popup-transition" style="display: none;"><span>饮料</span>
-                    <span></span></p></div>
-                </dt>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/2/d4/1442e8281d431b4744b646022d469jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>橙汁</span></header>
-                    <p class="foodsales"><span>月售4份</span></p><strong class="foodprice"
-                                                                                                   ><span
-                   >5</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton"><a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg></a> <span
-                      class="entityquantity">1</span> <a href="javascript:"><svg
-                     ><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                          xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/a/08/3ef0b441de956ae810ecdc89138e1jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>牛奶</span></header>
-                    <p class="foodsales"><span>月售7份</span></p><strong class="foodprice"
-                                                                                                   ><span
-                   >5</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton">  <a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/9/40/09221b95cee4a9b04ff257e3f6601jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>百事可乐（中）</span></header>
-                    <p class="foodsales"><span>月售6份</span></p><strong class="foodprice"
-                                                                                                   ><span
-                   >5</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton"><a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg></a> <span
-                      class="entityquantity">1</span> <a href="javascript:"><svg
-                     ><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                          xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/9/40/09221b95cee4a9b04ff257e3f6601jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>百事可乐（大）</span></header>
-                    <p class="foodsales"><span>月售1份</span></p><strong class="foodprice"
-                                                                                                   ><span
-                   >6</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton"><a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg></a> <span
-                      class="entityquantity">1</span> <a href="javascript:"><svg
-                     ><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                          xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/d/75/568baae85197910dac5346aa458ffjpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>奶茶（热）</span></header>
-                    <p class="foodsales"><span>月售7份</span></p><strong class="foodprice"
-                                                                                                   ><span
-                   >6</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton"><a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg></a> <span
-                      class="entityquantity">1</span> <a href="javascript:"><svg
-                     ><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                          xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd><span class="foodimg"><img
-                                                                             src="//fuss10.elemecdn.com/2/a0/b038e1e4ca3074983e76a35caccbfjpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>咖啡</span></header>
-                    <p class="foodsales"><span>月售2份</span></p><strong class="foodprice"
-                                                                                                   ><span
-                   >5</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton"><a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg></a> <span
-                      class="entityquantity">1</span> <a href="javascript:"><svg
-                     ><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                          xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-                <dd class="new"><span class="foodimg"><img
-                                                                                         src="//fuss10.elemecdn.com/f/8e/02ab748af420995832ae240b675fajpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>蜂蜜绿茶</span></header>
-                    <p class="foodsales"><span>月售2份</span> <span
-                     >好评率100%</span></p><strong class="foodprice"><span
-                   >7</span> </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton"><a href="javascript:"><svg><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg></a> <span
-                      class="entityquantity">1</span> <a href="javascript:"><svg
-                     ><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                          xlink:href="#cart-minus"></use></svg></a> </span> </span></div>
-                  </section>
-                </dd>
-              </dl>
-              <dl>
-                <dt>
-                <div class="category-title"><strong class="category-name"
-                                                                  >圣诞5折特惠套餐</strong> <span
-                  class="category-description"></span></div>
-                <div class="category-more"><span class="icon"></span>
-                  <p class="popup popup-transition" style="display: none;"><span
-                   >圣诞5折特惠套餐</span> <span></span></p></div>
-                </dt>
-                <dd class="new"><span class="foodimg"><img
-                                                                                         src="//fuss10.elemecdn.com/c/93/dc1638449c75edcc64d99e4b2b538jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>圣诞双人套餐</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="fooddescription">香辣鸡腿堡+老北京鸡肉卷+红豆芋卷+上校鸡块+2杯中可</p>
-                    <p class="foodsales"><span>月售93份</span> <span
-                     >好评率100%</span></p>
-                    <p class="foodactivity"><span style="color: rgb(240, 115, 115);">5折，限1份</span><span
-                     ></span></p><strong class="foodprice"><span>19</span>
-                    <del class="foodprice-origin">¥38</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton soldout">已售完</span> </span></div>
-                  </section>
-                </dd>
-                <dd class="new"><span class="foodimg"><img
-                                                                                         src="//fuss10.elemecdn.com/a/23/1d34cab83e71b1b45b3b3b9cbf842jpeg.jpeg?imageMogr/thumbnail/140x140/format/webp/quality/85"></span>
-                  <section class="foodinfo">
-                    <header class="foodtitle"><span>圣诞单人套餐(香辣鸡腿堡+鸡米花+中可)</span>
-                      <aside class="foodattributes"><span
-                                                                         style="color: rgb(236, 156, 104);">招牌</span>
-                      </aside>
-                    </header>
-                    <p class="fooddescription">香辣鸡腿堡+鸡米花+1杯中可</p>
-                    <p class="foodsales"><span>月售164份</span> <span
-                     >好评率60%</span></p>
-                    <p class="foodactivity"><span style="color: rgb(240, 115, 115);">5折，限1份</span><span
-                     ></span></p><strong class="foodprice"><span>10</span>
-                    <del class="foodprice-origin">¥20</del>
-                  </strong>
-                    <div class="cartbutton"><span><span
-                      class="entitybutton soldout">已售完</span> </span></div>
-                  </section>
-                </dd>
-              </dl>
+              <template v-for="(item, index) in list">
+                <dl>
+                  <dt>
+                    <div class="category-title">
+                      <strong class="category-name">{{ item.name }}</strong>
+                      <span class="category-description">{{ item.description }}</span>
+                    </div>
+                    <div class="category-more">
+                      <span @click="showPopup(index)" class="icon"></span>
+                      <transition name="popup">
+                        <p @click="hidePopup" v-show="popup == index" class="popup">
+                          <span>{{ item.name }}</span>
+                          <span>{{ item.description }}</span>
+                        </p>
+                      </transition>
+                    </div>
+                  </dt>
+                  <template v-for="(food, secIndex) in item.foods">
+                    <dd :class="{'new': food.attributes != false}">
+                    <span v-if="food.image_path !== null" class="foodimg">
+                      <img :src="food.image_path | transformImgUrl(1) + '?imageMogr/thumbnail/140x140/format/webp/quality/85'">
+                    </span>
+                      <section class="foodinfo">
+                        <header class="foodtitle">
+                          <span>{{ food.name }}</span>
+                          <aside v-if="food.attributes.length > 1" class="foodattributes">
+                            <span :style="{'color': '#' + food.attributes[0].icon_color}">{{ food.attributes[0].icon_name }}</span>
+                          </aside>
+                        </header>
+                        <p class="fooddescription">{{ food.description }}</p>
+                        <p class="foodsales">
+                          <span>月售{{ food.month_sales }}份</span>
+                          <span v-if="food.satisfy_rate != 0">好评率{{ food.satisfy_rate }}%</span></p>
+                        <p v-if="food.activity != null" class="foodactivity">
+                          <span :style="{'color': '#' + food.activity.image_text_color}">{{ food.activity.image_text }}</span>
+                          <span></span>
+                        </p>
+                        <strong class="foodprice">
+                          <span>{{ food.specfoods[0].price }}</span>
+                          <del class="foodprice-origin">¥{{ food.specfoods[0].original_price }}</del>
+                        </strong>
+                        <div class="cartbutton">
+                          <span>
+                            <span v-if="food.specfoods[0].stock == 0" class="entitybutton soldout">已售完</span>
+                            <span v-else class="entitybutton">
+                              <template v-if="foodList[index][secIndex].isBuy === true">
+                                <a @click="minusFood(food.item_id)" href="javascript:">
+                                <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg>
+                              </a>
+                              <span class="entityquantity">{{ foodList[index][secIndex].quantity }}</span>
+                              </template>
+                              <a @click="addFood(food.item_id)" href="javascript:">
+                                <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-minus"></use></svg>
+                              </a>
+                            </span>
+                          </span>
+                        </div>
+                      </section>
+                    </dd>
+                  </template>
+                </dl>
+              </template>
             </div>
-            <div _v-1ebe852e="">
-              <div _v-12c4a871="" _v-1ebe852e=""></div>
+            <div>
+              <div></div>
             </div>
           </section>
         </main>
@@ -1072,6 +96,39 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+  /*  前置样式-start  */
+  .menuview {
+    color: #333;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    /* For some Androids */
+    font: 0.186667rem/1.2 "Helvetica Neue","Microsoft Yahei",sans-serif;
+  }
+  .menuview *,
+  *::before,
+  *::after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+  }
+  .menuview,
+  .menuview ul,
+  .menuview h3,
+  .menuview p {
+    margin: 0;
+  }
+  .menuview ul {
+    padding: 0;
+  }
+  .menuview img {
+    max-width: 100%;
+  }
+  .menuview ul {
+    list-style: none;
+  }
+  /*  前置样式-end  */
   .menuview {
     height: 100%;
   }
@@ -1146,14 +203,6 @@
     border-bottom: 1px solid #ededed;
     font-size: 0.346667rem;
     color: #666;
-  }
-  li.noicon .category-name {
-    line-height: 1.2em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
   }
   li.active {
     background-color: #fff;
@@ -1307,8 +356,8 @@
     content: "";
     position: absolute;
   }
-  .category-more .popup-enter,
-  .category-more .popup-leave {
+  .category-more .popup-enter-active,
+  .category-more .popup-leave-active {
     opacity: 0 !important;
     -webkit-transform: scale(.5) !important;
     transform: scale(.5) !important;
@@ -1533,16 +582,77 @@
 </style>
 <script>
   export default{
-    props: {
-      list: Array
-    },
     data () {
       return {
+        activeMenu: 0, //  默认激活菜单
+        scroller: '', //  可滚动容器对象
+        popup: -1, //  设置显示菜单的描述
       }
     },
+    computed: {
+      shopCar(){ // 用户对于该商店的购物车
+        return this.$store.state.shopCar[this.$route.params.shopId] !== undefined ? this.$store.shopCar[this.$route.params.shopId][0]: {}
+      },
+      foodList(){ //  该商店的食物列表，对应list的排列方式
+        return this.$store.state.foodsState
+      },
+      list(){
+        return this.$store.state.menuList
+      },
+    },
     methods: {
+      scrollIntoView(index){ //  滚动到指定菜单食物列表
+        if (index == this.activeMenu){
+          return
+        }
+        if (index == 0){
+          this.scroller.scrollTop = 0
+          this.activeMenu = index;
+          return
+        }
+        var scrollHeight = 0
+        var self = this
+        var step = 5; // 自定义滚动步长，即滚动次数
+        var stepTime = 10; //  每隔多少毫秒执行一次增长（减少）滚动高度
+        this.activeMenu = index;
+        for (var i = 0; i < index; i++){
+          scrollHeight += this.scroller.children[i].scrollHeight
+        }
+        //  设置step个定时器
+        for (var j = 0; j < step; j++){
+          setTimeout(function () {
+            //  逐步滚动，由快至慢
+            if (self.scroller.scrollTop < scrollHeight){
+              self.scroller.scrollTop = scrollHeight;
+            } else {
+              self.scroller.scrollTop = scrollHeight
+            }
+          }, stepTime * j)
+        }
+      },
+      addFood(itemId){ // 向购物车中添加食物
+        this.$store.commit('addFood', itemId)
+      },
+      minusFood(itemId){ // 减少购买的食物数量或者取消购买
+        this.$store.commit('minusFood', itemId)
+      },
+      showPopup(index){ //  显示菜单的描述信息
+        if (this.popup == index){
+          return
+        }
+        this.popup = index
+      },
+      hidePopup(){ //  隐藏菜单的描述信息
+        this.popup = -1
+      },
     },
     mounted () {
+      this.scroller = document.getElementsByClassName('scroller')[0];
+      this.scroller.onscroll = function () {
+        //  滚动时关闭菜单描述（如果打开的话）
+        this.popup = -1
+        console.log(this.scroller.scrollTop)
+      }.bind(this)
     },
     components: {
     }
