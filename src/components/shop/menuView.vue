@@ -587,6 +587,7 @@
         activeMenu: 0, //  默认激活菜单
         scroller: '', //  可滚动容器对象
         popup: -1, //  设置显示菜单的描述
+        isMenuControl: false, //  当前滚动是否由菜单操作
       }
     },
     computed: {
@@ -602,6 +603,7 @@
     },
     methods: {
       scrollIntoView(index){ //  滚动到指定菜单食物列表
+        this.isMenuControl = true
         if (index == this.activeMenu){
           return
         }
@@ -610,25 +612,8 @@
           this.activeMenu = index;
           return
         }
-        var scrollHeight = 0
-        var self = this
-        var step = 5; // 自定义滚动步长，即滚动次数
-        var stepTime = 10; //  每隔多少毫秒执行一次增长（减少）滚动高度
         this.activeMenu = index;
-        for (var i = 0; i < index; i++){
-          scrollHeight += this.scroller.children[i].scrollHeight
-        }
-        //  设置step个定时器
-        for (var j = 0; j < step; j++){
-          setTimeout(function () {
-            //  逐步滚动，由快至慢
-            if (self.scroller.scrollTop < scrollHeight){
-              self.scroller.scrollTop = scrollHeight;
-            } else {
-              self.scroller.scrollTop = scrollHeight
-            }
-          }, stepTime * j)
-        }
+        this.scroller.scrollTop = this.scroller.children[index].offsetTop
       },
       addFood(itemId){ // 向购物车中添加食物
         this.$store.commit('addFood', itemId)
@@ -651,7 +636,18 @@
       this.scroller.onscroll = function () {
         //  滚动时关闭菜单描述（如果打开的话）
         this.popup = -1
-        console.log(this.scroller.scrollTop)
+        //  滚动位置判断
+        if (this.isMenuControl){ // 菜单操作的滚动
+          this.isMenuControl = !this.isMenuControl
+          return
+        }
+        if (this.activeMenu != this.scroller.children.length - 1){
+          if (this.scroller.scrollTop > this.scroller.children[this.activeMenu + 1].offsetTop){
+            this.activeMenu ++;
+          } else if (this.scroller.scrollTop < this.scroller.children[this.activeMenu].offsetTop){
+            this.activeMenu --;
+          }
+        }
       }.bind(this)
     },
     components: {
