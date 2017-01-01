@@ -59,4 +59,34 @@ a {
   -webkit-font-smoothing: antialiased;/*  消除文字锯齿  */
   -moz-osx-font-smoothing: grayscale;
 }
+/*  小球-start  */
+.flyball {
+  position: fixed;
+  top: 0;
+  left: 0;
+  -webkit-transition: -webkit-transform .5s linear;
+  transition: -webkit-transform .5s linear;
+  transition: transform .5s linear;
+  transition: transform .5s linear, -webkit-transform .5s linear
+}
+.flyball .inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #3190e8;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.flyball, .flyball .inner {
+  will-change: transform;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.flyball .inner {
+  -webkit-transition: -webkit-transform .5s cubic-bezier(.3,-0.2,1,0);
+  transition: -webkit-transform .5s cubic-bezier(.3,-0.2,1,0);
+  transition: transform .5s cubic-bezier(.3,-0.2,1,0);
+  transition: transform .5s cubic-bezier(.3,-0.2,1,0), -webkit-transform .5s cubic-bezier(.3,-0.2,1,0);
+}
+/*  小球-end  */
 </style>

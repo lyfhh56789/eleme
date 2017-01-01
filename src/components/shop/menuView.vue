@@ -69,7 +69,7 @@
                               </a>
                               <span class="entityquantity">{{ foodList[index][secIndex].quantity }}</span>
                               </template>
-                              <a @click="addFood(food.item_id)" href="javascript:">
+                              <a @click="addFood(food.item_id, $event)" href="javascript:">
                                 <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-minus"></use></svg>
                               </a>
                             </span>
@@ -574,9 +574,18 @@
     vertical-align: middle;
     fill: #3190e8;
   }
+  /*  商家休息时按钮小时效果  */
+  .entitybutton a[disabled] svg {
+    fill: #ddd;
+  }
+  /*  dpr大于1的显示效果 */
   [data-dpr="2"] .entitybutton svg {
     width: 44px;
     height: 44px;
+  }
+  [data-dpr="3"] .entitybutton svg {
+    width: 66px;
+    height: 66px;
   }
   /*  carbutton-end  */
 </style>
@@ -615,11 +624,72 @@
         this.activeMenu = index;
         this.scroller.scrollTop = this.scroller.children[index].offsetTop
       },
-      addFood(itemId){ // 向购物车中添加食物
+      addFood(itemId, event){ // 向购物车中添加食物, 并执行小球动画
+        this.createBall(event)
         this.$store.commit('addFood', itemId)
       },
       minusFood(itemId){ // 减少购买的食物数量或者取消购买
         this.$store.commit('minusFood', itemId)
+      },
+      createBall(event){
+        //  获得页面缩放比例
+        let scale = 1
+        const viewport = document.querySelector('meta[name="viewport"]')
+        if (viewport) {
+          let match = viewport.content.match(/initial-scale=(\d+\.?\d*)/)
+          if (match) scale = match[1]
+        }
+        //  根据页面的缩放获得小球的半径大小，缩放比例为1时为9px
+        const r = 9 / parseFloat(scale)
+        //  获得小球开始动画位置
+        let startPosition = event.target.getBoundingClientRect()
+        //  结束位置为购物车的位置
+        let endPosition = {
+          top: 800, //  拟定的位置
+          left: 200
+        }
+        //  创建小球
+        let ball = document.createElement('div')
+        let inner = document.createElement('div')
+        ball.className = 'flyball'
+        inner.className = 'inner'
+        inner.style.width = r * 2 + 'px'
+        inner.style.height = r * 2 + 'px'
+        /* top, left 为小球开始位置,通过getBoundingClientRect方法获得 */
+        ball.style.top = startPosition.top + 'px'
+        ball.style.left = startPosition.left + 'px'
+        //  显示小球
+        ball.appendChild(inner)
+        document.body.appendChild(ball)
+        //  小球动画的差值对象
+        let delta = {
+          top: endPosition.top - startPosition.top,
+          left: endPosition.left - startPosition.left,
+        }
+        //  抛物线动画拆分为水平方向和垂直方向，水平匀速，垂直具有加速度，由CSS样式控制
+        // 外层ball对象专注水平方向，内层inner对象专注垂直方向
+        //  CSS兼容性
+        const prefixes = [
+          '-webkit-',
+          '-moz-',
+          '-ms-',
+          '-o-',
+          '',
+        ]
+        /*
+         饿了么官方代码
+         猜测这句代码是为了防止DOM还没应用CSS样式，就已经生成了translate3d属性了
+         处理过快导致无法产生动画效果,使用setTimeout可以体会出来，不得不说饿了么前端666
+         除此之外，还可以是clientLeft, clientWidth，clientTop
+         */
+        void ball.clientHeight // NextTick
+        prefixes.forEach(prefix => {
+          ball.style.setProperty(prefix + 'transform', 'translate3d('+ delta.left +'px, 0, 0)')
+          inner.style.setProperty(prefix + 'transform', 'translate3d(0, '+ delta.top +'px, 0)')
+        })
+        inner.addEventListener('transitionend', function () {
+          document.body.removeChild(ball)
+        })
       },
       showPopup(index){ //  显示菜单的描述信息
         if (this.popup == index){
