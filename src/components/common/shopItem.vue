@@ -5,7 +5,7 @@
     </div>
     <div class="right-wrap">
       <section class="line">
-        <h3 class="shopname">{{ item.name }}</h3>
+        <h3 class="shopname" :class="{'premium': item.is_premium}">{{ item.name }}</h3>
         <div class="support-wrap">
           <template v-for="(support,index) in item.supports">
             <div v-if="index != (item.supports.length -1)" class="activity-wrap nowrap">
@@ -164,6 +164,21 @@
     font-weight: 700;
     font-size: .4rem;
     line-height: .426667rem;
+  }
+  .shopname.premium::before {
+    margin-right: 0.133333rem;
+    padding: 0 0.066667rem;
+    height: 0.4rem;
+    -webkit-border-radius: 0.053333rem;
+    border-radius: 0.053333rem;
+    background-color: #ffd930;
+    color: #52250a;
+    content: "品牌";
+    vertical-align: top;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.293333rem;
+    line-height: 0.4rem;
   }
   .activities, .support-wrap {
     display: -webkit-box;
