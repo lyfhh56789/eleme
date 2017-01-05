@@ -9,7 +9,7 @@ var routes = [
   {//  商家详情
     path: '/shop/:shopId',
     name: 'shop',
-    component: require('../components/shop/shopDetail.vue')
+    component: require('../components/shop/shop.vue')
   },
   {//  所有未定义路由跳转到首页
     path: '*',
