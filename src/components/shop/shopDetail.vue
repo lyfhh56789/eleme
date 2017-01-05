@@ -316,15 +316,19 @@
   export default{
     data () {
       return {
-        shop: {},
         activities: [], // 活动列表
         showActive: false, // 显示活动公告
       }
     },
+    computed: {
+      shop(){
+        return this.$store.state.shop
+      },
+    },
     methods: {
       loadShopMsg(){
         this.$http({url: 'eleme_api.php', params: {api_str: 'shopping/restaurant/'+ this.$route.params.shopId +'?extras[]=activities&extras[]=album&extras[]=license&extras[]=identification&extras[]=statistics&latitude=22.68403&longitude=114.21408'}}).then(function (res) {
-          this.shop = res.data
+          this.$store.commit('setShop', res.data)
           this.activities = res.data.activities
         })
       },

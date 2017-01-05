@@ -22,6 +22,7 @@ var storeConfig = {
      */
     shopCar: {}, // 购物车
     shopCarAnimate: false, // 购物车动画
+    shop: {}, //  商家信息
     menuList: [], //  商家食物菜单
     foodsState: [], //  食物列表状态树
     flyBallPos: {}, //  小球动画结束位置
@@ -103,6 +104,9 @@ var storeConfig = {
           }
         ]
       }
+    },
+    setShop(state, object){
+      state.shop = object
     },
     setFlyBallPos(state, object){ //  object为getBoundingClientRect方法获得的对象
       state.flyBallPos = object
