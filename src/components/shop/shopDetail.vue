@@ -345,6 +345,7 @@
       },
     },
     created () {
+      this.$store.commit('myShopCar', this.$route.params.shopId)
       this.loadShopMsg()
       this.loadMenuList()
     },

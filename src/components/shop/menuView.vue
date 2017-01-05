@@ -49,7 +49,7 @@
                         </header>
                         <p class="fooddescription">{{ food.description }}</p>
                         <p class="foodsales">
-                          <span>月售{{ food.month_sales }}份</span>
+                          <span v-if="food.month_sales != 0">月售{{ food.month_sales }}份</span>
                           <span v-if="food.satisfy_rate != 0">好评率{{ food.satisfy_rate }}%</span></p>
                         <p v-if="food.activity != null" class="foodactivity">
                           <span :style="{'color': '#' + food.activity.image_text_color}">{{ food.activity.image_text }}</span>
@@ -57,19 +57,19 @@
                         </p>
                         <strong class="foodprice">
                           <span>{{ food.specfoods[0].price }}</span>
-                          <del class="foodprice-origin">¥{{ food.specfoods[0].original_price }}</del>
+                          <del v-if="food.specfoods[0].original_price != null" class="foodprice-origin">¥{{ food.specfoods[0].original_price }}</del>
                         </strong>
                         <div class="cartbutton">
                           <span>
                             <span v-if="food.specfoods[0].stock == 0" class="entitybutton soldout">已售完</span>
                             <span v-else class="entitybutton">
                               <template v-if="foodList[index][secIndex].isBuy === true">
-                                <a @click="minusFood(food.item_id)" href="javascript:">
+                                <a @click="minusFood(food)" href="javascript:">
                                 <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg>
                               </a>
                               <span class="entityquantity">{{ foodList[index][secIndex].quantity }}</span>
                               </template>
-                              <a @click="addFood(food.item_id, $event)" href="javascript:">
+                              <a @click="addFood(food, $event)" href="javascript:">
                                 <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-minus"></use></svg>
                               </a>
                             </span>
@@ -86,6 +86,7 @@
             </div>
           </section>
         </main>
+        <shop-car></shop-car>
       </div>
     </div>
   </div>
@@ -552,6 +553,8 @@
     vertical-align: top;
   }
   /*  menuentities-end  */
+</style>
+<style>
   /*  carbutton-start  */
   .cartbutton {
     position: absolute;
@@ -590,6 +593,7 @@
   /*  carbutton-end  */
 </style>
 <script>
+  import shopCar from './shopCar.vue'
   export default{
     data () {
       return {
@@ -597,17 +601,18 @@
         scroller: '', //  可滚动容器对象
         popup: -1, //  设置显示菜单的描述
         isMenuControl: false, //  当前滚动是否由菜单操作
+        timer: '', // 购物车动画定时器
       }
     },
     computed: {
-      shopCar(){ // 用户对于该商店的购物车
-        return this.$store.state.shopCar[this.$route.params.shopId] !== undefined ? this.$store.shopCar[this.$route.params.shopId][0]: {}
-      },
       foodList(){ //  该商店的食物列表，对应list的排列方式
         return this.$store.state.foodsState
       },
       list(){
         return this.$store.state.menuList
+      },
+      flyBallPos(){
+        return this.$store.state.flyBallPos
       },
     },
     methods: {
@@ -624,12 +629,12 @@
         this.activeMenu = index;
         this.scroller.scrollTop = this.scroller.children[index].offsetTop
       },
-      addFood(itemId, event){ // 向购物车中添加食物, 并执行小球动画
+      addFood(food, event){ // 向购物车中添加食物, 并执行小球动画
         this.createBall(event)
-        this.$store.commit('addFood', itemId)
+        this.$store.commit('addFood', food)
       },
-      minusFood(itemId){ // 减少购买的食物数量或者取消购买
-        this.$store.commit('minusFood', itemId)
+      minusFood(food){ // 减少购买的食物数量或者取消购买
+        this.$store.commit('minusFood', food)
       },
       createBall(event){
         //  获得页面缩放比例
@@ -645,8 +650,8 @@
         let startPosition = event.target.getBoundingClientRect()
         //  结束位置为购物车的位置
         let endPosition = {
-          top: 800, //  拟定的位置
-          left: 200
+          top: this.flyBallPos.top + this.flyBallPos.height/2,
+          left: this.flyBallPos.left + this.flyBallPos.width/2
         }
         //  创建小球
         let ball = document.createElement('div')
@@ -687,8 +692,10 @@
           ball.style.setProperty(prefix + 'transform', 'translate3d('+ delta.left +'px, 0, 0)')
           inner.style.setProperty(prefix + 'transform', 'translate3d(0, '+ delta.top +'px, 0)')
         })
+        var self = this;
         inner.addEventListener('transitionend', function () {
           document.body.removeChild(ball)
+          self.$store.commit('setShopCarAnimate', true)
         })
       },
       showPopup(index){ //  显示菜单的描述信息
@@ -721,6 +728,7 @@
       }.bind(this)
     },
     components: {
+      shopCar
     }
   }
 </script>
