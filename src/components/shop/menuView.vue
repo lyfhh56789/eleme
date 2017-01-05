@@ -631,10 +631,10 @@
       },
       addFood(food, event){ // 向购物车中添加食物, 并执行小球动画
         this.createBall(event)
-        this.$store.commit('addFood', food)
+        this.$store.dispatch('addFood', food)
       },
       minusFood(food){ // 减少购买的食物数量或者取消购买
-        this.$store.commit('minusFood', food)
+        this.$store.dispatch('minusFood', food)
       },
       createBall(event){
         //  获得页面缩放比例

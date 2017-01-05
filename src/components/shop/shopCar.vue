@@ -51,11 +51,11 @@
         </div>
       </div>
       <div class="cartfooter" style="z-index: 11;">
-        <span class="carticon" :class="{'empty': shopCar[0].entities.length == 0, 'shake': shopCarAnimate}" attr-quantity="0"></span>
+        <span class="carticon" :class="{'empty': shopCar[0].entities.length == 0, 'shake': shopCarAnimate}" :attr-quantity="count"></span>
         <div><p class="carttotal">¥0</p>
           <p class="cartdelivery">配送费¥10</p></div>
-        <a href="javascript:" class="submitbutton disabled">还差¥35起送</a>
-        <!--<a href="javascript:" class="submitbutton disabled">去结算</a>-->
+        <a v-if="shop.float_minimum_order_amount != 0" href="javascript:" class="submitbutton disabled">还差¥35起送</a>
+        <a v-else href="javascript:" class="submitbutton disabled">去结算</a>
       </div>
     </footer>
   </div>
@@ -418,11 +418,17 @@
       }
     },
     computed: {
+      shop(){
+        return this.$store.state.shop
+      },
       shopCar(){ // 用户对于该商店的购物车
         return this.$store.state.shopCar[this.$route.params.shopId] !== undefined ? this.$store.state.shopCar[this.$route.params.shopId] : [{entities: []}]
       },
       shopCarAnimate(){
         return this.$store.state.shopCarAnimate
+      },
+      count(){ // 购买计数
+        return this.$store.state.count
       },
     },
     methods: {
@@ -430,6 +436,7 @@
     created () {
     },
     mounted () {
+      console.log(422)
       var self = this
       var cartIcon = document.getElementsByClassName('carticon')[0]
       cartIcon.addEventListener('animationend', function () {
