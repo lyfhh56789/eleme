@@ -1,61 +1,56 @@
 <template>
   <div>
     <footer class="cartview">
-      <div class="cartmask fold-transition" style="z-index: 10; display: none;"></div>
-      <div class="cartbody fold-transition" style="display: none; z-index: 11;">
-        <div class="cartheader">
-          <span class="cartheader-text">购物车</span>
-          <a href="javascript:" class="cartheader-remove">
-            <svg>
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-remove"></use>
-            </svg>
-            <span>清空</span>
-          </a>
-        </div>
-        <div class="cartbody-scroller">
-          <ul class="cartlist">
-            <li v-for="food in shopCar.entities" class="entityrow">
-              <span class="entityname">
-                <em class="name">青椒拆骨肉</em>
-                <p class="entityspecs"></p>
+      <transition name="fold">
+        <div @click="showShopCar" v-show="showShopCarDetail" class="cartmask fold" style="z-index: 10;"></div>
+      </transition>
+      <transition name="fold">
+        <div v-show="showShopCarDetail" class="cartbody fold" style="z-index: 11;">
+          <div class="cartheader">
+            <span class="cartheader-text">购物车</span>
+            <a @click="emptyCart(shop.id)" href="javascript:" class="cartheader-remove">
+              <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-remove"></use>
+              </svg>
+              <span>清空</span>
+            </a>
+          </div>
+          <div class="cartbody-scroller">
+            <ul class="cartlist">
+              <li v-for="food in shopCar[0].entities" class="entityrow">
+            <span class="entityname">
+              <em class="name">{{ food.name }}</em>
+              <p class="entityspecs"></p>
+            </span>
+                <span class="entitytotal">{{ (food.price * food.quantity).toFixed(1) }}</span>
+            <span class="entitycartbutton">
+              <span class="entitybutton">
+                <a @click="minus(food.id)" href="javascript:">
+                  <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg>
+                </a>
+                <span class="entityquantity">{{ food.quantity }}</span>
+                <a @click="add(food.id)" href="javascript:">
+                  <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-minus"></use></svg>
+                </a>
               </span>
-              <span class="entitytotal">16</span>
-              <span class="entitycartbutton">
-                <span class="entitybutton">
-                  <a href="javascript:">
-                    <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg>
-                  </a>
-                  <span class="entityquantity">1</span>
-                  <a href="javascript:">
-                    <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-minus"></use></svg>
-                  </a>
-                </span>
-              </span>
-            </li>
-            <li class="entityrow"><span class="entityname"><em class="name">一碗香</em>   <p
-              class="entityspecs"> </p></span> <span class="entitytotal">32</span><span
-              class="entitycartbutton"><span class="entitybutton" ><a
-              href="javascript:" ><svg ><use
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              xlink:href="#cart-add"></use></svg></a> <span
-              class="entityquantity" >2</span> <a href="javascript:" ><svg ><use
-              xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-minus"></use></svg></a> </span> </span>
-            </li>
-          </ul>
-          <!--  餐盒费用  -->
-          <div class="entityrow packingfee">
-            <span class="entityname">餐盒</span>
-            <span class="entitytotal">2</span>
-            <span class="entitycartbutton"></span>
+            </span>
+              </li>
+            </ul>
+            <!--  餐盒费用  -->
+            <div v-show="packingFee !== 0" class="entityrow packingfee">
+              <span class="entityname">餐盒</span>
+              <span class="entitytotal">{{ packingFee }}</span>
+              <span class="entitycartbutton"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </transition>
       <div class="cartfooter" style="z-index: 11;">
-        <span class="carticon" :class="{'empty': shopCar[0].entities.length == 0, 'shake': shopCarAnimate}" :attr-quantity="count"></span>
-        <div><p class="carttotal">¥0</p>
-          <p class="cartdelivery">配送费¥10</p></div>
-        <a v-if="shop.float_minimum_order_amount != 0" href="javascript:" class="submitbutton disabled">还差¥35起送</a>
-        <a v-else href="javascript:" class="submitbutton disabled">去结算</a>
+        <span @click="showShopCar" class="carticon" :class="{'empty': shopCar[0].entities.length == 0, 'shake': shopCarAnimate}" :attr-quantity="count"></span>
+        <div><p class="carttotal">¥{{ payCount + packingFee }}</p>
+          <p class="cartdelivery">{{ shop.piecewise_agent_fee.tips }}</p></div>
+        <a v-if="lack > 0" href="javascript:" class="submitbutton disabled">还差¥{{ lack }}起送</a>
+        <a v-else href="javascript:" class="submitbutton" :class="{'disabled': payCount === 0}">去结算</a>
       </div>
     </footer>
   </div>
@@ -80,16 +75,16 @@
     -webkit-overflow-scrolling: touch;
     max-height: 8.219178rem;
   }
-  .fold-transition.cartbody {
+  .fold.cartbody {
     -webkit-transition: all .35s ease;
     transition: all .35s ease;
   }
-  .fold-enter.cartbody,
-  .fold-leave.cartbody {
+  .fold-enter-active.cartbody,
+  .fold-leave-active.cartbody {
     -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0);
   }
-  .fold-transition.cartmask {
+  .fold.cartmask {
     position: absolute;
     top: 0;
     right: 0;
@@ -100,8 +95,8 @@
     -webkit-transition: opacity .35s ease;
     transition: opacity .35s ease;
   }
-  .fold-enter.cartmask,
-  .fold-leave.cartmask {
+  .fold-enter-active.cartmask,
+  .fold-leave-active.cartmask {
     opacity: 0;
   }
   .cartheader {
@@ -415,6 +410,7 @@
   export default{
     data () {
       return {
+        showShopCarDetail: false, //  显示购物清单
       }
     },
     computed: {
@@ -427,11 +423,57 @@
       shopCarAnimate(){
         return this.$store.state.shopCarAnimate
       },
+      lack(){ //  最低运送费差价，如果有运送费要求的话
+        return this.shop.float_minimum_order_amount - this.payCount
+      },
       count(){ // 购买计数
         return this.$store.state.count
       },
+      payCount(){ // 购买计价
+        return this.$store.state.payCount
+      },
+      packingFee(){ //  是否有餐盒费
+        return this.$store.state.packingFee
+      },
     },
     methods: {
+      add(foodId){ // 购物车中的增加食物操作
+        for (var i = 0; i < this.$store.state.menuList.length; i++){
+          if (this.$store.state.menuList[i].type !== 1){ //  忽略优惠类型的食物与分类的重复
+            continue
+          }
+          for (var j = 0; j < this.$store.state.menuList[i].foods.length; j++){
+            if (this.$store.state.menuList[i].foods[j].specfoods[0].food_id === foodId){
+              this.$store.dispatch('addFood', this.$store.state.menuList[i].foods[j])
+              break;
+            }
+          }
+        }
+      },
+      minus(foodId){
+        for (var i = 0; i < this.$store.state.menuList.length; i++){
+          if (this.$store.state.menuList[i].type !== 1){ //  忽略优惠类型的食物与分类的重复
+            continue
+          }
+          for (var j = 0; j < this.$store.state.menuList[i].foods.length; j++){
+            if (this.$store.state.menuList[i].foods[j].specfoods[0].food_id === foodId){
+              this.$store.dispatch('minusFood', this.$store.state.menuList[i].foods[j])
+              break;
+            }
+          }
+        }
+      },
+      emptyCart(restaurantId){ // 清空购物车
+        this.$store.dispatch('emptyCart', restaurantId)
+        this.showShopCar()
+      },
+      showShopCar(){
+        if (this.shopCar[0].entities.length === 0){
+          this.showShopCarDetail = false
+          return
+        }
+        this.showShopCarDetail = !this.showShopCarDetail
+      },
     },
     created () {
     },

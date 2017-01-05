@@ -11,7 +11,7 @@ var storeConfig = {
          "sku_id": "118334330516",
          "quantity": 2, // 购买数量
          "name": "香辣鸡腿堡+墨西哥鸡肉卷+蜂蜜绿茶",
-         "price": 24.5,
+         "price": 24.5, //  商品原价
          "packing_fee": 0,
          "stock": 9994,
          "specs": [],
@@ -24,6 +24,8 @@ var storeConfig = {
     shopCarAnimate: false, // 购物车动画
     shop: {}, //  商家信息
     count: 0, //  在该商家购买的食物总数
+    payCount: 0, //  在该商家购买的食物总价
+    packingFee: 0, //  餐盒费用，如果有的话
     menuList: [], //  商家食物菜单
     foodsState: [], //  食物列表状态树
     flyBallPos: {}, //  小球动画结束位置
@@ -64,14 +66,31 @@ var storeConfig = {
     setCount(state, restaurantId){
       if (state.shopCar[restaurantId][0].entities.length === 0){
         state.count = 0
+        state.payCount = 0
+        state.packingFee = 0
         return
       }
       var count = 0;
+      var payCount = 0;
+      var packingFee = 0;
       for (var i = 0; i < state.shopCar[restaurantId][0].entities.length; i++){
         count += state.shopCar[restaurantId][0].entities[i].quantity
+        payCount += +(state.shopCar[restaurantId][0].entities[i].quantity * state.shopCar[restaurantId][0].entities[i].price).toFixed(1)
+        packingFee += state.shopCar[restaurantId][0].entities[i].packing_fee
       }
       state.count = count
+      //  浮点的精度计算有问题
+      state.payCount = +(payCount.toFixed(1))
+      state.packingFee = packingFee
     },
+    emptyFoodsState(state){ // 重置状态树
+      state.foodsState.forEach(value => {
+        value.forEach(val => {
+          val.isBuy = false;
+          val.quantity = 0;
+        })
+      })
+    }
   },
   actions: {
     addFood({commit, state}, food){ //  购买食物，更改食物的当前列表状态
@@ -101,7 +120,7 @@ var storeConfig = {
         'sku_id': food.specfoods[0].sku_id,
         'quantity': 1, // 购买数量
         'name': food.name,
-        'price': food.specfoods[0].price,
+        'price': (food.specfoods[0].original_price === null ? food.specfoods[0].price : food.specfoods[0].original_price),
         'packing_fee': food.specfoods[0].packing_fee,
         'stock': food.specfoods[0].stock,
         'specs': food.specfoods[0].specs,
@@ -130,6 +149,11 @@ var storeConfig = {
           commit('setCount', food.restaurant_id)
         }
       })
+    },
+    emptyCart({commit, state}, restaurantId){ // 清空购物车
+      state.shopCar[restaurantId][0].entities = []
+      commit('setCount', restaurantId)
+      commit('emptyFoodsState')
     },
   },
 }
