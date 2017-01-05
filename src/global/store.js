@@ -34,9 +34,13 @@ var storeConfig = {
     shopMenuList(state, list){ // 获取商家食物菜单和食物列表状态树
       state.menuList = list
       for (var i = 0; i < list.length; i++) {
-        state.foodsState.push([])
+        state.foodsState.push({
+          foods: [],
+          quantity: 0, // 分类菜单中的数量
+          type: list[i].type, //  分类的类型
+        })
         for (var j = 0; j < list[i].foods.length; j++) {
-          state.foodsState[i].push({
+          state.foodsState[i].foods.push({
             item_id: list[i].foods[j].item_id,
             quantity: 0,
             stock: list[i].foods[j].specfoods[0].stock,
@@ -85,20 +89,24 @@ var storeConfig = {
     },
     emptyFoodsState(state){ // 重置状态树
       state.foodsState.forEach(value => {
-        value.forEach(val => {
+        value.foods.forEach(val => {
           val.isBuy = false;
           val.quantity = 0;
         })
+        value.quantity = 0
       })
     }
   },
   actions: {
     addFood({commit, state}, food){ //  购买食物，更改食物的当前列表状态
       state.foodsState.forEach(value => {
-        value.forEach(val => {
+        value.foods.forEach(val => {
           if (val.item_id == food.item_id && val.quantity < val.stock){
             val.isBuy = true;
             val.quantity ++;
+            if (value.type === 1){
+              value.quantity ++;
+            }
           }
         })
       })
@@ -131,11 +139,14 @@ var storeConfig = {
     },
     minusFood({commit, state}, food){ // 减少购买的食物数量或者取消购买
       state.foodsState.forEach(value => {
-        value.forEach((val, index) => {
+        value.foods.forEach((val, index) => {
           if (val.item_id == food.item_id){
             val.quantity --;
             if (val.quantity == 0){
               val.isBuy = false
+            }
+            if (value.type === 1){
+              value.quantity --;
             }
           }
         })

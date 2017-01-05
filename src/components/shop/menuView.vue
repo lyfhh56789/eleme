@@ -11,7 +11,7 @@
             <template v-for="(item, index) in list">
               <li :class="{'noicon': index !== activeMenu, 'active': index === activeMenu}" @click="scrollIntoView(index)">
                 <img v-if="item.icon_url != ''" class="category-icon" :src="item.icon_url | transformImgUrl(1)">
-                <!--<span class="category-quantity">1</span>-->
+                <span v-if="foodList[index].quantity !== 0" class="category-quantity">{{ foodList[index].quantity }}</span>
                 <span class="category-name">{{ item.name }}</span>
               </li>
             </template>
@@ -63,11 +63,11 @@
                           <span>
                             <span v-if="food.specfoods[0].stock == 0" class="entitybutton soldout">已售完</span>
                             <span v-else class="entitybutton">
-                              <template v-if="foodList[index][secIndex].isBuy === true">
+                              <template v-if="foodList[index].foods[secIndex].isBuy === true">
                                 <a @click="minusFood(food)" href="javascript:">
                                 <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg>
                               </a>
-                              <span class="entityquantity">{{ foodList[index][secIndex].quantity }}</span>
+                              <span class="entityquantity">{{ foodList[index].foods[secIndex].quantity }}</span>
                               </template>
                               <a @click="addFood(food, $event)" href="javascript:">
                                 <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-minus"></use></svg>
