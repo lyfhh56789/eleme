@@ -478,7 +478,6 @@
     created () {
     },
     mounted () {
-      console.log(422)
       var self = this
       var cartIcon = document.getElementsByClassName('carticon')[0]
       cartIcon.addEventListener('animationend', function () {

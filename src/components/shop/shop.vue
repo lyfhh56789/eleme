@@ -53,14 +53,19 @@
     </div>
     <div class="shopbody" style="position: relative; min-height: 100vh">
       <div class="shopnav">
-        <a class="shopnav-tab active" href="javascript:">
+        <a @click="navTo(0)" class="shopnav-tab" :class="{'active': activeNav === 0}" href="javascript:">
           <span class="shopnav-title">商品</span>
         </a>
-        <a class="shopnav-tab" href="javascript:">
+        <a @click="navTo(1)" class="shopnav-tab" :class="{'active': activeNav === 1}" href="javascript:">
           <span class="shopnav-title">商家</span>
         </a>
       </div>
-      <menu-view></menu-view>
+      <template v-if="activeNav === 0">
+        <menu-view></menu-view>
+      </template>
+      <template v-if="activeNav === 1">
+        <shop-info></shop-info>
+      </template>
     </div>
   </div>
 </template>
@@ -215,7 +220,50 @@
     fill: #fff;
   }
   /*  商家信息头部-end  */
-  /*  商家活动-start  */
+  /*  shopnav-start  */
+  .shopnav {
+    line-height: 1.2rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: #fff;
+  }
+  .shopnav-tab {
+    position: relative;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    display: block;
+    width: 0;
+    text-align: center;
+    font-size: 0.373333rem;
+    color: #666;
+    text-decoration: none;
+    border-bottom: 1px solid #ddd;
+  }
+  .shopnav-tab.active {
+    color: #3190e8;
+  }
+  .shopnav-tab.active .shopnav-title {
+    position: relative;
+  }
+  .shopnav-tab.active .shopnav-title::after {
+    content: "";
+    position: absolute;
+    bottom: -0.16rem;
+    left: -0.066667rem;
+    right: -0.066667rem;
+    height: 0.053333rem;
+    background-color: #3190e8;
+    -webkit-border-radius: 0.04rem;
+    border-radius: 0.04rem;
+  }
+  /*  shopnav-end  */
+</style>
+<style>
+  /*  shopactivity  */
   .activity-wrap {
     line-height: 0.426667rem;
     display: -webkit-box;
@@ -267,57 +315,17 @@
   .activity-icon.icononly {
     margin-right: 0;
   }
-  /*  商家活动-end  */
-  /*  shopnav-start  */
-  .shopnav {
-    line-height: 1.2rem;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    background-color: #fff;
-  }
-  .shopnav-tab {
-    position: relative;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    display: block;
-    width: 0;
-    text-align: center;
-    font-size: 0.373333rem;
-    color: #666;
-    text-decoration: none;
-    border-bottom: 1px solid #ddd;
-  }
-  .shopnav-tab.active {
-    color: #3190e8;
-  }
-  .shopnav-tab.active .shopnav-title {
-    position: relative;
-  }
-  .shopnav-tab.active .shopnav-title::after {
-    content: "";
-    position: absolute;
-    bottom: -0.16rem;
-    left: -0.066667rem;
-    right: -0.066667rem;
-    height: 0.053333rem;
-    background-color: #3190e8;
-    -webkit-border-radius: 0.04rem;
-    border-radius: 0.04rem;
-  }
-  /*  shopnav-end  */
 </style>
 <script>
   import menuView from './menuView.vue'
+  import shopInfo from './shopInfo.vue'
   import shopNotice from './shopNotice.vue'
   export default{
     data () {
       return {
         activities: [], // 活动列表
         showActive: false, // 显示活动公告
+        activeNav: 0, //  激活导航
       }
     },
     computed: {
@@ -338,6 +346,12 @@
           this.$store.commit('shopMenuList', res.data)
         })
       },
+      navTo(index){ // 导航到相应的商家食物列表或者商家信息
+        if (index === this.activeNav){
+          return
+        }
+        this.activeNav = index;
+      },
       transImgUrl(path){
         var reg = /gif|jpe?g|png$/i; // 匹配图片后缀
         try {
@@ -356,7 +370,7 @@
     mounted () {
     },
     components: {
-      menuView, shopNotice
+      menuView, shopInfo, shopNotice
     }
   }
 </script>
