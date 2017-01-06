@@ -8,6 +8,14 @@
       <rating-star :rating="rate.rating_star"></rating-star>
       <span class="rate-rating">{{ rate.time_spent_desc }}</span>
       <div v-if="rate.rating_text != ''" class="rate-text">{{ rate.rating_text }}</div>
+      <div v-if="rate.reply_text != undefined" class="rate-reply">商家回复：{{ rate.reply_text }}</div>
+      <ul class="rate-images">
+        <template v-for="item in rate.item_ratings">
+          <li v-if="item.image_hash !== ''">
+            <img :src="item.image_hash | transformImgUrl(1) + '?imageMogr/quality/80/format/webp/thumbnail/!142x142r/gravity/Center/crop/142x142/'">
+          </li>
+        </template>
+      </ul>
       <div>
         <ul v-if="rate.item_ratings.length !== 0" class="item-list">
           <template v-for="item in rate.item_ratings">

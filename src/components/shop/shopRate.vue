@@ -14,56 +14,20 @@
             <small class="compare-rating">高于周边商家100.0%</small>
           </div>
           <div class="col2">
-            <div class="score-block"><span class="score-title">服务态度</span> <span
-              class="score-content"> <div> <svg style="display: none"
-                                                                                            > <symbol
-              id="star" viewBox="0 0 32 32"> <path class="path1"
-                                                                  d="M16 26.382l-8.16 4.992c-1.5 0.918-2.382 0.264-1.975-1.435l2.226-9.303-7.269-6.218c-1.337-1.143-0.987-2.184 0.755-2.322l9.536-0.758 3.667-8.835c0.674-1.624 1.772-1.613 2.442 0l3.667 8.835 9.536 0.758c1.753 0.139 2.082 1.187 0.755 2.322l-7.269 6.218 2.226 9.303c0.409 1.71-0.485 2.347-1.975 1.435l-8.16-4.992z"
-                                                                 ></path> </symbol> </svg> <p
-             > <span> <svg><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                             xlink:href="#star"
-                                                                            ></use></svg><svg
-             ><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"
-                                 ></use></svg><svg><use
-              xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"></use></svg><svg
-             ><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"
-                                 ></use></svg><svg><use
-              xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"></use></svg> </span> <span
-              style="width: 87.5%;"> <svg class="gray-star"><use
-              xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"></use></svg><svg
-              class="gray-star"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"
-                                                   ></use></svg><svg class="gray-star"><use
-              xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"></use></svg><svg
-              class="gray-star"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"
-                                                   ></use></svg><svg class="gray-star"><use
-              xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"
-             ></use></svg> </span> </p> </div> <span class="score-value"
-                                                                   >4.4</span> </span></div>
-            <div class="score-block"><span class="score-title">菜品评价</span> <span
-              class="score-content"> <div> <svg style="display: none"
-                                                                                            > <symbol
-              id="star" viewBox="0 0 32 32"> <path class="path1"
-                                                                  d="M16 26.382l-8.16 4.992c-1.5 0.918-2.382 0.264-1.975-1.435l2.226-9.303-7.269-6.218c-1.337-1.143-0.987-2.184 0.755-2.322l9.536-0.758 3.667-8.835c0.674-1.624 1.772-1.613 2.442 0l3.667 8.835 9.536 0.758c1.753 0.139 2.082 1.187 0.755 2.322l-7.269 6.218 2.226 9.303c0.409 1.71-0.485 2.347-1.975 1.435l-8.16-4.992z"
-                                                                 ></path> </symbol> </svg> <p
-             > <span> <svg><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                             xlink:href="#star"
-                                                                            ></use></svg><svg
-             ><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"
-                                 ></use></svg><svg><use
-              xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"></use></svg><svg
-             ><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"
-                                 ></use></svg><svg><use
-              xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"></use></svg> </span> <span
-              style="width: 100%;"> <svg class="gray-star"><use
-              xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"></use></svg><svg
-              class="gray-star"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"
-                                                   ></use></svg><svg class="gray-star"><use
-              xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"></use></svg><svg
-              class="gray-star"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"
-                                                   ></use></svg><svg class="gray-star"><use
-              xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"
-             ></use></svg> </span> </p> </div> <span class="score-value"
-                                                                   >5.0</span> </span></div>
+            <div class="score-block">
+              <span class="score-title">服务态度</span>
+              <span class="score-content">
+                <rating-star :rating="5"></rating-star>
+                <span class="score-value">5.0</span>
+              </span>
+            </div>
+            <div class="score-block">
+              <span class="score-title">菜品评价</span>
+              <span class="score-content">
+                <rating-star :rating="5"></rating-star>
+                <span class="score-value">5.0</span>
+              </span>
+            </div>
             <div class="score-block"><span class="score-title">送达时间</span>
               <small class="score-content"><span>36分钟</span></small>
             </div>
@@ -282,23 +246,41 @@
 </style>
 <script>
   import rate from '../common/rate.vue'
+  import ratingStar from '../common/ratingStar.vue'
   export default{
     data () {
       return {
         tags: [], //  标签
         tagActive: 0, //  激活标签
         ratings: [], //  评价列表
-        busy: false
+        busy: true,
+        page: 1, //  分页信息
+        limit: 10, //  分页信息
+      }
+    },
+    computed: {
+      offset(){
+        return (this.page - 1) * this.limit
       }
     },
     methods: {
       loadData(){
-        this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings?has_content=true&tag_name=%E5%85%A8%E9%83%A8&offset=0&limit=10'}}).then(function (res) {
+        this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings?has_content=true&tag_name=%E5%85%A8%E9%83%A8&offset='+ this.offset +'&limit='+ this.limit}}).then(function (res) {
           this.ratings = res.data
+          this.busy = false
+          this.page = 2 //  从第二页开始加载更多数据
         })
       },
       loadMore(){
-        console.log(123)
+        this.busy = true
+        this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings?has_content=true&tag_name=%E5%85%A8%E9%83%A8&offset='+ this.offset +'&limit='+ this.limit}}).then(function (res) {
+          if (res.data.length < this.limit){ // 数据量少于limit，说明后续没有数据了
+            return
+          }
+          this.busy = false
+          this.page ++;
+          this.ratings = this.ratings.concat(res.data)
+        })
       },
       getTags(){
         this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings/tags'}}).then(function (res) {
@@ -311,7 +293,7 @@
       this.loadData();
     },
     components: {
-      rate
+      rate, ratingStar
     }
   }
 </script>
