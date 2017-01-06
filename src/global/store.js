@@ -23,6 +23,7 @@ var storeConfig = {
     shopCar: {}, // 购物车
     shopCarAnimate: false, // 购物车动画
     shop: {}, //  商家信息
+    ratingScores: {}, //  商家评分信息
     count: 0, //  在该商家购买的食物总数
     payCount: 0, //  在该商家购买的食物总价
     packingFee: 0, //  餐盒费用，如果有的话
@@ -66,6 +67,9 @@ var storeConfig = {
     },
     setShopCarAnimate(state, status){ //  开始小球动画
       state.shopCarAnimate = status
+    },
+    setRatingScores(state, object){
+      state.ratingScores = object
     },
     setCount(state, restaurantId){
       if (state.shopCar[restaurantId][0].entities.length === 0){

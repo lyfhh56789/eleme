@@ -163,21 +163,18 @@
   export default{
     data () {
       return {
-        ratingScores: {}, //  商家评分信息
         ratings: [], // 商家评价信息
       }
     },
     computed: {
       shop(){
         return this.$store.state.shop
+      },
+      ratingScores(){ //  商家评分信息
+        return this.$store.state.ratingScores
       }
     },
     methods: {
-      getRatingScores(){ // 获取商家评分评价信息
-        this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings/scores'}}).then(function (res) {
-          this.ratingScores = res.data
-        })
-      },
       getRatings(){ // 获取商家最新一条评价
         this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings?has_content=1&limit=1'}}).then(function (res) {
           this.ratings = res.data
@@ -188,7 +185,6 @@
       }
     },
     created () {
-      this.getRatingScores();
       this.getRatings();
     },
     components: {

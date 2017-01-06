@@ -296,6 +296,11 @@
           this.$store.commit('shopMenuList', res.data)
         })
       },
+      getRatingScores(){ // 获取商家评分评价信息
+        this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings/scores'}}).then(function (res) {
+          this.$store.commit('setRatingScores', res.data)
+        })
+      },
       navTo(index){ // 导航到相应的商家食物列表或者商家信息
         if (index === this.activeNav){
           return
@@ -316,6 +321,7 @@
       this.$store.commit('myShopCar', this.$route.params.shopId)
       this.loadShopMsg()
       this.loadMenuList()
+      this.getRatingScores();
     },
     mounted () {
     },

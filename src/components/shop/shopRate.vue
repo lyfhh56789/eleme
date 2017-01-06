@@ -9,27 +9,29 @@
     <div class="content">
       <div class="shop-rate">
         <section class="shop-rate-overview">
-          <div class="col1"><strong class="overall-score">4.7</strong>
+          <div class="col1">
+            <strong class="overall-score">{{ ratingScores.overall_score.toFixed(1) }}</strong>
             <div>综合评价</div>
-            <small class="compare-rating">高于周边商家100.0%</small>
+            <small class="compare-rating">{{ ratingScores.compare_rating > 0 ? '高于': '低于'}}周边商家{{ (ratingScores.compare_rating * 100).toFixed(1) + '%' }}</small>
           </div>
           <div class="col2">
             <div class="score-block">
               <span class="score-title">服务态度</span>
               <span class="score-content">
-                <rating-star :rating="5"></rating-star>
-                <span class="score-value">5.0</span>
+                <rating-star :rating="ratingScores.service_score.toFixed(1)"></rating-star>
+                <span class="score-value">{{ ratingScores.service_score.toFixed(1) }}</span>
               </span>
             </div>
             <div class="score-block">
               <span class="score-title">菜品评价</span>
               <span class="score-content">
-                <rating-star :rating="5"></rating-star>
-                <span class="score-value">5.0</span>
+                <rating-star :rating="ratingScores.food_score.toFixed(1)"></rating-star>
+                <span class="score-value">{{ ratingScores.food_score.toFixed(1) }}</span>
               </span>
             </div>
-            <div class="score-block"><span class="score-title">送达时间</span>
-              <small class="score-content"><span>36分钟</span></small>
+            <div class="score-block">
+              <span class="score-title">送达时间</span>
+              <small class="score-content"><span>{{ ratingScores.deliver_time }}分钟</span></small>
             </div>
           </div>
         </section>
@@ -261,6 +263,9 @@
     computed: {
       offset(){
         return (this.page - 1) * this.limit
+      },
+      ratingScores(){ //  商家评分信息
+        return this.$store.state.ratingScores
       }
     },
     methods: {
