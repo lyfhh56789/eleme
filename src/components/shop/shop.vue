@@ -64,8 +64,14 @@
         <menu-view></menu-view>
       </template>
       <template v-if="activeNav === 1">
-        <shop-info></shop-info>
+        <shop-info @rate="showRate = true"></shop-info>
       </template>
+    </div>
+    <!--  放置商家评价的两个空div  -->
+    <div>
+      <div v-if="showRate">
+        <shop-rate></shop-rate>
+      </div>
     </div>
   </div>
 </template>
@@ -320,12 +326,14 @@
   import menuView from './menuView.vue'
   import shopInfo from './shopInfo.vue'
   import shopNotice from './shopNotice.vue'
+  import shopRate from './shopRate.vue'
   export default{
     data () {
       return {
         activities: [], // 活动列表
         showActive: false, // 显示活动公告
         activeNav: 0, //  激活导航
+        showRate: false, // 显示评价页
       }
     },
     computed: {
@@ -370,7 +378,7 @@
     mounted () {
     },
     components: {
-      menuView, shopInfo, shopNotice
+      menuView, shopInfo, shopNotice, shopRate
     }
   }
 </script>

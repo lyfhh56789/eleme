@@ -4,7 +4,7 @@
       <header>
         <span class="overall">{{ shop.rating }}分</span>
         <span class="compare">{{ ratingScores.compare_rating > 0 ? '高于' : '低于'}}周边商家{{ (ratingScores.compare_rating * 100).toFixed(1) }}%</span>
-        <span class="rating-count">
+        <span class="rating-count" @click="viewRate">
           {{ ratingScores.order_rating_amount }}条评价
           <svg class="arrow-right"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use> </svg>
         </span>
@@ -53,7 +53,7 @@
           </div>
         </div>
       </section>
-      <section class="show-all-ratings"> 查看全部评价
+      <section @click="viewRate" class="show-all-ratings"> 查看全部评价
         <svg class="arrow-right">
           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
         </svg>
@@ -244,7 +244,7 @@
     background-position: center;
   }
 </style>
-<style scoped>
+<style>
   /*  rating-block  */
   ul {
     margin: 0;
@@ -356,6 +356,9 @@
           this.ratings = res.data
         })
       },
+      viewRate(){ //  显示评价页
+        this.$emit('rate')
+      }
     },
     created () {
       this.getRatingScores();
