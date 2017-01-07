@@ -30,6 +30,8 @@ var storeConfig = {
     menuList: [], //  商家食物菜单
     foodsState: [], //  食物列表状态树
     flyBallPos: {}, //  小球动画结束位置
+    showActive: false, // 显示活动公告
+    showRate: false, // 显示评价页
   },
   mutations: {
     shopMenuList(state, list){ // 获取商家食物菜单和食物列表状态树
@@ -64,6 +66,12 @@ var storeConfig = {
     },
     setFlyBallPos(state, object){ //  object为getBoundingClientRect方法获得的对象
       state.flyBallPos = object
+    },
+    setShowActive(state, boolean){ // 显示活动信息页
+      state.showActive = boolean
+    },
+    setShowRate(state, boolean){ //  显示评价页
+      state.showRate = boolean
     },
     setShopCarAnimate(state, status){ //  开始小球动画
       state.shopCarAnimate = status

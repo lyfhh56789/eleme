@@ -26,7 +26,7 @@
                   <shop-activity :activity="activities[0]" type="activity"></shop-activity>
                 </li>
               </ul>
-              <div @click="showActive = true" class="shopheader-activity-count">
+              <div @click="active" class="shopheader-activity-count">
                 {{ activities.length }}个活动
                 <svg class="arrow">
                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-        <div @click="showActive = true" class="shopheader-notice">
+        <div @click="active" class="shopheader-notice">
           <span v-if="shop.promotion_info">{{ shop.promotion_info }}</span>
           <span v-else>欢迎光临，用餐高峰期请提前下单，谢谢。</span>
           <svg class="shopheader-notice-arrow">
@@ -44,7 +44,7 @@
         </div>
       </div>
       <!--  商家公告  -->
-      <shop-notice :shop="shop" @close="showActive = false" v-if="showActive"></shop-notice>
+      <shop-notice :shop="shop" v-if="showActive"></shop-notice>
     </div>
     <div class="shopbody" style="position: relative; min-height: 100vh">
       <div class="shopnav">
@@ -59,7 +59,7 @@
         <menu-view></menu-view>
       </template>
       <template v-if="activeNav === 1">
-        <shop-info @rate="showRate = true"></shop-info>
+        <shop-info></shop-info>
       </template>
     </div>
     <!--  放置商家评价的两个空div  -->
@@ -273,15 +273,19 @@
     data () {
       return {
         activities: [], // 活动列表
-        showActive: false, // 显示活动公告
         activeNav: 0, //  激活导航
-        showRate: false, // 显示评价页
       }
     },
     computed: {
       shop(){
         return this.$store.state.shop
       },
+      showActive(){
+        return this.$store.state.showActive
+      },
+      showRate(){
+        return this.$store.state.showRate
+      }
     },
     methods: {
       loadShopMsg(){
@@ -300,6 +304,10 @@
         this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings/scores'}}).then(function (res) {
           this.$store.commit('setRatingScores', res.data)
         })
+      },
+      active(){ //  激活显示活动信息以及公告
+        window.history.pushState({notice: true}, document.title)
+        this.$store.commit('setShowActive', true)
       },
       navTo(index){ // 导航到相应的商家食物列表或者商家信息
         if (index === this.activeNav){
@@ -324,6 +332,14 @@
       this.getRatingScores();
     },
     mounted () {
+      window.onpopstate = function (e) { //  注册浏览器回退事件
+        if (this.showActive){
+          this.$store.commit('setShowActive', false)
+        }
+        if (this.showRate){
+          this.$store.commit('setShowRate', false)
+        }
+      }.bind(this)
     },
     components: {
       menuView, shopInfo, shopNotice, shopRate, shopActivity

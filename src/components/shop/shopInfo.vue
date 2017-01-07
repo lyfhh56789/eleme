@@ -181,7 +181,8 @@
         })
       },
       viewRate(){ //  显示评价页
-        this.$emit('rate')
+        window.history.pushState({rate: true}, document.title)
+        this.$store.commit('setShowRate', true)
       }
     },
     created () {

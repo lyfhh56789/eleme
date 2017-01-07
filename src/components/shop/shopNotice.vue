@@ -191,7 +191,8 @@
     },
     methods: {
       closeNotice(){
-        this.$emit('close')
+        window.history.back()
+        this.$store.commit('setShowActive', false)
       },
     },
     created () {

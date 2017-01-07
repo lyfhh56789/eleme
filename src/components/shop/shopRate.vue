@@ -1,7 +1,7 @@
 <template>
   <div class="vue-wrapper slide-right-transition">
     <header>
-      <svg class="wrapper-back-arrow">
+      <svg @click="historyBack" class="wrapper-back-arrow">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
       </svg>
       <span>评价</span>
@@ -269,6 +269,10 @@
       }
     },
     methods: {
+      historyBack(){ //  模拟浏览器回退事件
+        window.history.back()
+        this.$store.commit('setShowActive', false)
+      },
       loadData(){
         this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings?has_content=true&tag_name=%E5%85%A8%E9%83%A8&offset='+ this.offset +'&limit='+ this.limit}}).then(function (res) {
           this.ratings = res.data
