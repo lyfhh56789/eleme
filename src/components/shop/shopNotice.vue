@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
-    <div class="vue-wrapper">
-      <div class="content">
+    <wrapper>
+      <template slot="content">
         <div class="shopheader-noticemodal">
           <h2 class="shopheader-noticemodal-name">{{ shop.name }}</h2>
           <h2>
@@ -23,76 +23,11 @@
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#res-x"></use>
           </svg>
         </div>
-      </div>
-    </div>
+      </template>
+    </wrapper>
   </transition>
 </template>
 <style scoped>
-  /*  公告容器样式-start  */
-  .vue-wrapper {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    overflow: auto;
-    z-index: 100;
-    background-color: #fff;
-  }
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    background-color: #2196f3;
-    color: #fff;
-    height: 1.333333rem;
-    line-height: 1.333333rem;
-    font-size: 0.533333rem;
-    z-index: 999;
-  }
-  .content {
-    padding-top: 1.333333rem;
-    height: 100%;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .wrapper-back-arrow {
-    position: fixed;
-    width: 0.533333rem;
-    height: 0.533333rem;
-    padding: 0.4rem;
-    left: 0;
-    top: 0;
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-    fill: #fff;
-  }
-  .slide-right-transition {
-    -webkit-transition: -webkit-transform .3s ease-out 100ms;
-    transition: -webkit-transform .3s ease-out 100ms;
-    transition: transform .3s ease-out 100ms;
-    transition: transform .3s ease-out 100ms, -webkit-transform .3s ease-out 100ms;
-  }
-  .slide-right-enter,
-  .slide-right-leave {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-  }
-  .fade {
-    opacity: 1;
-  }
-  .fade-enter-active, .fade-leave-active {
-    -webkit-transition: opacity .3s ease-out 100ms;
-    transition: opacity .3s ease-out 100ms;
-  }
-  .fade-enter, .fade-leave-active {
-    opacity: 0;
-  }
-  /*  公告容器样式-end  */
   .shopheader-noticemodal {
     position: absolute;
     top: 0;
@@ -179,6 +114,7 @@
   }
 </style>
 <script>
+  import wrapper from '../common/wrapper.vue'
   import ratingStar from '../common/ratingStar.vue'
   import shopActivity from '../common/shopActivity.vue'
   export default{
@@ -198,7 +134,7 @@
     created () {
     },
     components: {
-      ratingStar, shopActivity
+      wrapper, ratingStar, shopActivity
     }
   }
 </script>

@@ -1,13 +1,8 @@
 <template>
-  <div class="vue-wrapper slide-right-transition">
-    <header>
-      <svg @click="historyBack" class="wrapper-back-arrow">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
-      </svg>
-      <span>评价</span>
-    </header>
-    <div class="content">
-      <div class="shop-rate">
+  <transition name="slide-right">
+    <wrapper :has-header="true">
+      <span slot="title">评价</span>
+      <div slot="content" class="shop-rate">
         <section class="shop-rate-overview">
           <div class="col1">
             <strong class="overall-score">{{ ratingScores.overall_score.toFixed(1) }}</strong>
@@ -17,17 +12,17 @@
           <div class="col2">
             <div class="score-block">
               <span class="score-title">服务态度</span>
-              <span class="score-content">
-                <rating-star :rating="ratingScores.service_score.toFixed(1)"></rating-star>
-                <span class="score-value">{{ ratingScores.service_score.toFixed(1) }}</span>
-              </span>
+            <span class="score-content">
+              <rating-star :rating="ratingScores.service_score.toFixed(1)"></rating-star>
+              <span class="score-value">{{ ratingScores.service_score.toFixed(1) }}</span>
+            </span>
             </div>
             <div class="score-block">
               <span class="score-title">菜品评价</span>
-              <span class="score-content">
-                <rating-star :rating="ratingScores.food_score.toFixed(1)"></rating-star>
-                <span class="score-value">{{ ratingScores.food_score.toFixed(1) }}</span>
-              </span>
+            <span class="score-content">
+              <rating-star :rating="ratingScores.food_score.toFixed(1)"></rating-star>
+              <span class="score-value">{{ ratingScores.food_score.toFixed(1) }}</span>
+            </span>
             </div>
             <div class="score-block">
               <span class="score-title">送达时间</span>
@@ -50,76 +45,9 @@
           </ul>
         </section>
       </div>
-    </div>
-  </div>
+    </wrapper>
+  </transition>
 </template>
-<style scoped>
-  /*  公告容器样式-start  */
-  .vue-wrapper {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    overflow: auto;
-    z-index: 100;
-    background-color: #fff;
-  }
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    background-color: #2196f3;
-    color: #fff;
-    height: 1.333333rem;
-    line-height: 1.333333rem;
-    font-size: 0.533333rem;
-    z-index: 999;
-  }
-  .content {
-    padding-top: 1.333333rem;
-    height: 100%;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .wrapper-back-arrow {
-    position: fixed;
-    width: 0.533333rem;
-    height: 0.533333rem;
-    padding: 0.4rem;
-    left: 0;
-    top: 0;
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-    fill: #fff;
-  }
-  .slide-right-transition {
-    -webkit-transition: -webkit-transform .3s ease-out 100ms;
-    transition: -webkit-transform .3s ease-out 100ms;
-    transition: transform .3s ease-out 100ms;
-    transition: transform .3s ease-out 100ms, -webkit-transform .3s ease-out 100ms;
-  }
-  .slide-right-enter,
-  .slide-right-leave {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-  }
-  .fade {
-    opacity: 1;
-  }
-  .fade-enter-active, .fade-leave-active {
-    -webkit-transition: opacity .3s ease-out 100ms;
-    transition: opacity .3s ease-out 100ms;
-  }
-  .fade-enter, .fade-leave-active {
-    opacity: 0;
-  }
-  /*  公告容器样式-end  */
-</style>
 <style scoped>
   /*  rate-overview */
   .shop-rate-overview {
@@ -247,6 +175,7 @@
   }
 </style>
 <script>
+  import wrapper from '../common/wrapper.vue'
   import rate from '../common/rate.vue'
   import ratingStar from '../common/ratingStar.vue'
   export default{
@@ -302,7 +231,7 @@
       this.loadData();
     },
     components: {
-      rate, ratingStar
+      wrapper, rate, ratingStar
     }
   }
 </script>

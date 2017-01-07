@@ -64,8 +64,8 @@
     </div>
     <!--  放置商家评价的两个空div  -->
     <div>
-      <div v-if="showRate">
-        <shop-rate></shop-rate>
+      <div>
+        <shop-rate v-if="showRate"></shop-rate>
       </div>
     </div>
   </div>
