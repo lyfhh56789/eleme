@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="menuview" style="height: 883px;">
+    <div class="menuview" :style="{'height': menuHeight + 'px'}">
       <div class="menuview-nodata" style="display: none;">
         <img src="//github.elemecdn.com/eleme/fe-static/1cb05f59/media/empty/no-food.png">
         <p>没有商品</p>
@@ -601,6 +601,7 @@
         scroller: '', //  可滚动容器对象
         popup: -1, //  设置显示菜单的描述
         isMenuControl: false, //  当前滚动是否由菜单操作
+        menuHeight: 0, //  浏览器视口高度
         timer: '', // 购物车动画定时器
       }
     },
@@ -709,6 +710,9 @@
       },
     },
     mounted () {
+      //  获取浏览器视口高度
+      this.menuHeight = document.getElementsByClassName('shopbody')[0].offsetHeight - document.getElementsByClassName('shopnav')[0].offsetHeight
+      //  注册滑动事件
       this.scroller = document.getElementsByClassName('scroller')[0];
       this.scroller.onscroll = function () {
         //  滚动时关闭菜单描述（如果打开的话）
