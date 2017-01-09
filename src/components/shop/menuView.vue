@@ -63,7 +63,7 @@
                           <span>
                             <span v-if="food.specfoods[0].stock == 0" class="entitybutton soldout">已售完</span>
                             <span v-else class="entitybutton">
-                              <template v-if="foodList[index].foods[secIndex].isBuy === true">
+                              <template v-if="foodList[index].foods[secIndex].quantity !== 0">
                                 <a @click="minusFood(food)" href="javascript:">
                                 <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use></svg>
                               </a>

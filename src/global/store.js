@@ -34,31 +34,9 @@ var storeConfig = {
     showRate: false, // 显示评价页
   },
   mutations: {
-    shopMenuList(state, list){ // 获取商家食物菜单和食物列表状态树
-      state.menuList = list
-      for (var i = 0; i < list.length; i++) {
-        state.foodsState.push({
-          foods: [],
-          quantity: 0, // 分类菜单中的数量
-          type: list[i].type, //  分类的类型
-        })
-        for (var j = 0; j < list[i].foods.length; j++) {
-          state.foodsState[i].foods.push({
-            item_id: list[i].foods[j].item_id,
-            quantity: 0,
-            stock: list[i].foods[j].specfoods[0].stock,
-            isBuy: false
-          })
-        }
-      }
-    },
-    myShopCar(state, shopId){ //  创建当前商家的购物车以及检查是否购物车中有未结算的商品
-      if (state.shopCar[shopId] === undefined){
-        state.shopCar[shopId] = [
-          {
-            entities: []
-          }
-        ]
+    initShopCar(state){ //  初始化购物车，检查是否有本地存储的数据
+      if (window.localStorage.getItem('shopCar') !== null){
+        state.shopCar = JSON.parse(window.localStorage.getItem('shopCar'))
       }
     },
     setShop(state, object){
@@ -84,6 +62,8 @@ var storeConfig = {
         state.count = 0
         state.payCount = 0
         state.packingFee = 0
+        //  本地存储购物车数据
+        window.localStorage.setItem('shopCar', JSON.stringify(state.shopCar))
         return
       }
       var count = 0;
@@ -98,11 +78,12 @@ var storeConfig = {
       //  浮点的精度计算有问题
       state.payCount = +(payCount.toFixed(1))
       state.packingFee = packingFee
+      //  本地存储购物车数据
+      window.localStorage.setItem('shopCar', JSON.stringify(state.shopCar))
     },
     emptyFoodsState(state){ // 重置状态树
       state.foodsState.forEach(value => {
         value.foods.forEach(val => {
-          val.isBuy = false;
           val.quantity = 0;
         })
         value.quantity = 0
@@ -110,11 +91,53 @@ var storeConfig = {
     }
   },
   actions: {
+    shopMenuList({commit, state}, item){ // 获取商家食物菜单和食物列表状态树
+      var list = item.list;
+      state.menuList = list
+      state.foodsState = []
+      for (var i = 0; i < list.length; i++) {
+        state.foodsState.push({
+          foods: [],
+          quantity: 0, // 分类菜单中的数量
+          type: list[i].type, //  分类的类型
+        })
+        for (var j = 0; j < list[i].foods.length; j++) {
+          state.foodsState[i].foods.push({
+            item_id: list[i].foods[j].item_id,
+            quantity: 0,
+            stock: list[i].foods[j].specfoods[0].stock,
+            food_id: list[i].foods[j].specfoods[0].food_id,
+          })
+        }
+      }
+      //  创建当前商家的购物车以及检查是否购物车中有未结算的商品
+      if (state.shopCar[item.shopId] === undefined){
+        state.shopCar[item.shopId] = [
+          {
+            entities: []
+          }
+        ]
+      } else {
+        //  遍历本地存储的购物车数据(三重forEach，自己看着都恶心o(╯□╰)o)
+        state.shopCar[item.shopId][0].entities.forEach(value1 => {
+          state.foodsState.forEach(value2 => {
+            if (value2.type === 1){
+              value2.foods.forEach(value3 => {
+                if (value1.id === value3.food_id){
+                  value3.quantity = value1.quantity
+                  value2.quantity += value1.quantity
+                }
+              })
+            }
+          })
+        })
+      }
+      commit('setCount', item.shopId)
+    },
     addFood({commit, state}, food){ //  购买食物，更改食物的当前列表状态
       state.foodsState.forEach(value => {
         value.foods.forEach(val => {
           if (val.item_id == food.item_id && val.quantity < val.stock){
-            val.isBuy = true;
             val.quantity ++;
             if (value.type === 1){
               value.quantity ++;
@@ -154,9 +177,6 @@ var storeConfig = {
         value.foods.forEach((val, index) => {
           if (val.item_id == food.item_id){
             val.quantity --;
-            if (val.quantity == 0){
-              val.isBuy = false
-            }
             if (value.type === 1){
               value.quantity --;
             }

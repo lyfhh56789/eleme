@@ -297,7 +297,10 @@
       loadMenuList(){
         //  获取菜单数据
         this.$http({url: 'eleme_api.php', params: {api_str: 'shopping/v2/menu?restaurant_id='+ this.$route.params.shopId}}).then(function (res) {
-          this.$store.commit('shopMenuList', res.data)
+          this.$store.dispatch('shopMenuList', {
+            list: res.data,
+            shopId: this.$route.params.shopId
+          })
         })
       },
       getRatingScores(){ // 获取商家评分评价信息
@@ -326,7 +329,6 @@
       },
     },
     created () {
-      this.$store.commit('myShopCar', this.$route.params.shopId)
       this.loadShopMsg()
       this.loadMenuList()
       this.getRatingScores();

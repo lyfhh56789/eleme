@@ -24,6 +24,8 @@ export default {
       body.style.fontSize = 12 * dpr + 'px'
       viewport.content = 'initial-scale='+ 1/dpr +', maximum-scale='+ 1/dpr +', minimum-scale='+ 1/dpr +', user-scalable=no'
     }
+    //  初始化购物车
+    this.$store.commit('initShopCar')
   },
   components: {
   }
