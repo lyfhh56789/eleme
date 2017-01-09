@@ -103,7 +103,6 @@ var storeConfig = {
         })
         for (var j = 0; j < list[i].foods.length; j++) {
           state.foodsState[i].foods.push({
-            item_id: list[i].foods[j].item_id,
             quantity: 0,
             stock: list[i].foods[j].specfoods[0].stock,
             food_id: list[i].foods[j].specfoods[0].food_id,
@@ -137,7 +136,7 @@ var storeConfig = {
     addFood({commit, state}, food){ //  购买食物，更改食物的当前列表状态
       state.foodsState.forEach(value => {
         value.foods.forEach(val => {
-          if (val.item_id == food.item_id && val.quantity < val.stock){
+          if (val.food_id == food.specfoods[0].food_id && val.quantity < val.stock){
             val.quantity ++;
             if (value.type === 1){
               value.quantity ++;
@@ -174,11 +173,11 @@ var storeConfig = {
     },
     minusFood({commit, state}, food){ // 减少购买的食物数量或者取消购买
       state.foodsState.forEach(value => {
-        value.foods.forEach((val, index) => {
-          if (val.item_id == food.item_id){
+        value.foods.forEach(val => {
+          if (val.food_id == food.specfoods[0].food_id){
             val.quantity --;
-            if (value.type === 1){
-              value.quantity --;
+            if (value.type === 1) {
+              value.quantity--;
             }
           }
         })
