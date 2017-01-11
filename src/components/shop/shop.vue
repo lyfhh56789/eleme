@@ -285,6 +285,9 @@
       },
       showRate(){
         return this.$store.state.showRate
+      },
+      license(){
+        return this.$store.state.license
       }
     },
     methods: {
@@ -340,6 +343,9 @@
         }
         if (this.showRate){
           this.$store.commit('setShowRate', false)
+        }
+        if (this.license){
+          this.$store.commit('setLicense', false)
         }
       }.bind(this)
     },

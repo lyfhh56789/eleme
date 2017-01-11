@@ -39,18 +39,29 @@
         <li></li>
         <li>地址：{{ shop.address }}</li>
         <li>营业时间：{{ shop.opening_hours[0].replace('/', '-') }}</li>
-        <li> 营业执照
+        <li @click="showLicense('license')"> 营业执照
           <svg class="arrow-right">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
           </svg>
         </li>
-        <li> 餐饮服务许可证
+        <li @click="showLicense('service')"> 餐饮服务许可证
           <svg class="arrow-right">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
           </svg>
         </li>
       </ul>
-      <div></div>
+      <div>
+        <transition name="slide-right">
+          <template v-if="license">
+            <wrapper :has-header="true">
+              <span slot="title">{{ licenseTitle }}</span>
+              <div slot="content" class="license-modal"
+                   :style="{'background-image': 'url('+ imgPath + '?imageMogr/quality/80/format/webp/)'}">
+              </div>
+            </wrapper>
+          </template>
+        </transition>
+      </div>
     </section>
   </div>
 </template>
@@ -160,15 +171,21 @@
 <script>
   import rate from '../common/rate.vue'
   import shopActivity from '../common/shopActivity.vue'
+  import wrapper from '../common/wrapper.vue'
   export default{
     data () {
       return {
         ratings: [], // 商家评价信息
+        imgPath: '', //  营业执照和餐饮服务许可证
+        licenseTitle: '', //  营业执照和餐饮服务许可证标题
       }
     },
     computed: {
       shop(){
         return this.$store.state.shop
+      },
+      license(){
+        return this.$store.state.license
       },
       ratingScores(){ //  商家评分信息
         return this.$store.state.ratingScores
@@ -183,13 +200,31 @@
       viewRate(){ //  显示评价页
         window.history.pushState({rate: true}, document.title)
         this.$store.commit('setShowRate', true)
+      },
+      showLicense(type){ //  显示营业执照
+        window.history.pushState({license: true}, document.title)
+        this.$store.commit('setLicense', true)
+        var baseUrl = 'https://fuss10.elemecdn.com'
+        var path;
+        if (type === 'license') { //  营业执照图片地址
+          path = this.shop.license.business_license_image
+          this.licenseTitle = '营业执照'
+        } else { //  餐饮服务许可证图片地址
+          path = this.shop.license.catering_service_license_image
+          this.licenseTitle = '餐饮服务许可证'
+        }
+        //  忽略传入undefined引发的错误
+        let reg = /gif|jpe?g|png$/i; // 匹配图片后缀
+        let extension = path.match(reg)[0];
+        let restfulUrl = '/' + path.substring(0, 1) + '/' + path.substring(1, 3) + '/' + path.substring(3)
+        this.imgPath = baseUrl + restfulUrl + '.' + extension
       }
     },
     created () {
       this.getRatings();
     },
     components: {
-      rate, shopActivity
+      rate, shopActivity, wrapper
     }
   }
 </script>

@@ -32,6 +32,7 @@ var storeConfig = {
     flyBallPos: {}, //  小球动画结束位置
     showActive: false, // 显示活动公告
     showRate: false, // 显示评价页
+    license: false, //  是否查看商家营业执照或者餐饮服务许可证
   },
   mutations: {
     initShopCar(state){ //  初始化购物车，检查是否有本地存储的数据
@@ -50,6 +51,9 @@ var storeConfig = {
     },
     setShowRate(state, boolean){ //  显示评价页
       state.showRate = boolean
+    },
+    setLicense(state, boolean){
+      state.license = boolean
     },
     setShopCarAnimate(state, status){ //  开始小球动画
       state.shopCarAnimate = status
