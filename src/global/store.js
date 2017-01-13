@@ -20,6 +20,10 @@ var storeConfig = {
         }]
      }]
      */
+    cateParams: {}, //  用于过滤分类选项的参数对象，包含可用的过滤属性
+    geohash: 'ws0u861y94r', //  当前地理位置的哈希值
+    latitude: 22.68403, //  当前纬度
+    longitude: 114.21408, // 当前经度
     shopCar: {}, // 购物车
     shopCarAnimate: false, // 购物车动画
     shop: {}, //  商家信息
@@ -39,6 +43,14 @@ var storeConfig = {
       if (window.localStorage.getItem('shopCar') !== null){
         state.shopCar = JSON.parse(window.localStorage.getItem('shopCar'))
       }
+    },
+    setCateParams(state, obj){
+      state.cateParams = obj
+    },
+    setLocation(state, obj){ //  设置当前的地理位置信息
+      state.geohash = obj.geohash
+      state.latitude = obj.latitude
+      state.longitude = obj.longitude
     },
     setShop(state, object){
       state.shop = object

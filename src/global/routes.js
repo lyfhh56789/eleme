@@ -11,6 +11,11 @@ var routes = [
     name: 'shop',
     component: require('../components/shop/shop.vue')
   },
+  {//  分类商家
+    path: '/category/:categoryId',
+    name: 'category',
+    component: require('../components/category/category.vue')
+  },
   {//  所有未定义路由跳转到首页
     path: '*',
     redirect: '/'

@@ -95,8 +95,6 @@
     data () {
       return {
         //  地理位置信息
-        latitude: 22.68403, //  纬度
-        longitude: 114.21408, // 经度
         currentPage: 1, // 分页页码
         limit: 20, //  分页限制
         shopList: [], // 附近商家列表
@@ -108,6 +106,12 @@
         // 分页偏移量
         return (this.currentPage - 1) * this.limit
       },
+      latitude(){ //  纬度
+        return this.$store.state.latitude
+      },
+      longitude(){ // 经度
+        return this.$store.state.longitude
+      }
     },
     methods: {
       loadMore(){

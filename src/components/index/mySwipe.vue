@@ -3,7 +3,7 @@
     <swipe :auto="-1" class="foodentry">
       <swipe-item class="slide1">
         <template v-for="(item,index) in foods">
-          <a v-if="index < foods.length/2" href="javascript:">
+          <a @click="gotoCategory(item.link)" v-if="index < foods.length/2" href="javascript:">
             <div class="container">
               <img :src="item.image_url | transformImgUrl(0)">
             </div>
@@ -13,7 +13,7 @@
       </swipe-item>
       <swipe-item class="slide2">
         <template v-for="(item,index) in foods">
-          <a v-if="index >= foods.length/2" href="javascript:">
+          <a @click="gotoCategory(item.link)" v-if="index >= foods.length/2" href="javascript:">
             <div class="container">
               <img :src="item.image_url | transformImgUrl(0)">
             </div>
@@ -70,7 +70,24 @@
 //          console.log(res)
           this.foods = res.data
         })
-      }
+      },
+      gotoCategory(link){
+        //  处理特殊的饿了么路由接链
+        var obj = {}
+        var params = decodeURIComponent(link).split('?')[1].split('&')
+        for (var i = 0; i < params.length; i++){
+          obj[params[i].split('=')[0]] = params[i].split('=')[1]
+        }
+        //  使用了eval函数来解析字符串参数对象filter_key，如果你有更好的办法，请告知邮箱474224024@qq.com
+        obj.filter_key = eval('('+ obj.filter_key +')')
+        this.$store.commit('setCateParams', obj)
+        this.$router.push({
+          name: 'category',
+          params: {
+            categoryId: obj.filter_key.restaurant_category_id.id
+          }
+        })
+      },
     },
     mounted () {
       this.loadData()
