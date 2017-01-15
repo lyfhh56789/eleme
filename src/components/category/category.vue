@@ -21,13 +21,13 @@
       <aside class="filter">
         <div class="filter-header">
           <a @click="showCategory(0)" class="filter-nav" :class="{'active': nav === 0}" href="javascript:">
-            <span>{{ cateParams.target_name }}</span>
+            <span>{{ subCateName || cateParams.target_name }}</span>
             <svg viewBox="0 0 72 32">
               <path d="M36 32l36-32h-72z"></path>
             </svg>
           </a>
           <a @click="showCategory(1)" class="filter-nav" :class="{'active': nav === 1}" href="javascript:">
-            <span>排序</span>
+            <span>{{ filterName || '排序'}}</span>
             <svg viewBox="0 0 72 32">
               <path d="M36 32l36-32h-72z"></path>
             </svg>
@@ -604,12 +604,14 @@
         nav: -1, //  激活tab导航
         cateIndex: 1, //  激活小分类选项导航，因为第一个为总分类，所以默认激活第二个
         filterId: -1, //  激活过滤选项
+        filterName: '', //  当前过滤选项名称
         activityIds: [], //  筛选选项
         deliverFilter: -1, //  筛选派送模式
         cateList: [], //  小分类选项
         confirmFilter: false, //  默认不进行筛选
         filterCount: 0, //  筛选选项个数
         subCategory: [], //  当前选中小分类的细分类
+        subCateName: '', //  选中细分类后更改过滤条件名称
         categoryId: this.$route.params.categoryId, //  当前选中小分类的细分类的ID,默认路由中的分类ID
         deliverMode: [], //  支持的派送筛选
         activityAttrs: [], //  商家属性筛选
@@ -674,6 +676,7 @@
         this.close()
         if (this.filterId === filterItem.id) return;
         this.filterId = filterItem.id
+        this.filterName = filterItem.name
         this.loadData()
       },
       filterMore(){ //  确定筛选
@@ -706,6 +709,7 @@
       selectCate(index){ //  选择了小分类
         if (index === 0){
           this.categoryId = this.$route.params.categoryId
+          this.subCateName = this.cateParams.target_name
           this.close()
           this.loadData()
           return
@@ -718,6 +722,7 @@
         this.close()
         if (this.categoryId === item.id) return;
         this.categoryId = item.id
+        this.subCateName = item.name
         this.loadData()
       },
       showCategory(navIndex){ //  获取分类细节选项
