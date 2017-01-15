@@ -32,7 +32,7 @@
               <path d="M36 32l36-32h-72z"></path>
             </svg>
           </a>
-          <a @click="showCategory(2)" class="filter-nav filter-nav-more" :class="{'active': nav === 2}" href="javascript:">
+          <a @click="showCategory(2)" class="filter-nav filter-nav-more" :class="{'active': nav === 2 || confirmFilter}" href="javascript:">
             <span>筛选</span>
             <svg viewBox="0 0 72 32">
               <path d="M36 32l36-32h-72z"></path>
@@ -65,60 +65,17 @@
         </section>
         <section class="filter-extend filter-sort" :class="{'open': nav === 1}">
           <ul>
-            <li>
-              <svg>
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#default"></use>
-              </svg>
-              <span>智能排序</span>
-              <svg class="selected">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-              </svg>
-            </li>
-            <li>
-              <svg>
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#distance"></use>
-              </svg>
-              <span>距离最近</span>
-              <svg class="selected">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-              </svg>
-            </li>
-            <li>
-              <svg>
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#hot"></use>
-              </svg>
-              <span>销量最高</span>
-              <svg class="selected">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-              </svg>
-            </li>
-            <li>
-              <svg>
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#price"></use>
-              </svg>
-              <span>起送价最低</span>
-              <svg class="selected">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-              </svg>
-            </li>
-            <li>
-              <svg>
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#speed"></use>
-              </svg>
-              <span>配送速度最快</span>
-              <svg class="selected">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-              </svg>
-            </li>
-            <li>
-              <svg>
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#rating"></use>
-              </svg>
-              <span>评分最高</span>
-              <svg class="selected">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-              </svg>
-            </li>
+            <template v-for="filter in filterSort">
+              <li @click="filterData(filter)" :class="{'active': filter.id === filterId}">
+                <svg>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="'#'+ filter.icon_name"></use>
+                </svg>
+                <span>{{ filter.name }}</span>
+                <svg class="selected">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
+                </svg>
+              </li>
+            </template>
           </ul>
         </section>
         <section class="filter-extend filter-more" :class="{'open': nav === 2}">
@@ -142,40 +99,23 @@
             </dl>
             <dl>
               <dt>商家属性 (可多选)</dt>
-              <dd>
-                <svg class="selected-icon">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-                </svg>
-                <i style="color: rgb(63, 189, 230);"> 品 </i> <span>品牌商家</span></dd>
-              <dd>
-                <svg class="selected-icon">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-                </svg>
-                <i style="color: rgb(153, 153, 153);"> 保 </i> <span>外卖保</span></dd>
-              <dd>
-                <svg class="selected-icon">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-                </svg>
-                <i style="color: rgb(232, 132, 45);"> 新 </i> <span>新店</span></dd>
-              <dd>
-                <svg class="selected-icon">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-                </svg>
-                <i style="color: rgb(153, 153, 153);"> 票 </i> <span>开发票</span></dd>
-              <dd>
-                <svg class="selected-icon">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-                </svg>
-                <i style="color: rgb(255, 78, 0);"> 付 </i> <span>在线支付</span></dd>
-              <dd>
-                <svg class="selected-icon">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-                </svg>
-                <i style="color: rgb(87, 169, 255);"> 准 </i> <span>准时达</span></dd>
+              <template v-for="(activity, index) in activityAttrs">
+                <dd @click="selectActivity(activity, index)" :class="{'selected': activityIds[index] === activity.id}">
+                  <svg class="selected-icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
+                  </svg>
+                  <i :style="{'color': '#'+ activity.icon_color }">{{ activity.icon_name }}</i>
+                  <span>{{ activity.name }}</span>
+                </dd>
+              </template>
             </dl>
           </div>
-          <div class="filter-btn"><a href="javascript:">清空</a> <a href="javascript:"
-                                                                                               > 确定 </a>
+          <div class="filter-btn">
+            <a @click="emptyFilter" href="javascript:">清空</a>
+            <a @click="filterMore" href="javascript:">
+              确定
+              <span v-if="filterLength !== 0">{{ '(' + filterLength + ')' }}</span>
+            </a>
           </div>
         </section>
         <section @click="close" class="filter-modal" :class="{'open': nav !== -1}"></section>
@@ -624,6 +564,38 @@
   export default{
     data () {
       return {
+        filterSort: [
+          {
+            id: 0,
+            name: '智能排序',
+            icon_name: 'default'
+          },
+          {
+            id: 5,
+            name: '距离最近',
+            icon_name: 'distance'
+          },
+          {
+            id: 6,
+            name: '销量最高',
+            icon_name: 'hot'
+          },
+          {
+            id: 1,
+            name: '起送价最低',
+            icon_name: 'price'
+          },
+          {
+            id: 2,
+            name: '配送速度最快',
+            icon_name: 'speed'
+          },
+          {
+            id: 3,
+            name: '评分最高',
+            icon_name: 'rating'
+          }
+        ], //  模拟的排序数组
         shopList: [],
         busy: false,
         limit: 20,
@@ -631,10 +603,14 @@
         hasMore: true, //  是否还有数据可加载
         nav: -1, //  激活tab导航
         cateIndex: 1, //  激活小分类选项导航，因为第一个为总分类，所以默认激活第二个
+        filterId: -1, //  激活过滤选项
+        activityIds: [], //  筛选选项
         deliverFilter: -1, //  筛选派送模式
         cateList: [], //  小分类选项
+        confirmFilter: false, //  默认不进行筛选
+        filterCount: 0, //  筛选选项个数
         subCategory: [], //  当前选中小分类的细分类
-        categoryId: '', //  当前选中小分类的细分类的ID
+        categoryId: this.$route.params.categoryId, //  当前选中小分类的细分类的ID,默认路由中的分类ID
         deliverMode: [], //  支持的派送筛选
         activityAttrs: [], //  商家属性筛选
       }
@@ -649,21 +625,35 @@
       offset(){
         return (this.page - 1) * this.limit
       },
+      filterLength(){ //  筛选选项个数
+        return (this.deliverFilter === -1) ? this.filterCount : this.filterCount + 1;
+      },
       cateParams(){ //  用于过滤分类选项的参数对象，包含可用的过滤属性
         return this.$store.state.cateParams
       }
     },
     methods: {
-      loadData(){
-        var categoryId;
-        if (this.categoryId === ''){
-          categoryId = this.$route.params.categoryId;
-        } else {
-          categoryId = this.categoryId
+      getUrl(){
+        var url;
+        url = 'shopping/restaurants?latitude='+ this.latitude +'&longitude='+ this.longitude +'&keyword=&offset='+ this.offset +'&limit='+ this.limit +'&extras[]=activities&restaurant_category_ids[]='+ this.categoryId
+        //  添加过滤选项
+        if (this.filterId !== -1) url += '&order_by=' + this.filterId;
+        if (this.confirmFilter){
+          //  筛选派送模式
+          if (this.deliverFilter !== -1) url += 'delivery_mode[]='+ this.deliverFilter;
+          if (this.filterCount !== 0){
+            for (var i =0; i < this.activityIds.length; i++){
+              if (this.activityIds[i] !== undefined) url += '&support_ids[]='+ this.activityIds[i]
+            }
+          }
         }
+        return url
+      },
+      loadData(){
+        var url = this.getUrl()
         this.busy = true
         this.page = 1
-        this.$http({url: 'eleme_api.php', params: {api_str: 'shopping/restaurants?latitude='+ this.latitude +'&longitude='+ this.longitude +'&keyword=&offset='+ this.offset +'&limit='+ this.limit +'&extras[]=activities&restaurant_category_ids[]='+ categoryId}}).then(function (res) {
+        this.$http({url: 'eleme_api.php', params: {api_str: url}}).then(function (res) {
           if (res.data.length < this.limit) this.hasMore = false;
           this.shopList = res.data
           this.busy = false
@@ -672,16 +662,50 @@
       loadMore(){
         if (!this.hasMore) return;
         this.busy = true
-        this.$http({url: 'eleme_api.php', params: {api_str: 'shopping/restaurants?latitude='+ this.latitude +'&longitude='+ this.longitude +'&keyword=&offset='+ this.offset +'&limit='+ this.limit +'&extras[]=activities&restaurant_category_ids[]='+ this.categoryId}}).then(function (res) {
+        var url = this.getUrl()
+        this.$http({url: 'eleme_api.php', params: {api_str: url}}).then(function (res) {
           if (res.data.length < this.limit) this.hasMore = false;
           this.shopList = this.shopList.concat(res.data)
           this.page ++;
           this.busy = false
         })
       },
+      filterData(filterItem){
+        this.close()
+        if (this.filterId === filterItem.id) return;
+        this.filterId = filterItem.id
+        this.loadData()
+      },
+      filterMore(){ //  确定筛选
+        this.confirmFilter = true
+        this.close()
+        this.loadData()
+      },
+      emptyFilter(){ //  清空筛选选项
+        this.confirmFilter = false
+        this.deliverFilter = -1;
+        this.filterCount = 0;
+        this.activityIds = [];
+        this.close()
+        this.loadData()
+      },
+      selectActivity(activity, index){ //  选中筛选选项
+        if (this.activityIds[index] === activity.id){
+          this.activityIds.splice(index, 1, undefined)
+        } else {
+          this.activityIds[index] = undefined
+          this.activityIds.splice(index, 1, activity.id)
+        }
+        //  计算选中的属性数量
+        var count = 0;
+        for (var i = 0; i < this.activityIds.length; i++){
+          if (this.activityIds[i] !== undefined) count++;
+        }
+        this.filterCount = count
+      },
       selectCate(index){ //  选择了小分类
         if (index === 0){
-          this.categoryId = ''
+          this.categoryId = this.$route.params.categoryId
           this.close()
           this.loadData()
           return
@@ -704,7 +728,7 @@
         this.nav = navIndex
         //  加载小分类选项
         if (this.cateList.length === 0 && navIndex === 0){
-          var apiStr = 'shopping/restaurant/category/urlschema?latitude='+ this.latitude +'&longitude='+ this.longitude +'&flavor_ids[]=207&flavor_ids[]=220&flavor_ids[]=233&flavor_ids[]=260&show_name=美食'
+          var apiStr = 'shopping/restaurant/category/urlschema?latitude='+ this.latitude +'&longitude='+ this.longitude +'&flavor_ids[]=207&flavor_ids[]=220&flavor_ids[]=233&flavor_ids[]=260&show_name='+ this.cateParams.target_name
           this.$http({url: 'eleme_api.php', params: {api_str: encodeURI(apiStr)}}).then(function (res) {
             this.cateList = res.data
             this.subCategory = res.data[1] ? res.data[1].sub_categories : []
