@@ -16,6 +16,11 @@ var routes = [
     name: 'category',
     component: require('../components/category/category.vue')
   },
+  {//  搜索页面
+    path: '/search/:geohash',
+    name: 'search',
+    component: require('../components/search/search.vue')
+  },
   {//  所有未定义路由跳转到首页
     path: '*',
     redirect: '/'

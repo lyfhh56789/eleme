@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <header class="eleme-header" style="width: 100%; top: 0px; z-index: 1000;">
-      <a slot="left">
+      <a @click="gotoSearch" slot="left">
         <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search"></use></svg>
       </a>
       <div class="center"><span>龙岗区深圳信息职业技术学院</span></div>
@@ -111,6 +111,9 @@
       },
       longitude(){ // 经度
         return this.$store.state.longitude
+      },
+      geohash(){
+        return this.$store.state.geohash
       }
     },
     methods: {
@@ -120,6 +123,14 @@
           this.currentPage ++;
           this.shopList = this.shopList.concat(res.data)
           this.busy = false
+        })
+      },
+      gotoSearch(){ //  跳转搜素界面
+        this.$router.push({
+          name: 'search',
+          params: {
+            geohash: this.geohash
+          }
         })
       },
     },
