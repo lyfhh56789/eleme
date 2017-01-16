@@ -27,7 +27,7 @@
             <h3 class="geosearch-title">商家</h3>
             <ul class="background-white">
               <template v-for="restaurant in restaurants">
-                <li class="flex geosearch-restaurant">
+                <li @click="gotoShop(restaurant.id)" class="flex geosearch-restaurant">
                   <img class="geosearch-restaurant-img" :src="'https://fuss10.elemecdn.com'+ restaurant.image_path +'?imageMogr/thumbnail/'+ (42 * dpr) +'x'+ (42 * dpr) +'/format/webp/quality/75'">
                   <div class="geosearch-restaurant-content">
                     <div class="geosearch-restaurant-detail">
@@ -67,7 +67,7 @@
             <h3 class="geosearch-title">美食</h3>
             <ul class="background-white">
               <template v-for="food in foods">
-                <li class="flex geosearch-foods-content">
+                <li @click="gotoShop(food.restaurant.id)" class="flex geosearch-foods-content">
                   <div class="flex geosearch-foods">
                     <img v-if="food.image_path !== ''" class="geosearch-foods-img"
                          :src="'https://fuss10.elemecdn.com'+ food.image_path +'?imageMogr/thumbnail/'+(40 * dpr)+'x'+(40 * dpr)+'/format/webp/quality/75'">
@@ -321,6 +321,14 @@
           this.histories = []
         }
         window.localStorage.setItem('searchHistory', JSON.stringify(this.histories))
+      },
+      gotoShop(shopId){ //  路由到商家页
+        this.$router.push({
+          name: 'shop',
+          params: {
+            shopId: shopId
+          }
+        })
       }
     },
     created () {
