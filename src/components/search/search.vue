@@ -290,11 +290,13 @@
     methods: {
       searchRestaurant(){
         this.$http({url: 'eleme_api.php', params: {api_str: encodeURI('v4/restaurants?extras[]=restaurant_activity&geohash='+ this.geohash +'&keyword='+ this.keyword +'&type=search')}}).then(function (res) {
+          this.showResults = true
           this.restaurants = res.data
         })
       },
       searchFood(){
         this.$http({url: 'eleme_api.php', params: {api_str: encodeURI('v1/foods?extras[]=restaurant&geohash='+ this.geohash +'&keyword='+ this.keyword +'&type=search')}}).then(function (res) {
+          this.showResults = true
           this.foods = res.data
         })
       },
@@ -302,7 +304,6 @@
         if (!this.keyword){
           return
         }
-        this.showResults = true
         this.histories.push(this.keyword)
         window.localStorage.setItem('searchHistory', JSON.stringify(this.histories))
         this.searchRestaurant()
@@ -310,7 +311,6 @@
       },
       searchByHistory(history){ //  通过历史记录来搜素
         this.keyword = history
-        this.showResults = true
         this.searchRestaurant()
         this.searchFood()
       },

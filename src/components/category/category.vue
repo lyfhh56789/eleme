@@ -82,13 +82,13 @@
           <div class="filter-scroller">
             <dl>
               <dt>配送方式</dt>
-              <dd @click="deliverFilter = 0" :class="{'selected': deliverFilter === 0}">
+              <dd @click="changeDeliverMode(0)" :class="{'selected': deliverFilter === 0}">
                 <svg class="selected-icon">
                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
                 </svg>
                 <span>不限</span>
               </dd>
-              <dd @click="deliverFilter = 1" :class="{'selected': deliverFilter === 1}">
+              <dd @click="changeDeliverMode(1)" :class="{'selected': deliverFilter === 1}">
                 <svg class="fengniao">
                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#fengniao"></use>
                 </svg>
@@ -452,7 +452,8 @@
     display: none
   }
   .filter-scroller dd.selected .selected-icon {
-    display: inline-block
+    /*display: inline-block*/
+    display: inline
   }
   .filter-scroller .fengniao, .filter-scroller .selected-icon {
     display: none;
@@ -462,7 +463,8 @@
     vertical-align: middle
   }
   .filter-scroller .fengniao {
-    display: inline-block
+    /*display: inline-block*/
+    display: inline
   }
   .filter-scroller i {
     display: inline-block;
@@ -797,6 +799,13 @@
             this.activityAttrs = res.data
           })
         }
+      },
+      changeDeliverMode(id){ //  筛选派送方式
+        if (this.deliverFilter === id){
+          this.deliverFilter = -1;
+          return
+        }
+        this.deliverFilter = id
       },
       close(){ //  关闭分类选择
         this.nav = -1
