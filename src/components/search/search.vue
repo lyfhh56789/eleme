@@ -11,21 +11,19 @@
           <button @click="search" class="geosearch-header-button">搜索</button>
         </section>
         <section class="geosearch-content">
-          <section v-if="histories.length !== 0">
+          <section v-if="histories.length !== 0 && !showResults">
             <h3 class="geosearch-title">搜索历史</h3>
             <ul class="background-white geosearch-history">
-              <li class="flex geosearch-history-item">
-                <span class="ng-binding">牛肉</span>
-                <i class="ui-x">×</i>
-              </li>
-              <li class="flex geosearch-history-item">
-                <span class="ng-binding">牛肉</span>
-                <i class="ui-x">×</i>
-              </li>
-              <li class="geosearch-history-clear">清空搜索记录</li>
+              <template v-for="(history, index) in histories">
+                <li :key="index" class="flex geosearch-history-item">
+                  <span @click="searchByHistory(history)" class="ng-binding">{{ history }}</span>
+                  <i @click="removeHistory(index)" class="ui-x">×</i>
+                </li>
+              </template>
+              <li @click="removeHistory(undefined)" class="geosearch-history-clear">清空搜索记录</li>
             </ul>
           </section>
-          <section v-if="restaurants.length !== 0">
+          <section v-if="restaurants.length !== 0 && showResults">
             <h3 class="geosearch-title">商家</h3>
             <ul class="background-white">
               <template v-for="restaurant in restaurants">
@@ -65,7 +63,7 @@
               </template>
             </ul>
           </section>
-          <section  v-if="foods.length !== 0">
+          <section  v-if="foods.length !== 0 && showResults">
             <h3 class="geosearch-title">美食</h3>
             <ul class="background-white">
               <template v-for="food in foods">
@@ -260,20 +258,33 @@
     data () {
       return {
         keyword: '', //  搜索关键字
+        showResults: false, //  是否显示搜索结果
         histories: [], //  搜索历史
         restaurants: [], //  结果商家列表
         foods: [], //  结果食物列表
         dpr: 1, //  当前设备像素比
       }
     },
+    watch: {
+      keyword(val){
+        if (!val){
+          this.showResults = false
+        }
+      }
+    },
+    computed: {
+      geohash(){
+        return this.$store.state.geohash
+      }
+    },
     methods: {
       searchRestaurant(){
-        this.$http({url: 'eleme_api.php', params: {api_str: encodeURI('v4/restaurants?extras[]=restaurant_activity&geohash=ws11p180hcw&keyword='+ this.keyword +'&type=search')}}).then(function (res) {
+        this.$http({url: 'eleme_api.php', params: {api_str: encodeURI('v4/restaurants?extras[]=restaurant_activity&geohash='+ this.geohash +'&keyword='+ this.keyword +'&type=search')}}).then(function (res) {
           this.restaurants = res.data
         })
       },
       searchFood(){
-        this.$http({url: 'eleme_api.php', params: {api_str: encodeURI('v1/foods?extras[]=restaurant&geohash=ws11p180hcw&keyword='+ this.keyword +'&type=search')}}).then(function (res) {
+        this.$http({url: 'eleme_api.php', params: {api_str: encodeURI('v1/foods?extras[]=restaurant&geohash='+ this.geohash +'&keyword='+ this.keyword +'&type=search')}}).then(function (res) {
           this.foods = res.data
         })
       },
@@ -281,12 +292,29 @@
         if (!this.keyword){
           return
         }
+        this.showResults = true
+        this.histories.push(this.keyword)
+        window.localStorage.setItem('searchHistory', JSON.stringify(this.histories))
         this.searchRestaurant()
         this.searchFood()
+      },
+      searchByHistory(history){ //  通过历史记录来搜素
+        this.keyword = history
+        this.showResults = true
+        this.searchRestaurant()
+        this.searchFood()
+      },
+      removeHistory(index){
+        if (index !== undefined){ //  移除单个历史项
+          this.histories.splice(index, 1)
+        } else { //  清空历史记录
+          this.histories = []
+        }
+        window.localStorage.setItem('searchHistory', JSON.stringify(this.histories))
       }
     },
     created () {
-      console.log(25)
+      if (window.localStorage.getItem('searchHistory') !== null) this.histories = JSON.parse(window.localStorage.getItem('searchHistory'));
     },
     mounted(){
       //  设置整个背景色
