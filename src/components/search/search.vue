@@ -103,6 +103,7 @@
             </ul>
           </section>
         </section>
+        <p v-if="showResults && (restaurants.length === 0) && (foods.length === 0)" class="geosearch-noresult">搜索不到&nbsp;[<span class="geosearch-highlight">{{ this.keyword }}</span>]&nbsp;的信息</p>
       </section>
     </wrapper>
   </div>
@@ -139,6 +140,15 @@
     background: #3199e8;
     margin-left: 0.3125rem;
     outline: 0;
+  }
+  /*  没有搜索结果时的样式  */
+  .geosearch-noresult {
+    margin-top: 2.1875rem;
+    text-align: center;
+    font-size: .5rem;
+  }
+  .geosearch-highlight {
+    color: #3199e8;
   }
   /*  搜索结果样式  */
   .geosearch-title {
