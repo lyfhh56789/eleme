@@ -1,0 +1,1524 @@
+[
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 18977182,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "description": "欢乐新年六人餐",
+        "icon_color": "f1884f",
+        "icon_name": "特",
+        "id": 19467467,
+        "name": "欢乐新年六人餐",
+        "tips": "欢乐新年六人餐"
+      },
+      {
+        "description": "欢乐新年三人餐",
+        "icon_color": "f1884f",
+        "icon_name": "特",
+        "id": 19459132,
+        "name": "欢乐新年三人餐",
+        "tips": "欢乐新年三人餐"
+      },
+      {
+        "description": "天天9元特价",
+        "icon_color": "f1884f",
+        "icon_name": "特",
+        "id": 19169003,
+        "name": "天天9元特价",
+        "tips": "天天9元特价"
+      },
+      {
+        "description": "17元特价套餐",
+        "icon_color": "f1884f",
+        "icon_name": "特",
+        "id": 19167643,
+        "name": "17元特价套餐",
+        "tips": "17元特价套餐"
+      },
+      {
+        "description": "15元特价套餐",
+        "icon_color": "f1884f",
+        "icon_name": "特",
+        "id": 19165831,
+        "name": "15元特价套餐",
+        "tips": "15元特价套餐"
+      },
+      {
+        "description": "天天10元特价",
+        "icon_color": "f1884f",
+        "icon_name": "特",
+        "id": 19149394,
+        "name": "天天10元特价",
+        "tips": "天天10元特价"
+      },
+      {
+        "description": "啤酒炸鸡送香辣汉堡",
+        "icon_color": "f1884f",
+        "icon_name": "特",
+        "id": 19145992,
+        "name": "啤酒炸鸡送香辣汉堡",
+        "tips": "啤酒炸鸡送香辣汉堡"
+      },
+      {
+        "description": "双人套餐送香辣鸡腿堡",
+        "icon_color": "f1884f",
+        "icon_name": "惠",
+        "id": 19143756,
+        "name": "双人套餐送香辣鸡腿堡",
+        "tips": "双人套餐送香辣鸡腿堡"
+      },
+      {
+        "description": "全家福送汉堡",
+        "icon_color": "f1884f",
+        "icon_name": "特",
+        "id": 19141303,
+        "name": "全家福送汉堡",
+        "tips": "全家福送汉堡"
+      }
+    ],
+    "address": "深圳市龙岗区横岗街道荷坳社区金源路109号-1",
+    "average_cost": "¥16/人",
+    "description": "",
+    "distance": 1878,
+    "float_delivery_fee": 1,
+    "float_minimum_order_amount": 25,
+    "id": 1248757,
+    "image_path": "193ce76fa14c30906e492573b0534e17jpeg",
+    "is_new": false,
+    "is_premium": true,
+    "latitude": 22.676686,
+    "longitude": 114.230564,
+    "max_applied_quantity_per_order": -1,
+    "name": "波客派（横岗荷坳店）",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "08:30/23:00"
+    ],
+    "order_lead_time": 35,
+    "phone": "61256356",
+    "piecewise_agent_fee": {
+      "description": "配送费¥1",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 1,
+          "price": 25
+        }
+      ],
+      "tips": "配送费¥1"
+    },
+    "promotion_info": "1.信息学院的客户需要出来东门取餐\n2.香港大学的客户需要出来广场取餐",
+    "rating": 4.3,
+    "rating_count": 192,
+    "recent_order_num": 1173,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": []
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 15812244,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"25\": {\"1\": 3, \"0\": 0}, \"45\": {\"1\": 5, \"0\": 0}}",
+        "description": "满25减3，满45减5(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 19666465,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满25减3，满45减5(不与美食活动同享)",
+        "type": 102
+      }
+    ],
+    "address": "深圳市龙岗区龙城街道新联社区爱新东19巷7号",
+    "average_cost": "¥20/人",
+    "description": "新店开张，优惠多多！！！",
+    "distance": 2266,
+    "float_delivery_fee": 0,
+    "float_minimum_order_amount": 25,
+    "id": 749896,
+    "image_path": "f3d854b4575265572977a3e307814486jpeg",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.6934577438829,
+    "longitude": 114.233667307506,
+    "max_applied_quantity_per_order": -1,
+    "name": "艾尚汉堡",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "10:30/23:00"
+    ],
+    "order_lead_time": 34,
+    "phone": "84564232",
+    "piecewise_agent_fee": {
+      "description": "免配送费",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 0,
+          "price": 25
+        }
+      ],
+      "tips": "免配送费"
+    },
+    "promotion_info": "为避免用餐高峰期送餐问题，请各位客官提前下单。我们为给您提供快速优质的餐点时刻拼命着。如有怠慢，请多理解！",
+    "rating": 4.6,
+    "rating_count": 370,
+    "recent_order_num": 1318,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": []
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 15812465,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "description": "迎新春，享特价",
+        "icon_color": "f07373",
+        "icon_name": "特",
+        "id": 19736259,
+        "name": "迎新春，享特价",
+        "tips": "迎新春，享特价"
+      },
+      {
+        "description": "特价活动",
+        "icon_color": "f07373",
+        "icon_name": "折",
+        "id": 19575593,
+        "name": "特价活动",
+        "tips": "特价活动"
+      }
+    ],
+    "address": "深圳市龙岗区横岗街道坳背路109号",
+    "average_cost": "¥28/人",
+    "description": "",
+    "distance": 1732,
+    "float_delivery_fee": 2,
+    "float_minimum_order_amount": 25,
+    "id": 877390,
+    "image_path": "e054612be8137c087146faa8d72780f5jpeg",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.668447,
+    "longitude": 114.21404,
+    "max_applied_quantity_per_order": -1,
+    "name": "嘉美港式茶餐厅 坳背分店",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "10:00/23:00"
+    ],
+    "order_lead_time": 48,
+    "phone": "075528620009 075528630009",
+    "piecewise_agent_fee": {
+      "description": "配送费¥2",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 2,
+          "price": 25
+        }
+      ],
+      "tips": "配送费¥2"
+    },
+    "promotion_info": "\u003cp\u003e亲们：中午饭市11：30—13：00高峰时段速度相对慢一点。其它时间都会很快送达!感谢惠顾!欢迎提前预定!投诉建议请致电支付宝负责人马先生：18589095458.",
+    "rating": 4.5,
+    "rating_count": 425,
+    "recent_order_num": 1099,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": []
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 15674828,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"25\": {\"1\": 4, \"0\": 0}, \"58\": {\"1\": 10, \"0\": 0}, \"43\": {\"1\": 8, \"0\": 0}}",
+        "description": "满25减4，满43减8，满58减10(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 19625042,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满25减4，满43减8，满58减10(不与美食活动同享)",
+        "type": 102
+      },
+      {
+        "description": "4.8折",
+        "icon_color": "f07373",
+        "icon_name": "折",
+        "id": 19625187,
+        "name": "4.8折",
+        "tips": "4.8折"
+      }
+    ],
+    "address": "广东深圳市龙岗区龙城街道爱联社区嶂背步行街105号",
+    "average_cost": "¥23/人",
+    "description": "点外卖就用饿了么！",
+    "distance": 2812,
+    "float_delivery_fee": 4,
+    "float_minimum_order_amount": 48,
+    "id": 630440,
+    "image_path": "b7ff663b7d27a46e64c10bee29c07b77jpeg",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.684082,
+    "longitude": 114.241493,
+    "max_applied_quantity_per_order": -1,
+    "name": "肯佳基",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "10:45/01:00"
+    ],
+    "order_lead_time": 47,
+    "phone": "18026999300",
+    "piecewise_agent_fee": {
+      "description": "配送费¥4",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 4,
+          "price": 48
+        }
+      ],
+      "tips": "配送费¥4"
+    },
+    "promotion_info": "温磬提示：各因素影响可致部分订单送达时间可能达到一个小时，请理解！本店经营汉堡，炸鸡，披萨为主!另有缤纷小食饮品！欢迎您光临!餐厅外送电话：89726963.投诉及见意欢迎拔打：18026999300！\n为不影响您的用餐，披萨类请提前40分钟以上时间预定。",
+    "rating": 4.4,
+    "rating_count": 134,
+    "recent_order_num": 876,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": []
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 16018478,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"25\": {\"1\": 3, \"0\": 0}, \"50\": {\"1\": 4, \"0\": 0}}",
+        "description": "满25减3，满50减4(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 19625901,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满25减3，满50减4(不与美食活动同享)",
+        "type": 102
+      }
+    ],
+    "address": "深圳市龙岗区龙城街道新联社区蒲排公寓一层3号铺",
+    "average_cost": "¥22/人",
+    "description": "新开店铺",
+    "distance": 3233,
+    "float_delivery_fee": 1,
+    "float_minimum_order_amount": 45,
+    "id": 559735,
+    "image_path": "c87a642a93caa190f8c3435f6645658cjpeg",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.696957,
+    "longitude": 114.242314,
+    "max_applied_quantity_per_order": -1,
+    "name": "客乐汉堡餐厅",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "10:30/03:15"
+    ],
+    "order_lead_time": 39,
+    "phone": "89250061",
+    "piecewise_agent_fee": {
+      "description": "配送费¥1",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 1,
+          "price": 45
+        }
+      ],
+      "tips": "配送费¥1"
+    },
+    "promotion_info": "为了避免高峰期配送问题，请各位上帝提前下单，提高我们的配送效率，尽快将美味可口的菜饭送到你的嘴边，让您一天有个美好的心情。",
+    "rating": 4.4,
+    "rating_count": 194,
+    "recent_order_num": 861,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": []
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 15674472,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"26\": {\"1\": 7, \"0\": 0}, \"58\": {\"1\": 17, \"0\": 0}, \"38\": {\"1\": 12, \"0\": 0}}",
+        "description": "满26减7，满38减12，满58减17(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 19576894,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满26减7，满38减12，满58减17(不与美食活动同享)",
+        "type": 102
+      },
+      {
+        "description": "5.4",
+        "icon_color": "f07373",
+        "icon_name": "折",
+        "id": 19622876,
+        "name": "5.4",
+        "tips": "5.4"
+      }
+    ],
+    "address": "深圳市龙岗区龙城街道爱联社区岗贝新桥西一巷15号",
+    "average_cost": "¥22/人",
+    "description": "新店开张，多多支持",
+    "distance": 2540,
+    "float_delivery_fee": 0,
+    "float_minimum_order_amount": 30,
+    "id": 397502,
+    "image_path": "fd94f9940159b22b83c31307a375c27djpeg",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.6782560285472,
+    "longitude": 114.238034842239,
+    "max_applied_quantity_per_order": -1,
+    "name": "客乐伊汉堡店",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "09:00/07:15"
+    ],
+    "order_lead_time": 58,
+    "phone": "18675565615",
+    "piecewise_agent_fee": {
+      "description": "免配送费",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 0,
+          "price": 30
+        }
+      ],
+      "tips": "免配送费"
+    },
+    "promotion_info": "",
+    "rating": 3.7,
+    "rating_count": 91,
+    "recent_order_num": 486,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": []
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 16019437,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"35\": {\"1\": 5, \"0\": 0}, \"55\": {\"1\": 8, \"0\": 0}}",
+        "description": "满35减5，满55减8(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 19176140,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满35减5，满55减8(不与美食活动同享)",
+        "type": 102
+      }
+    ],
+    "address": "深圳市龙岗区龙城街道爱联社区金华街36号-2",
+    "average_cost": "¥18/人",
+    "description": "老麻抄手，亦称渝记老麻，即老麻抄手的品牌传播机构。是重庆锐虎餐饮管理有限公司旗下一品牌。自1999年第一家老麻抄手直营店成立以来，渝记老麻历经风雨，正如我们一直以来信奉的经营理念一样，我们效法种子，经历风雨坎坷，茁壮成长。",
+    "distance": 2158,
+    "float_delivery_fee": 0,
+    "float_minimum_order_amount": 20,
+    "id": 1125589,
+    "image_path": "80137bfe43584ba9bd6046d9e494cd7dpng",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.696514,
+    "longitude": 114.230186,
+    "max_applied_quantity_per_order": -1,
+    "name": "老麻抄手",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "07:25/23:00"
+    ],
+    "order_lead_time": 37,
+    "phone": "13266735214 13501568261",
+    "piecewise_agent_fee": {
+      "description": "免配送费",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 0,
+          "price": 20
+        }
+      ],
+      "tips": "免配送费"
+    },
+    "promotion_info": "亲，口味轻重麻烦您选项一下，好更具您的喜好调味，谢谢，",
+    "rating": 4.4,
+    "rating_count": 27,
+    "recent_order_num": 235,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": []
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 19566693,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"40\": {\"1\": 8, \"0\": 0}, \"80\": {\"1\": 13, \"0\": 0}, \"20\": {\"1\": 6, \"0\": 0}}",
+        "description": "满20减6，满40减8，满80减13(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 19304023,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满20减6，满40减8，满80减13(不与美食活动同享)",
+        "type": 102
+      }
+    ],
+    "address": "龙城街道大运新城颐安都会中央3栋133铺",
+    "average_cost": "¥19/人",
+    "delivery_mode": {
+      "color": "57A9FF",
+      "id": 1,
+      "is_solid": true,
+      "text": "蜂鸟专送"
+    },
+    "description": "",
+    "distance": 952,
+    "float_delivery_fee": 9,
+    "float_minimum_order_amount": 0,
+    "id": 2342979,
+    "image_path": "b916d54ce9b5a465d1093abdb8aca9d8jpeg",
+    "is_new": true,
+    "is_premium": false,
+    "latitude": 22.688155,
+    "longitude": 114.222215,
+    "max_applied_quantity_per_order": -1,
+    "name": "北方饺子馆（大运店）",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "10:00/23:00"
+    ],
+    "order_lead_time": 46,
+    "phone": "18665475465",
+    "piecewise_agent_fee": {
+      "description": "订单满100免配送费，20至100付5元，不满20付9元",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 9,
+          "price": 0
+        },
+        {
+          "fee": 5,
+          "price": 20
+        },
+        {
+          "fee": 0,
+          "price": 100
+        }
+      ],
+      "tips": "配送费约¥5"
+    },
+    "promotion_info": "",
+    "rating": 4.3,
+    "rating_count": 0,
+    "recent_order_num": 8,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": [
+      {
+        "description": "已加入“外卖保”计划，食品安全有保障",
+        "icon_color": "999999",
+        "icon_name": "保",
+        "id": 7,
+        "name": "外卖保"
+      },
+      {
+        "description": "准时必达，超时秒赔",
+        "icon_color": "57A9FF",
+        "icon_name": "准",
+        "id": 9,
+        "name": "准时达"
+      }
+    ]
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 16101385,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"25\": {\"1\": 4, \"0\": 0}, \"45\": {\"1\": 8, \"0\": 0}, \"85\": {\"1\": 16, \"0\": 0}}",
+        "description": "满25减4，满45减8，满85减16(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 19480883,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满25减4，满45减8，满85减16(不与美食活动同享)",
+        "type": 102
+      },
+      {
+        "description": "特价活动",
+        "icon_color": "f07373",
+        "icon_name": "折",
+        "id": 19457810,
+        "name": "特价活动",
+        "tips": "特价活动"
+      }
+    ],
+    "address": "龙城街道陂头背村新丰路63号103",
+    "average_cost": "¥24/人",
+    "description": "",
+    "distance": 1786,
+    "float_delivery_fee": 3,
+    "float_minimum_order_amount": 20,
+    "id": 1934401,
+    "image_path": "5993d132b0b774a0632996c296a29072jpeg",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.698619,
+    "longitude": 114.221381,
+    "max_applied_quantity_per_order": -1,
+    "name": "乐悠茶吧",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "10:00/01:00"
+    ],
+    "order_lead_time": 30,
+    "phone": "15766973817",
+    "piecewise_agent_fee": {
+      "description": "配送费¥3",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 3,
+          "price": 20
+        }
+      ],
+      "tips": "配送费¥3"
+    },
+    "promotion_info": "",
+    "rating": 3.9,
+    "rating_count": 37,
+    "recent_order_num": 151,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": []
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 16020615,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"80\": {\"1\": 2, \"0\": 0}}",
+        "description": "满80减2(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 19396954,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满80减2(不与美食活动同享)",
+        "type": 102
+      }
+    ],
+    "address": "深圳市龙岗区龙城街道爱联社区余岭路45号1楼",
+    "average_cost": "¥26/人",
+    "delivery_mode": {
+      "color": "57A9FF",
+      "id": 1,
+      "is_solid": true,
+      "text": "蜂鸟专送"
+    },
+    "description": "",
+    "distance": 2163,
+    "float_delivery_fee": 10,
+    "float_minimum_order_amount": 0,
+    "id": 1467133,
+    "image_path": "c6f1c440d82187bbc022fbd2fb29d8dajpeg",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.697641,
+    "longitude": 114.229156,
+    "max_applied_quantity_per_order": -1,
+    "name": "重庆面庄",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "10:00/23:55"
+    ],
+    "order_lead_time": 38,
+    "phone": "13510783177",
+    "piecewise_agent_fee": {
+      "description": "订单满100配送费1元，20至100付6元，不满20付10元",
+      "extra_fee": 1,
+      "is_extra": true,
+      "rules": [
+        {
+          "fee": 10,
+          "price": 0
+        },
+        {
+          "fee": 6,
+          "price": 20
+        },
+        {
+          "fee": 1,
+          "price": 100
+        }
+      ],
+      "tips": "配送费约¥6"
+    },
+    "promotion_info": "",
+    "rating": 3.5,
+    "rating_count": 11,
+    "recent_order_num": 94,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": [
+      {
+        "description": "已加入“外卖保”计划，食品安全有保障",
+        "icon_color": "999999",
+        "icon_name": "保",
+        "id": 7,
+        "name": "外卖保"
+      },
+      {
+        "description": "准时必达，超时秒赔",
+        "icon_color": "57A9FF",
+        "icon_name": "准",
+        "id": 9,
+        "name": "准时达"
+      }
+    ]
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 16020674,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"88\": {\"1\": 20, \"0\": 0}, \"35\": {\"1\": 10, \"0\": 0}, \"55\": {\"1\": 15, \"0\": 0}}",
+        "description": "满35减10，满55减15，满88减20(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 18884208,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满35减10，满55减15，满88减20(不与美食活动同享)",
+        "type": 102
+      }
+    ],
+    "address": "深圳市龙岗区龙城街道爱联社区余岭西路111号",
+    "average_cost": "¥26/人",
+    "delivery_mode": {
+      "color": "57A9FF",
+      "id": 1,
+      "is_solid": true,
+      "text": "蜂鸟专送"
+    },
+    "description": "",
+    "distance": 1899,
+    "float_delivery_fee": 9,
+    "float_minimum_order_amount": 0,
+    "id": 1491619,
+    "image_path": "092fddfd3a61f52c0f3397ecaac62b85png",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.695523,
+    "longitude": 114.227776,
+    "max_applied_quantity_per_order": -1,
+    "name": "澳凼猪扒包",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "10:00/23:00"
+    ],
+    "order_lead_time": 36,
+    "phone": "15112647997",
+    "piecewise_agent_fee": {
+      "description": "订单满100免配送费，20至100付5元，不满20付9元",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 9,
+          "price": 0
+        },
+        {
+          "fee": 5,
+          "price": 20
+        },
+        {
+          "fee": 0,
+          "price": 100
+        }
+      ],
+      "tips": "配送费约¥5"
+    },
+    "promotion_info": "",
+    "rating": 4.7,
+    "rating_count": 15,
+    "recent_order_num": 79,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": [
+      {
+        "description": "已加入“外卖保”计划，食品安全有保障",
+        "icon_color": "999999",
+        "icon_name": "保",
+        "id": 7,
+        "name": "外卖保"
+      },
+      {
+        "description": "准时必达，超时秒赔",
+        "icon_color": "57A9FF",
+        "icon_name": "准",
+        "id": 9,
+        "name": "准时达"
+      }
+    ]
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 15745424,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"80\": {\"1\": 2, \"0\": 0}}",
+        "description": "满80减2(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 19396954,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满80减2(不与美食活动同享)",
+        "type": 102
+      }
+    ],
+    "address": "深圳市龙岗区龙城街道爱联社区爱华路90号1楼民润市场鲜肉菜D102",
+    "delivery_mode": {
+      "color": "57A9FF",
+      "id": 1,
+      "is_solid": true,
+      "text": "蜂鸟专送"
+    },
+    "description": "新店开业，优惠多多哦~正宗风味，欢迎品尝~~",
+    "distance": 2189,
+    "float_delivery_fee": 10,
+    "float_minimum_order_amount": 0,
+    "id": 1441329,
+    "image_path": "5edac9eb6e2dae7277e685d7a354b420png",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.697916,
+    "longitude": 114.229215,
+    "max_applied_quantity_per_order": -1,
+    "name": "三味重庆小面",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "10:30/23:00"
+    ],
+    "order_lead_time": 42,
+    "phone": "15994725129",
+    "piecewise_agent_fee": {
+      "description": "订单满100配送费1元，20至100付6元，不满20付10元",
+      "extra_fee": 1,
+      "is_extra": true,
+      "rules": [
+        {
+          "fee": 10,
+          "price": 0
+        },
+        {
+          "fee": 6,
+          "price": 20
+        },
+        {
+          "fee": 1,
+          "price": 100
+        }
+      ],
+      "tips": "配送费约¥6"
+    },
+    "promotion_info": "这段时间，本餐厅有接不到单的情况，请各位新老顾客多点一次或打电话查问，谢谢。",
+    "rating": 4.9,
+    "rating_count": 0,
+    "recent_order_num": 28,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": [
+      {
+        "description": "已加入“外卖保”计划，食品安全有保障",
+        "icon_color": "999999",
+        "icon_name": "保",
+        "id": 7,
+        "name": "外卖保"
+      },
+      {
+        "description": "准时必达，超时秒赔",
+        "icon_color": "57A9FF",
+        "icon_name": "准",
+        "id": 9,
+        "name": "准时达"
+      }
+    ]
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 16275956,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"85\": {\"1\": 8, \"0\": 0}, \"30\": {\"1\": 3, \"0\": 0}, \"55\": {\"1\": 5, \"0\": 0}}",
+        "description": "满30减3，满55减5，满85减8(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 19119843,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满30减3，满55减5，满85减8(不与美食活动同享)",
+        "type": 102
+      }
+    ],
+    "address": "横岗街道荷坳社区桂坪路7号",
+    "delivery_mode": {
+      "color": "57A9FF",
+      "id": 1,
+      "is_solid": true,
+      "text": "蜂鸟专送"
+    },
+    "description": "",
+    "distance": 1023,
+    "float_delivery_fee": 9,
+    "float_minimum_order_amount": 0,
+    "id": 1942252,
+    "image_path": "107f051393ce6cbdfd994535dbbd824ajpeg",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.682312,
+    "longitude": 114.223878,
+    "max_applied_quantity_per_order": -1,
+    "name": "好客来餐厅",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "10:45/13:45",
+      "16:45/23:00"
+    ],
+    "order_lead_time": 0,
+    "phone": "13530513380",
+    "piecewise_agent_fee": {
+      "description": "订单满100免配送费，20至100付5元，不满20付9元",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 9,
+          "price": 0
+        },
+        {
+          "fee": 5,
+          "price": 20
+        },
+        {
+          "fee": 0,
+          "price": 100
+        }
+      ],
+      "tips": "配送费约¥5"
+    },
+    "promotion_info": "",
+    "rating": 0,
+    "rating_count": 0,
+    "recent_order_num": 4,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": [
+      {
+        "description": "已加入“外卖保”计划，食品安全有保障",
+        "icon_color": "999999",
+        "icon_name": "保",
+        "id": 7,
+        "name": "外卖保"
+      },
+      {
+        "description": "准时必达，超时秒赔",
+        "icon_color": "57A9FF",
+        "icon_name": "准",
+        "id": 9,
+        "name": "准时达"
+      }
+    ]
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 18425825,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"25\": {\"1\": 4, \"0\": 0}, \"45\": {\"1\": 9, \"0\": 0}}",
+        "description": "满25减4，满45减9(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 19571540,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满25减4，满45减9(不与美食活动同享)",
+        "type": 102
+      }
+    ],
+    "address": "龙城街道爱联A区爱都路43栋1号商铺",
+    "delivery_mode": {
+      "color": "57A9FF",
+      "id": 1,
+      "is_solid": true,
+      "text": "蜂鸟专送"
+    },
+    "description": "",
+    "distance": 2076,
+    "float_delivery_fee": 10,
+    "float_minimum_order_amount": 0,
+    "id": 2244824,
+    "image_path": "7b324634524b363cbc2daed9fc32f869jpeg",
+    "is_new": true,
+    "is_premium": false,
+    "latitude": 22.696351,
+    "longitude": 114.229289,
+    "max_applied_quantity_per_order": -1,
+    "name": "蒲记重庆面庄",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "10:00/23:30"
+    ],
+    "order_lead_time": 0,
+    "phone": "18138851985",
+    "piecewise_agent_fee": {
+      "description": "订单满100配送费1元，20至100付6元，不满20付10元",
+      "extra_fee": 1,
+      "is_extra": true,
+      "rules": [
+        {
+          "fee": 10,
+          "price": 0
+        },
+        {
+          "fee": 6,
+          "price": 20
+        },
+        {
+          "fee": 1,
+          "price": 100
+        }
+      ],
+      "tips": "配送费约¥6"
+    },
+    "promotion_info": "",
+    "rating": 0,
+    "rating_count": 0,
+    "recent_order_num": 4,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": [
+      {
+        "description": "已加入“外卖保”计划，食品安全有保障",
+        "icon_color": "999999",
+        "icon_name": "保",
+        "id": 7,
+        "name": "外卖保"
+      },
+      {
+        "description": "准时必达，超时秒赔",
+        "icon_color": "57A9FF",
+        "icon_name": "准",
+        "id": 9,
+        "name": "准时达"
+      }
+    ]
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 18780031,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"25\": {\"1\": 12, \"0\": 0}, \"60\": {\"1\": 22, \"0\": 0}, \"45\": {\"1\": 17, \"0\": 0}}",
+        "description": "满25减12，满45减17，满60减22(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 19709887,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满25减12，满45减17，满60减22(不与美食活动同享)",
+        "type": 102
+      }
+    ],
+    "address": "深圳市龙岗区龙城街道黄阁路32-34号绿景大公馆商铺B11号",
+    "description": "",
+    "distance": 1526,
+    "float_delivery_fee": 20,
+    "float_minimum_order_amount": 20,
+    "id": 2282751,
+    "image_path": "d548709ed201766375890ffb3ed0f714jpeg",
+    "is_new": true,
+    "is_premium": false,
+    "latitude": 22.696669,
+    "longitude": 114.219895,
+    "max_applied_quantity_per_order": -1,
+    "name": "U-life大运生活",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "11:00/23:00"
+    ],
+    "order_lead_time": 0,
+    "phone": "84530976",
+    "piecewise_agent_fee": {
+      "description": "配送费¥20",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 20,
+          "price": 20
+        }
+      ],
+      "tips": "配送费¥20"
+    },
+    "promotion_info": "",
+    "rating": 0,
+    "rating_count": 0,
+    "recent_order_num": 0,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": []
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 15743710,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"136\": {\"1\": 18, \"0\": 0}, \"68\": {\"1\": 9, \"0\": 0}, \"20\": {\"1\": 5, \"0\": 0}}",
+        "description": "满20减5，满68减9，满136减18(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 19439944,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满20减5，满68减9，满136减18(不与美食活动同享)",
+        "type": 102
+      }
+    ],
+    "address": "龙岗区龙城街道盛龙花园二期1号楼商场1077",
+    "average_cost": "¥35/人",
+    "description": "",
+    "distance": 5886,
+    "float_delivery_fee": 0,
+    "float_minimum_order_amount": 35,
+    "id": 781299,
+    "image_path": "da6acae68a780d21eaf04ddfca897640jpeg",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.722929,
+    "longitude": 114.253005,
+    "max_applied_quantity_per_order": -1,
+    "name": "一品烧鸡",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "00:00/05:30",
+      "10:00/23:55"
+    ],
+    "order_lead_time": 42,
+    "phone": "13518085548",
+    "piecewise_agent_fee": {
+      "description": "免配送费",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 0,
+          "price": 35
+        }
+      ],
+      "tips": "免配送费"
+    },
+    "promotion_info": "烧鸡有十多种口味可供大家选择",
+    "rating": 4.2,
+    "rating_count": 37,
+    "recent_order_num": 353,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": []
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 15950454,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"56\": {\"1\": 7, \"0\": 0}, \"41\": {\"1\": 5, \"0\": 0}, \"26\": {\"1\": 3, \"0\": 0}}",
+        "description": "满26减3，满41减5，满56减7(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 18263609,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满26减3，满41减5，满56减7(不与美食活动同享)",
+        "type": 102
+      }
+    ],
+    "address": "广东省深圳市龙岗区南联路75-10号",
+    "average_cost": "¥25/人",
+    "description": "本店位于南联路75-8号（福利彩票店和晓发轮胎店旁）",
+    "distance": 6717,
+    "float_delivery_fee": 30,
+    "float_minimum_order_amount": 70,
+    "id": 1082694,
+    "image_path": "da6417982d5df946e62029b33f9cd18dpng",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.725555,
+    "longitude": 114.26165,
+    "max_applied_quantity_per_order": -1,
+    "name": "沙县小吃（南联店）",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "00:00/24:00"
+    ],
+    "order_lead_time": 34,
+    "phone": "13686447933",
+    "piecewise_agent_fee": {
+      "description": "配送费¥30",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 30,
+          "price": 70
+        }
+      ],
+      "tips": "配送费¥30"
+    },
+    "promotion_info": "本店所使用的食用油，米，全部是购于沃尔玛和乐购，广大客户可以放心食用，欢迎随时到本店抽检所采购的产品！",
+    "rating": 4.3,
+    "rating_count": 344,
+    "recent_order_num": 1096,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": []
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 15743783,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "description": "满66.0元赠送四川泡菜1份",
+        "icon_color": "3cc791",
+        "icon_name": "赠",
+        "id": 18850420,
+        "name": "满赠优惠",
+        "tips": "满66.0元赠送四川泡菜1份"
+      },
+      {
+        "description": "特价超值套餐",
+        "icon_color": "f1884f",
+        "icon_name": "特",
+        "id": 18850384,
+        "name": "特价超值套餐",
+        "tips": "特价超值套餐"
+      },
+      {
+        "description": "超值折扣菜",
+        "icon_color": "f1884f",
+        "icon_name": "特",
+        "id": 18850248,
+        "name": "超值折扣菜",
+        "tips": "超值折扣菜"
+      }
+    ],
+    "address": "龙岗区坂田黄金山综合楼4号铺",
+    "average_cost": "¥38/人",
+    "description": "",
+    "distance": 16311,
+    "float_delivery_fee": 150,
+    "float_minimum_order_amount": 48,
+    "id": 799953,
+    "image_path": "f86c6700ca876d3910fe144ded0af331jpeg",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.640501,
+    "longitude": 114.062271,
+    "max_applied_quantity_per_order": -1,
+    "name": "品味冒菜",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "11:00/23:55"
+    ],
+    "order_lead_time": 45,
+    "phone": "15207550008",
+    "piecewise_agent_fee": {
+      "description": "配送费¥150",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 150,
+          "price": 48
+        }
+      ],
+      "tips": "配送费¥150"
+    },
+    "promotion_info": "本餐厅座落于华为总部基地旁，现配送区域为：全深圳片区。请根据距离远近确定下单时间。",
+    "rating": 4.3,
+    "rating_count": 107,
+    "recent_order_num": 149,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": []
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 15743103,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      },
+      {
+        "attribute": "{\"200\": {\"1\": 10, \"0\": 0}, \"100\": {\"1\": 5, \"0\": 0}}",
+        "description": "满100减5，满200减10(不与美食活动同享)",
+        "icon_color": "f07373",
+        "icon_name": "减",
+        "id": 19398865,
+        "is_exclusive_with_food_activity": true,
+        "name": "满减优惠",
+        "tips": "满100减5，满200减10(不与美食活动同享)",
+        "type": 102
+      }
+    ],
+    "address": "深圳市龙华新区民治街道东环2路城市明珠花园13B6F",
+    "description": "加微信点餐，可享送菜活动喔！微信号：1832099550",
+    "distance": 19248,
+    "float_delivery_fee": 8,
+    "float_minimum_order_amount": 368,
+    "id": 385605,
+    "image_path": "d70d502b93c1bff5ddb77dd5b15828a0png",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.6668489371478,
+    "longitude": 114.02739615752,
+    "max_applied_quantity_per_order": -1,
+    "name": "邻居家的海鲜店",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "16:00/04:00"
+    ],
+    "order_lead_time": 30,
+    "phone": "18320995505",
+    "piecewise_agent_fee": {
+      "description": "配送费¥8",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 8,
+          "price": 368
+        }
+      ],
+      "tips": "配送费¥8"
+    },
+    "promotion_info": "餐厅优先配送饿了么订单，为了避免高峰期配送问题，请各位上帝提前60分钟下单，提高我们的配送效率，尽快将美味可口的菜饭送到你的嘴边，让您一天有个美好的心情。餐厅联系电话：18320995505；",
+    "rating": 5,
+    "rating_count": 15,
+    "recent_order_num": 48,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": []
+  },
+  {
+    "activities": [
+      {
+        "description": "新用户下单立减20.0元",
+        "icon_color": "70bc46",
+        "icon_name": "新",
+        "id": 15745707,
+        "name": "新用户立减(不与其他活动共享)",
+        "tips": "新用户下单立减20.0元"
+      }
+    ],
+    "address": "深圳市龙岗区龙城街道盛平社区龙平东路楚丰广场2号楼南15号商铺",
+    "description": "",
+    "distance": 6791,
+    "float_delivery_fee": 7,
+    "float_minimum_order_amount": 160,
+    "id": 1526565,
+    "image_path": "a6da9336118decfbd7d63255f72ec748jpeg",
+    "is_new": false,
+    "is_premium": false,
+    "latitude": 22.732614,
+    "longitude": 114.254211,
+    "max_applied_quantity_per_order": -1,
+    "name": "窑鸡宴",
+    "next_business_time": "",
+    "only_use_poi": false,
+    "opening_hours": [
+      "10:00/02:55"
+    ],
+    "order_lead_time": 0,
+    "phone": "13528782826",
+    "piecewise_agent_fee": {
+      "description": "配送费¥7",
+      "extra_fee": 0,
+      "is_extra": false,
+      "rules": [
+        {
+          "fee": 7,
+          "price": 160
+        }
+      ],
+      "tips": "配送费¥7"
+    },
+    "promotion_info": "全新秘制窑鸡做法就是香，水晶鸡够嫩够鲜味！为保证亲们吃上美味窑鸡.水晶鸡，我们是采用下单现做现窑，所以请亲们尽量提前下单！",
+    "rating": 5,
+    "rating_count": 1,
+    "recent_order_num": 14,
+    "regular_customer_count": 0,
+    "status": 1,
+    "supports": []
+  }
+]
