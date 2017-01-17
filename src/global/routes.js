@@ -21,6 +21,10 @@ var routes = [
     name: 'search',
     component: require('../components/search/search.vue')
   },
+  {//  选择城市
+    path: '/city',
+    component: require('../components/city/selectCity.vue')
+  },
   {//  所有未定义路由跳转到首页
     path: '*',
     redirect: '/'

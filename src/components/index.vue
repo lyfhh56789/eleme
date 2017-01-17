@@ -4,7 +4,12 @@
       <a @click="gotoSearch" slot="left">
         <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search"></use></svg>
       </a>
-      <div class="center"><span>龙岗区深圳信息职业技术学院</span></div>
+      <div class="center">
+        <router-link :to="{path: '/city'}">
+          <span>龙岗区深圳信息职业技术学院</span>
+        </router-link>
+
+      </div>
       <a slot="right">登录</a>
     </header>
     <my-swipe></my-swipe>
@@ -133,6 +138,8 @@
           }
         })
       },
+      city(){ //  选择城市
+      }
     },
     mounted () {
       this.loadMore()
