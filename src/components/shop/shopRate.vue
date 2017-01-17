@@ -32,11 +32,7 @@
         </section>
         <section class="rate-section">
           <div class="rate-tags">
-            <ul class="tag-list">
-              <template v-for="(tag, index) in tags">
-                <li :class="{'active': tagActive === index,'unsatisfied': tag.unsatisfied}">{{ tag.name + '(' + tag.count + ')' }}</li>
-              </template>
-            </ul>
+            <tags @tag="tagChange" :tags="tags"></tags>
           </div>
           <ul v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="20">
             <li v-for="rate in ratings">
@@ -145,44 +141,14 @@
     border-bottom: 1px solid #ddd;
   }
 </style>
-<style scoped>
-  /*  rating-tags */
-  .tag-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .tag-list li {
-    display: inline-block;
-    padding: 0.2rem;
-    margin: 0.066667rem 0.133333rem;
-    -webkit-border-radius: 0.133333rem;
-    border-radius: 0.133333rem;
-    color: #6d7885;
-    background-color: #ebf5ff;
-  }
-  .tag-list li.unsatisfied {
-    color: #aaa;
-    background-color: #f5f5f5;
-  }
-  .tag-list li.active {
-    color: #fff;
-    background-color: #3190e8;
-  }
-  .tag-list li.unsatisfied.active {
-    color: #fff;
-    background-color: #ccc;
-  }
-</style>
 <script>
   import wrapper from '../common/wrapper.vue'
   import rate from '../common/rate.vue'
   import ratingStar from '../common/ratingStar.vue'
+  import tags from '../common/tags.vue'
   export default{
     data () {
       return {
-        tags: [], //  标签
-        tagActive: 0, //  激活标签
         ratings: [], //  评价列表
         busy: true,
         page: 1, //  分页信息
@@ -195,6 +161,12 @@
       },
       ratingScores(){ //  商家评分信息
         return this.$store.state.ratingScores
+      },
+      tag(){
+        return this.$store.state.tag
+      },
+      tags(){
+        return this.$store.state.tags
       }
     },
     methods: {
@@ -202,36 +174,43 @@
         window.history.back()
         this.$store.commit('setShowActive', false)
       },
+      getUrl(){
+        var tagName;
+        tagName = this.tag.name === undefined ? '全部': this.tag.name
+        var url = 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings?has_content=true&tag_name='+ tagName +'&offset='+ this.offset +'&limit='+ this.limit
+        return url
+      },
       loadData(){
-        this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings?has_content=true&tag_name=%E5%85%A8%E9%83%A8&offset='+ this.offset +'&limit='+ this.limit}}).then(function (res) {
+        var url = this.getUrl()
+        this.busy = true
+        this.$http({url: 'eleme_api.php', params: {api_str: encodeURI(url)}}).then(function (res) {
           this.ratings = res.data
           this.busy = false
-          this.page = 2 //  从第二页开始加载更多数据
+          this.page = 1
         })
       },
       loadMore(){
+        var url = this.getUrl()
         this.busy = true
-        this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings?has_content=true&tag_name=%E5%85%A8%E9%83%A8&offset='+ this.offset +'&limit='+ this.limit}}).then(function (res) {
+        this.page ++;
+        this.$http({url: 'eleme_api.php', params: {api_str: encodeURI(url)}}).then(function (res) {
           if (res.data.length < this.limit){ // 数据量少于limit，说明后续没有数据了
             return
           }
           this.busy = false
-          this.page ++;
           this.ratings = this.ratings.concat(res.data)
         })
       },
-      getTags(){
-        this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings/tags'}}).then(function (res) {
-          this.tags = res.data
-        })
+      tagChange(tag){ //  分类标签显示评论
+        this.$store.commit('setTag', tag)
+        this.loadData()
       }
     },
     created () {
-      this.getTags();
       this.loadData();
     },
     components: {
-      wrapper, rate, ratingStar
+      wrapper, rate, ratingStar, tags
     }
   }
 </script>

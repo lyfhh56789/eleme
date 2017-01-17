@@ -55,12 +55,16 @@
           <span class="shopnav-title">商家</span>
         </a>
       </div>
-      <template v-if="activeNav === 0">
-        <menu-view></menu-view>
-      </template>
-      <template v-if="activeNav === 1">
-        <shop-info></shop-info>
-      </template>
+      <keep-alive>
+        <template v-if="activeNav === 0">
+          <menu-view></menu-view>
+        </template>
+      </keep-alive>
+      <keep-alive>
+        <template v-if="activeNav === 1">
+          <shop-info :ratings="ratings"></shop-info>
+        </template>
+      </keep-alive>
     </div>
     <!--  放置商家评价的两个空div  -->
     <div>
@@ -274,6 +278,8 @@
       return {
         activities: [], // 活动列表
         activeNav: 0, //  激活导航
+        ratings: [], //  信息页最新一条评论
+        infoLoaded: false,
       }
     },
     computed: {
@@ -320,6 +326,24 @@
           return
         }
         this.activeNav = index;
+        //  信息页如果没有加载数据，就加载数据
+        if (!this.infoLoaded && index === 1){
+          this.getTags();
+          this.getRatings();
+        }
+      },
+      getRatings(){ // 获取商家最新一条评价
+        this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings?has_content=1&limit=1'}}).then(function (res) {
+          this.infoLoaded = true
+          this.ratings = res.data
+        })
+      },
+      getTags(){
+        this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings/tags'}}).then(function (res) {
+          this.infoLoaded = true
+          if (res.data.length === 0) this.$store.commit('setTag', {});
+          this.$store.commit('setTags', res.data)
+        })
       },
       transImgUrl(path){
         var reg = /gif|jpe?g|png$/i; // 匹配图片后缀
@@ -332,6 +356,8 @@
       },
     },
     created () {
+      //  重置标签
+      this.$store.commit('setTag', {})
       this.loadShopMsg()
       this.loadMenuList()
       this.getRatingScores();

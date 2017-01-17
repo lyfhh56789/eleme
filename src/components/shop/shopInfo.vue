@@ -10,6 +10,9 @@
         </span>
       </header>
       <section>
+        <tags @tag="ratingTag"></tags>
+      </section>
+      <section>
         <rate :rate="ratings[0]"></rate>
       </section>
       <section @click="viewRate" class="show-all-ratings"> 查看全部评价
@@ -172,10 +175,18 @@
   import rate from '../common/rate.vue'
   import shopActivity from '../common/shopActivity.vue'
   import wrapper from '../common/wrapper.vue'
+  import tags from '../common/tags.vue'
   export default{
+    props: {
+      ratings: { // 商家评价信息
+        type: Array,
+        default(){
+          return []
+        }
+      }
+    },
     data () {
       return {
-        ratings: [], // 商家评价信息
         imgPath: '', //  营业执照和餐饮服务许可证
         licenseTitle: '', //  营业执照和餐饮服务许可证标题
       }
@@ -189,17 +200,20 @@
       },
       ratingScores(){ //  商家评分信息
         return this.$store.state.ratingScores
+      },
+      tags(){
+        return this.$store.state.tags
       }
     },
     methods: {
-      getRatings(){ // 获取商家最新一条评价
-        this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings?has_content=1&limit=1'}}).then(function (res) {
-          this.ratings = res.data
-        })
-      },
       viewRate(){ //  显示评价页
         window.history.pushState({rate: true}, document.title)
         this.$store.commit('setShowRate', true)
+      },
+      ratingTag(tag){ //  显示评价页标签
+        console.log(tag)
+        this.$store.commit('setTag', tag)
+        this.viewRate()
       },
       showLicense(type){ //  显示营业执照
         window.history.pushState({license: true}, document.title)
@@ -220,11 +234,8 @@
         this.imgPath = baseUrl + restfulUrl + '.' + extension
       }
     },
-    created () {
-      this.getRatings();
-    },
     components: {
-      rate, shopActivity, wrapper
+      rate, shopActivity, wrapper, tags
     }
   }
 </script>
