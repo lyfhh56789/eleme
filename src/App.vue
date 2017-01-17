@@ -72,6 +72,9 @@ a {
   color: #333;
   text-decoration: none;
 }
+.flex {
+  display: flex;
+}
 #app {
   -webkit-font-smoothing: antialiased;/*  消除文字锯齿  */
   -moz-osx-font-smoothing: grayscale;

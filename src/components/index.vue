@@ -6,7 +6,7 @@
       </a>
       <div class="center">
         <router-link :to="{path: '/city'}">
-          <span>龙岗区深圳信息职业技术学院</span>
+          <span>{{ name || '上海商学院(奉浦校区)' }}</span>
         </router-link>
 
       </div>
@@ -116,6 +116,9 @@
       },
       longitude(){ // 经度
         return this.$store.state.longitude
+      },
+      name(){ //  已经选择的城市名称
+        return this.$store.state.name
       },
       geohash(){
         return this.$store.state.geohash

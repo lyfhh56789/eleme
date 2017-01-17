@@ -10,23 +10,12 @@
       <span class="city-title">选择城市</span>
       <span class="eleme-logo"><i>ele.me</i></span>
     </header>
-    <!--  不需要的猜测位置设定  -->
-    <!--
-    <section class="guess">
-      <div class="geo-guess-wrapper">
-        <div class="geo-guess">饿了么猜你在：
-          <a class="geo-guess-addr guessed_addr"
-             href="javascript:">广东省深圳市龙岗区龙翔大道2188号深圳信息职业技术学院北门</a>
-        </div>
-      </div>
-    </section>
-    -->
     <section class="default background-white">
       <h4 class="geo-title flex">当前定位城市：
         <small class="geo-title-note">定位不准时，请在城市列表中选择</small>
       </h4>
-      <a class="flex geo-locate-city covered" href="javascript:">
-        <span>上海</span>
+      <a @click="findPlace(guess)" class="flex geo-locate-city covered" href="javascript:">
+        <span>{{ guess.name }}</span>
         <svg>
           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
         </svg>
@@ -43,7 +32,7 @@
         <h4 class="geo-title">热门城市</h4>
         <div class="flex geo-cities">
           <template v-for="item in hot">
-            <a class="geo-city-hot" href="javascript:">{{ item.name }}</a>
+            <a @click="findPlace(item)" class="geo-city-hot" href="javascript:">{{ item.name }}</a>
           </template>
           </div>
       </div>
@@ -57,7 +46,7 @@
           </h4>
           <div class="flex geo-cities">
             <template v-for="city in group[item]">
-              <a class="geo-city" href="javascript:">{{ city.name }}</a>
+              <a @click="findPlace(city)" class="geo-city" href="javascript:">{{ city.name }}</a>
             </template>
           </div>
         </div>
@@ -70,9 +59,6 @@
   svg {
     width: .466667rem;
     height: .466667rem;
-  }
-  .flex {
-    display: flex;
   }
   .background-white {
     background: #fff;
@@ -115,24 +101,6 @@
     font-family: "Comic Sans MS", cursive, sans-serif;
     font-size: .5rem;
   }
-  /*  猜测位置-start  */
-  .geo-guess-wrapper {
-    overflow: hidden;
-    -webkit-transition: max-height .3s ease;
-    transition: max-height .3s ease;
-    max-height: 10rem;
-  }
-  .geo-guess {
-    background: #fffeea;
-    padding: .3125rem;
-    border-bottom: 1px solid #ddd;
-    font-size: .4375rem;
-  }
-  .geo-guess-addr {
-    color: #ff6000;
-    font-weight: 700;
-  }
-  /*  猜测位置-end  */
   /*  默认选择位置-start  */
   .geo-title {
     margin: 0;
@@ -196,6 +164,15 @@
           }
         })
       },
+      findPlace(item){ //  前往搜索地点页
+        this.$store.commit('setCityName', item.name)
+        this.$router.push({
+          name: 'searchPlace',
+          params: {
+            cityId: item.id
+          }
+        })
+      },
       historyBack(){ //  模拟浏览器回退事件
         window.history.back()
         this.$store.commit('setShowActive', false)
@@ -205,6 +182,7 @@
       this.loadData('guess')
       this.loadData('hot')
       this.loadData('group')
+      console.log(123)
     },
     components: {
     }
