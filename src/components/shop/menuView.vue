@@ -594,6 +594,7 @@
 </style>
 <script>
   import shopCar from './shopCar.vue'
+  import TWEEN from 'tween.js'
   export default{
     data () {
       return {
@@ -619,16 +620,29 @@
     methods: {
       scrollIntoView(index){ //  滚动到指定菜单食物列表
         this.isMenuControl = true
-        if (index == this.activeMenu){
-          return
-        }
-        if (index == 0){
-          this.scroller.scrollTop = 0
-          this.activeMenu = index;
-          return
-        }
         this.activeMenu = index;
-        this.scroller.scrollTop = this.scroller.children[index].offsetTop
+        //  缓动补间动画
+        var self = this
+        var position = {x: self.scroller.scrollTop, y: 0}
+        var target = {x: self.scroller.children[index].offsetTop};
+        (function () {
+          var tween = new TWEEN.Tween(position)
+            .to(target, 300)
+            .easing(TWEEN.Easing.Quartic.Out) //  使用四次方的缓动
+            .onUpdate(function () {
+              self.scroller.scrollTop = this.x
+            })
+            .start();
+          var animate = function () {
+            if (position.x !== target.x){ //  动画进行中
+              window.requestAnimationFrame(animate);
+            } else { //  动画结束标志
+              self.isMenuControl = false
+            }
+            TWEEN.update();
+          }
+          animate();
+        })()
       },
       addFood(food, event){ // 向购物车中添加食物, 并执行小球动画
         this.createBall(event)
@@ -719,7 +733,6 @@
         this.popup = -1
         //  滚动位置判断
         if (this.isMenuControl){ // 菜单操作的滚动
-          this.isMenuControl = !this.isMenuControl
           return
         }
         if (this.activeMenu != this.scroller.children.length - 1){
@@ -728,6 +741,8 @@
           } else if (this.scroller.scrollTop < this.scroller.children[this.activeMenu].offsetTop){
             this.activeMenu --;
           }
+        } else if (this.scroller.scrollTop < this.scroller.children[this.activeMenu].offsetTop){ //  滚动到最后一个菜单时
+          this.activeMenu --;
         }
       }.bind(this)
     },
