@@ -1,16 +1,15 @@
 <template>
   <div class="index">
     <header class="eleme-header" style="width: 100%; top: 0px; z-index: 1000;">
-      <a @click="gotoSearch" slot="left">
+      <div @click="gotoSearch">
         <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search"></use></svg>
-      </a>
+      </div>
       <div class="center">
         <router-link :to="{path: '/city'}">
           <span>{{ name || '上海商学院(奉浦校区)' }}</span>
         </router-link>
-
       </div>
-      <a slot="right">登录</a>
+      <div>登录</div>
     </header>
     <my-swipe></my-swipe>
     <h3 class="index-title">
@@ -28,7 +27,9 @@
 <style scoped>
   /*  头部样式-start  */
   .eleme-header {
+    box-sizing: border-box;
     position: relative;
+    padding: 0 .4rem;
     background-color: #3190e8;
     color: #fff;
     text-align: center;
@@ -44,7 +45,7 @@
     justify-content: space-between;
   }
   .eleme-header a {
-    color: inherit;
+    color: #fff;
     padding: 0 .4rem;
   }
   .eleme-header svg {
@@ -140,8 +141,6 @@
             geohash: this.geohash
           }
         })
-      },
-      city(){ //  选择城市
       }
     },
     mounted () {
