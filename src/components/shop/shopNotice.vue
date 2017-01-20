@@ -106,8 +106,8 @@
     fill: #fff;
     width: 100%;
     height: 100%;
-    -webkit-transform: scale(.3);
-    transform: scale(.3);
+    -webkit-transform: scale3d(.3, .3, 1);
+    transform: scale3d(.3, .3, 1);
   }
   .shopheader-activity li {
     margin-bottom: 0.333333rem;
