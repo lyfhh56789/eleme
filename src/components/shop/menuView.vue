@@ -725,7 +725,7 @@
     },
     mounted () {
       //  获取浏览器视口高度
-      this.menuHeight = document.getElementsByClassName('shopbody')[0].offsetHeight - document.getElementsByClassName('shopnav')[0].offsetHeight
+      this.menuHeight = document.querySelector('html').offsetHeight - document.querySelector('.shopheader').offsetHeight - document.querySelector('.shopnav').offsetHeight
       //  注册滑动事件
       this.scroller = document.getElementsByClassName('scroller')[0];
       this.scroller.onscroll = function () {

@@ -38,6 +38,7 @@ export default {
 @import "~vue-swipe/dist/vue-swipe.css";
 html {
   box-sizing: border-box;
+  height: 100%;
   background-color: #f4f4f4;
   color: #333;
   font-family: PingFangSC-Regular,Helvetica Neue,Tahoma,Arial,Hiragino Sans GB,Microsoft Yahei,sans-serif;
