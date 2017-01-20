@@ -723,6 +723,10 @@
         this.popup = -1
       },
     },
+    beforeCreate(){
+      //  清除上一个浏览的商家的食物列表与状态
+      this.$store.commit('resetMenuList')
+    },
     mounted () {
       //  获取浏览器视口高度
       this.menuHeight = document.querySelector('html').offsetHeight - document.querySelector('.shopheader').offsetHeight - document.querySelector('.shopnav').offsetHeight

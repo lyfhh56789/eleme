@@ -111,6 +111,10 @@ var storeConfig = {
     setTags(state, tags){
       state.tags = tags
     },
+    resetMenuList(state){ //  重置菜单，清除上一个浏览的商家的食物列表与状态
+      state.menuList = []
+      state.foodsState = []
+    },
     emptyFoodsState(state){ // 重置状态树
       state.foodsState.forEach(value => {
         value.foods.forEach(val => {
@@ -124,7 +128,6 @@ var storeConfig = {
     shopMenuList({commit, state}, item){ // 获取商家食物菜单和食物列表状态树
       var list = item.list;
       state.menuList = list
-      state.foodsState = []
       for (var i = 0; i < list.length; i++) {
         state.foodsState.push({
           foods: [],
