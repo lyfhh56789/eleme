@@ -7,11 +7,8 @@
 > 项目涉及了vue.js的大部分知识点，包括vue全家桶vue-router，vue-resource，vuex，以及饿了么官方vue-infinite-scroll指令与vue-swipe插件
 
 #### 正在完善的功能
-* 城市的切换
-* 评价页的分类切换
 * 页面的缓存
 * SVG使用的优化
-* 等等待开发...
 
 #### 如果你觉得这个项目对你也有帮助，欢迎star，fork。谢谢O(∩_∩)O
 #### 如果对项目有更好的建议也可以联系我，邮箱: 474224024@qq.com
