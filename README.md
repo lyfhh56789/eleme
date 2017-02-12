@@ -14,10 +14,10 @@
 #### 如果对项目有更好的建议也可以联系我，邮箱: 474224024@qq.com
 
 #### screenshot
-![首页](http://www.kittyjs.com/demo/eleme/screenshot/index.jpg '首页')
-![商家页](http://www.kittyjs.com/demo/eleme/screenshot/shop.jpg '商家页')
-![商家信息页](http://www.kittyjs.com/demo/eleme/screenshot/shop-info.jpg '商家信息页')
-![分类商家页](http://www.kittyjs.com/demo/eleme/screenshot/category.jpg '分类商家页')
+![首页](screenshot/index.jpg '首页')
+![商家页](screenshot/shop.jpg '商家页')
+![商家信息页](screenshot/shop-info.jpg '商家信息页')
+![分类商家页](screenshot/category.jpg '分类商家页')
 
 #### demo
 [仿饿了么外卖网](http://www.kittyjs.com/demo/eleme/index.html)
