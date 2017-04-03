@@ -19,9 +19,6 @@
 ![商家信息页](screenshot/shop-info.jpg '商家信息页')
 ![分类商家页](screenshot/category.jpg '分类商家页')
 
-#### demo
-[仿饿了么外卖网](http://www.kittyjs.com/demo/eleme/index.html)
-
 ## 运行与编译
 
 ``` bash
