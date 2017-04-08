@@ -154,7 +154,11 @@
     },
     methods: {
       loadData(type){
-        this.$http({url: 'eleme_api.php', params: {api_str: 'v1/cities?type='+ type}}).then(function (res) {
+        var params = {
+          action: 'city'
+        }
+        params.city_type = type
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           if (type === 'guess') this.guess = res.data;
           if (type === 'hot') this.hot = res.data;
           if (type === 'group'){

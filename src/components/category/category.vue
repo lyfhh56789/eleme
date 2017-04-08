@@ -684,27 +684,40 @@
       }
     },
     methods: {
-      getUrl(){
-        var url;
-        url = 'shopping/restaurants?latitude='+ this.latitude +'&longitude='+ this.longitude +'&keyword=&offset='+ this.offset +'&limit='+ this.limit +'&extras[]=activities&restaurant_category_ids[]='+ this.categoryId
+      getParams(){
+        var params = {
+          action: 'cate_list'
+        }
+        params.latitude = this.latitude
+        params.longitude = this.longitude
+        params.offset = this.offset
+        params.limit = this.limit
         //  添加过滤选项
-        if (this.filterId !== -1) url += '&order_by=' + this.filterId;
+        if (this.filterId !== -1) {
+          params.order_by = this.filterId;
+        }
         if (this.confirmFilter){
           //  筛选派送模式
-          if (this.deliverFilter !== -1) url += 'delivery_mode[]='+ this.deliverFilter;
+          if (this.deliverFilter !== -1) {
+            params.delivery_mode = this.deliverFilter;
+          }
           if (this.filterCount !== 0){
-            for (var i =0; i < this.activityIds.length; i++){
-              if (this.activityIds[i] !== undefined) url += '&support_ids[]='+ this.activityIds[i]
+            var query = ''
+            for (var i =0, len = this.activityIds.length; i < len; i++) {
+              if (this.activityIds[i] !== undefined) {
+                query += '&support_ids[]=' + this.activityIds[i]
+              }
             }
+            params.support_ids = query
           }
         }
-        return url
+        return params
       },
       loadData(){
-        var url = this.getUrl()
+        var params = this.getParams()
         this.busy = true
         this.page = 1
-        this.$http({url: 'eleme_api.php', params: {api_str: url}}).then(function (res) {
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           if (res.data.length < this.limit) this.hasMore = false;
           this.shopList = res.data
           this.busy = false
@@ -713,8 +726,8 @@
       loadMore(){
         if (!this.hasMore) return;
         this.busy = true
-        var url = this.getUrl()
-        this.$http({url: 'eleme_api.php', params: {api_str: url}}).then(function (res) {
+        var params = this.getParams()
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           if (res.data.length < this.limit) this.hasMore = false;
           this.shopList = this.shopList.concat(res.data)
           this.page ++;
@@ -782,20 +795,35 @@
         this.nav = navIndex
         //  加载小分类选项
         if (this.cateList.length === 0 && navIndex === 0){
-          var apiStr = 'shopping/restaurant/category/urlschema?latitude='+ this.latitude +'&longitude='+ this.longitude +'&flavor_ids[]=207&flavor_ids[]=220&flavor_ids[]=233&flavor_ids[]=260&show_name='+ this.cateParams.target_name
-          this.$http({url: 'eleme_api.php', params: {api_str: encodeURI(apiStr)}}).then(function (res) {
+          let params = {
+            action: 'cate_list_menu'
+          }
+          params.latitude = this.latitude
+          params.longitude = this.longitude
+          params.show_name = encodeURI(this.cateParams.target_name)
+          this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
             this.cateList = res.data
             this.subCategory = res.data[1] ? res.data[1].sub_categories : []
           })
         }
         //  加载筛选选项
         if (this.deliverMode.length === 0 && navIndex === 2){
-          this.$http({url: 'eleme_api.php', params: {api_str: 'shopping/v1/restaurants/delivery_modes?latitude='+ this.latitude +'&longitude='+ this.longitude +'&kw='}}).then(function (res) {
+          let params = {
+            action: 'cate_list_delivery_modes'
+          }
+          params.latitude = this.latitude
+          params.longitude = this.longitude
+          this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
             this.deliverMode = res.data
           })
         }
         if (this.activityAttrs.length === 0 && navIndex === 2){
-          this.$http({url: 'eleme_api.php', params: {api_str: 'shopping/v1/restaurants/activity_attributes?latitude='+ this.latitude +'&longitude='+ this.longitude +'&kw='}}).then(function (res) {
+          let params = {
+            action: 'cate_list_activity_attributes'
+          }
+          params.latitude = this.latitude
+          params.longitude = this.longitude
+          this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
             this.activityAttrs = res.data
           })
         }

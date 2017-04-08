@@ -148,6 +148,8 @@
   export default{
     data () {
       return {
+        currentPage: 1, // 分页页码
+        limit: 20, //  分页限制
         keyword: '',
         firstTimeIn: true, //  首次进入搜索显示历史记录
         histories: [], //  搜索历史
@@ -156,13 +158,23 @@
       }
     },
     computed: {
+      offset(){
+        // 分页偏移量
+        return (this.currentPage - 1) * this.limit
+      },
       cityName(){ //  已经选择的城市名称
         return this.$store.state.cityName
       }
     },
     methods: {
       getPlace(){
-        this.$http({url: 'eleme_api.php', params: {api_str: encodeURI('v1/pois?city_id='+ this.$route.params.cityId +'&keyword='+ this.keyword +'&type=search')}}).then(function (res) {
+        var params = {
+          action: 'search_city'
+        }
+        params.keyword = encodeURI(this.keyword)
+        params.offset = this.offset
+        params.limit = this.limit
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           if (res.data.length === 0) this.noResult = true;
           this.firstTimeIn = false
           this.results = res.data
@@ -185,7 +197,6 @@
     },
     created () {
       if (window.localStorage.getItem('searchPlaceHistory') !== null) this.histories = JSON.parse(window.localStorage.getItem('searchPlaceHistory'));
-      console.log(13151651)
     },
     components: {
     }

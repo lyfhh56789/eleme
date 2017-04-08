@@ -289,13 +289,23 @@
     },
     methods: {
       searchRestaurant(){
-        this.$http({url: 'eleme_api.php', params: {api_str: encodeURI('v4/restaurants?extras[]=restaurant_activity&geohash='+ this.geohash +'&keyword='+ this.keyword +'&type=search')}}).then(function (res) {
+        var params = {
+          action: 'search_shop'
+        }
+        params.geohash = this.geohash
+        params.keyword = encodeURI(this.keyword)
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           this.showResults = true
           this.restaurants = res.data
         })
       },
       searchFood(){
-        this.$http({url: 'eleme_api.php', params: {api_str: encodeURI('v1/foods?extras[]=restaurant&geohash='+ this.geohash +'&keyword='+ this.keyword +'&type=search')}}).then(function (res) {
+        var params = {
+          action: 'search_food'
+        }
+        params.geohash = this.geohash
+        params.keyword = encodeURI(this.keyword)
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           this.showResults = true
           this.foods = res.data
         })

@@ -64,10 +64,18 @@
         foods: []
       }
     },
+    computed: {
+      geohash(){
+        return this.$store.state.geohash
+      }
+    },
     methods: {
       loadData () {
-        this.$http({url: 'eleme_api.php', params: {api_str: 'v2/index_entry?geohash=ws11p180hcw&group_type=1&flags[]=F'}}).then(function (res) {
-//          console.log(res)
+        var params = {
+          action: 'swipe'
+        }
+        params.geohash = this.geohash
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           this.foods = res.data
         })
       },

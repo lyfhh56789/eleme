@@ -174,26 +174,30 @@
         window.history.back()
         this.$store.commit('setShowActive', false)
       },
-      getUrl(){
-        var tagName;
-        tagName = this.tag.name === undefined ? '全部': this.tag.name
-        var url = 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings?has_content=true&tag_name='+ tagName +'&offset='+ this.offset +'&limit='+ this.limit
-        return url
+      getParams(){
+        var params = {
+          action: 'shop_rating'
+        }
+        params.offset = this.offset
+        params.limit = this.limit
+        params.restaurant_id = this.$route.params.shopId
+        params.tag_name = encodeURI(this.tag.name === undefined ? '全部': this.tag.name)
+        return params
       },
       loadData(){
-        var url = this.getUrl()
+        var params = this.getParams()
         this.busy = true
-        this.$http({url: 'eleme_api.php', params: {api_str: encodeURI(url)}}).then(function (res) {
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           this.ratings = res.data
           this.busy = false
           this.page = 1
         })
       },
       loadMore(){
-        var url = this.getUrl()
+        var params = this.getParams()
         this.busy = true
         this.page ++;
-        this.$http({url: 'eleme_api.php', params: {api_str: encodeURI(url)}}).then(function (res) {
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           if (res.data.length < this.limit){ // 数据量少于limit，说明后续没有数据了
             return
           }

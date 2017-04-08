@@ -128,7 +128,14 @@
     methods: {
       loadMore(){
         this.busy = true
-        this.$http({url: 'eleme_api.php', params: {api_str: 'shopping/restaurants?latitude=' + this.latitude + '&longitude='+ this.longitude + '&offset='+ this.offset + '&limit='+ this.limit + '&extras[]: activities'}}).then(function (res) {
+        var params = {
+          action: 'shop_list'
+        }
+        params.latitude = this.latitude
+        params.longitude = this.longitude
+        params.offset = this.offset
+        params.limit = this.limit
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           this.currentPage ++;
           this.shopList = this.shopList.concat(res.data)
           this.busy = false

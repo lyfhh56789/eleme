@@ -283,6 +283,12 @@
       }
     },
     computed: {
+      latitude(){ //  纬度
+        return this.$store.state.latitude
+      },
+      longitude(){ // 经度
+        return this.$store.state.longitude
+      },
       shop(){
         return this.$store.state.shop
       },
@@ -298,14 +304,24 @@
     },
     methods: {
       loadShopMsg(){
-        this.$http({url: 'eleme_api.php', params: {api_str: 'shopping/restaurant/'+ this.$route.params.shopId +'?extras[]=activities&extras[]=album&extras[]=license&extras[]=identification&extras[]=statistics&latitude=22.68403&longitude=114.21408'}}).then(function (res) {
+        var params = {
+          action: 'shop_activities'
+        }
+        params.latitude = this.latitude
+        params.longitude = this.longitude
+        params.restaurant_id = this.$route.params.shopId
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           this.$store.commit('setShop', res.data)
           this.activities = res.data.activities
         })
       },
       loadMenuList(){
         //  获取菜单数据
-        this.$http({url: 'eleme_api.php', params: {api_str: 'shopping/v2/menu?restaurant_id='+ this.$route.params.shopId}}).then(function (res) {
+        var params = {
+          action: 'shop_menu'
+        }
+        params.restaurant_id = this.$route.params.shopId
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           this.$store.dispatch('shopMenuList', {
             list: res.data,
             shopId: this.$route.params.shopId
@@ -313,7 +329,11 @@
         })
       },
       getRatingScores(){ // 获取商家评分评价信息
-        this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings/scores'}}).then(function (res) {
+        var params = {
+          action: 'shop_score'
+        }
+        params.restaurant_id = this.$route.params.shopId
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           this.$store.commit('setRatingScores', res.data)
         })
       },
@@ -333,13 +353,21 @@
         }
       },
       getRatings(){ // 获取商家最新一条评价
-        this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings?has_content=1&limit=1'}}).then(function (res) {
+        var params = {
+          action: 'shop_rating_newest'
+        }
+        params.restaurant_id = this.$route.params.shopId
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           this.infoLoaded = true
           this.ratings = res.data
         })
       },
       getTags(){
-        this.$http({url: 'eleme_api.php', params: {api_str: 'ugc/v2/restaurants/'+ this.$route.params.shopId +'/ratings/tags'}}).then(function (res) {
+        var params = {
+          action: 'shop_tags'
+        }
+        params.restaurant_id = this.$route.params.shopId
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           this.infoLoaded = true
           if (res.data.length === 0) this.$store.commit('setTag', {});
           this.$store.commit('setTags', res.data)
