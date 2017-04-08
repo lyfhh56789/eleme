@@ -1,6 +1,35 @@
 /**
  * Created by guojingfeng on 2016/12/29.
  */
+const Shop = resolve => {
+  // require.ensure 是 Webpack 的特殊语法，用来设置 code-split point
+  // （代码分块）
+  require.ensure(['../components/shop/shop.vue'], () => {
+    resolve(require('../components/shop/shop.vue'))
+  })
+}
+const City = resolve => {
+  // require.ensure 是 Webpack 的特殊语法，用来设置 code-split point
+  // （代码分块）
+  require.ensure(['../components/city/selectCity.vue'], () => {
+    resolve(require('../components/city/selectCity.vue'))
+  })
+}
+const Search = resolve => {
+  // require.ensure 是 Webpack 的特殊语法，用来设置 code-split point
+  // （代码分块）
+  require.ensure(['../components/search/search.vue'], () => {
+    resolve(require('../components/search/search.vue'))
+  })
+}
+const SearchPlace = resolve => {
+  // require.ensure 是 Webpack 的特殊语法，用来设置 code-split point
+  // （代码分块）
+  require.ensure(['../components/city/searchPlace.vue'], () => {
+    resolve(require('../components/city/searchPlace.vue'))
+  })
+}
+
 var routes = [
   {//  首页
     path: '/',
@@ -9,7 +38,7 @@ var routes = [
   {//  商家详情
     path: '/shop/:shopId',
     name: 'shop',
-    component: require('../components/shop/shop.vue')
+    component: Shop
   },
   {//  分类商家
     path: '/category/:categoryId',
@@ -19,16 +48,16 @@ var routes = [
   {//  搜索页面
     path: '/search/:geohash',
     name: 'search',
-    component: require('../components/search/search.vue')
+    component: Search
   },
   {//  选择城市
     path: '/city',
-    component: require('../components/city/selectCity.vue')
+    component: City
   },
   {//  在城市中搜索具体地点
     path: '/city/:cityId/search',
     name: 'searchPlace',
-    component: require('../components/city/searchPlace.vue')
+    component: SearchPlace
   },
   {//  所有未定义路由跳转到首页
     path: '*',
