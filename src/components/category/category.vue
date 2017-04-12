@@ -692,6 +692,8 @@
         params.longitude = this.longitude
         params.offset = this.offset
         params.limit = this.limit
+        //  二级分类ID
+        params.category_id = this.categoryId
         //  添加过滤选项
         if (this.filterId !== -1) {
           params.order_by = this.filterId;
