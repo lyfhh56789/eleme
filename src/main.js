@@ -28,7 +28,7 @@ const router = new VueRouter({
 //  模拟表单提交
 Vue.http.options.emulateJSON = true
 //  增加默认请求前缀
-Vue.http.options.root = 'http://www.kittyjs.com/api'
+Vue.http.options.root = process.env.NODE_ENV !== 'production' ? '/api' : '/api'
 //  中断器
 Vue.http.interceptors.push((request, next) => {
   // continue to next interceptor
