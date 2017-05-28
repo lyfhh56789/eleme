@@ -143,27 +143,31 @@
     <div class="index-footer">
       <router-link :to="{name: 'index'}" class="index-footerTab">
         <svg class="index-footerTabIcon">
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#index"></use>
+          <use v-if="this.$route.name === 'index'" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#index"></use>
+          <use v-else xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#index-regular"></use>
         </svg>
-        <span class="index-footerTabText index-footerTabTextActive">外卖</span>
+        <span class="index-footerTabText" :class="{'index-footerTabTextActive': this.$route.name === 'index'}">外卖</span>
       </router-link>
       <router-link :to="{name: 'discover'}" class="index-footerTab">
         <svg class="index-footerTabIcon">
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#discover-regular"></use>
+          <use v-if="this.$route.name === 'discover'" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#discover"></use>
+          <use v-else xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#discover-regular"></use>
         </svg>
-        <span class="index-footerTabText">发现</span>
+        <span class="index-footerTabText" :class="{'index-footerTabTextActive': this.$route.name === 'discover'}">发现</span>
       </router-link>
       <router-link :to="{name: 'order'}" class="index-footerTab">
         <svg class="index-footerTabIcon">
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order-regular"></use>
+          <use v-if="this.$route.name === 'order'" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
+          <use v-else xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order-regular"></use>
         </svg>
-        <span class="index-footerTabText">订单</span>
+        <span class="index-footerTabText" :class="{'index-footerTabTextActive': this.$route.name === 'order'}">订单</span>
       </router-link>
       <router-link :to="{name: 'profile'}" class="index-footerTab">
         <svg class="index-footerTabIcon">
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#profile-regular"></use>
+          <use v-if="this.$route.name === 'profile'" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#profile"></use>
+          <use v-else xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#profile-regular"></use>
         </svg>
-        <span class="index-footerTabText">我的</span>
+        <span class="index-footerTabText" :class="{'index-footerTabTextActive': this.$route.name === 'profile'}">我的</span>
       </router-link></div>
   </footer>
 </template>
@@ -216,14 +220,3 @@
     color: #0089dc;
   }
 </style>
-<script>
-  export default{
-    data () {
-      return {}
-    },
-    methods: {},
-    created () {
-    },
-    components: {}
-  }
-</script>
