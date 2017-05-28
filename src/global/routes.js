@@ -30,9 +30,34 @@ const SearchPlace = resolve => {
   })
 }
 
+const Discover = resolve => {
+  // require.ensure 是 Webpack 的特殊语法，用来设置 code-split point
+  // （代码分块）
+  require.ensure(['../components/discover/Discover.vue'], () => {
+    resolve(require('../components/discover/Discover.vue'))
+  })
+}
+
+const Order = resolve => {
+  // require.ensure 是 Webpack 的特殊语法，用来设置 code-split point
+  // （代码分块）
+  require.ensure(['../components/order/Order.vue'], () => {
+    resolve(require('../components/order/Order.vue'))
+  })
+}
+
+const Profile = resolve => {
+  // require.ensure 是 Webpack 的特殊语法，用来设置 code-split point
+  // （代码分块）
+  require.ensure(['../components/profile/Profile.vue'], () => {
+    resolve(require('../components/profile/Profile.vue'))
+  })
+}
+
 var routes = [
   {//  首页
     path: '/',
+    name: 'index',
     component: require('../components/index.vue')
   },
   {//  商家详情
@@ -52,12 +77,28 @@ var routes = [
   },
   {//  选择城市
     path: '/city',
+    name: 'city',
     component: City
   },
   {//  在城市中搜索具体地点
     path: '/city/:cityId/search',
     name: 'searchPlace',
     component: SearchPlace
+  },
+  {//  发现
+    path: '/discover',
+    name: 'discover',
+    component: Discover
+  },
+  {//  订单
+    path: '/order',
+    name: 'order',
+    component: Order
+  },
+  {//  我的
+    path: '/profile',
+    name: 'profile',
+    component: Profile
   },
   {//  所有未定义路由跳转到首页
     path: '*',

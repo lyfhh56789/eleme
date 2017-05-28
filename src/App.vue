@@ -11,19 +11,6 @@
 export default {
   name: 'app',
   created () {
-    //  动态获取手机的DPR设备像素比，对总体字体大小进行设置
-    if (window.devicePixelRatio){
-    //  <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
-      var viewport = document.querySelector('meta[name="viewport"]')
-      var dpr = window.devicePixelRatio
-      var html = document.getElementsByTagName('html')[0]
-      var body = document.getElementsByTagName('body')[0]
-      //  设置比例
-      html.style.fontSize = 32 * dpr + 'px'
-      html.dataset.dpr = dpr
-      body.style.fontSize = 12 * dpr + 'px'
-      viewport.content = 'initial-scale='+ 1/dpr +', maximum-scale='+ 1/dpr +', minimum-scale='+ 1/dpr +', user-scalable=no'
-    }
     //  初始化购物车
     this.$store.commit('initShopCar')
   },

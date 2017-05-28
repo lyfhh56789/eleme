@@ -22,6 +22,7 @@
       <shop-item v-for="item in shopList" :item="item"></shop-item>
     </section>
     <p class="index-loadmore"> <span>正在载入更多商家...</span> </p>
+    <footer-tab></footer-tab>
     <back-to-top v-show="showBack"></back-to-top>
   </div>
 </template>
@@ -98,6 +99,7 @@
 <script>
   import mySwipe from './index/mySwipe.vue'
   import shopItem from './common/shopItem.vue'
+  import FooterTab from './index/FooterTab.vue'
   import BackToTop from './common/BackToTop.vue'
 
   export default{
@@ -173,7 +175,7 @@
       window.removeEventListener('scroll', this.scrollHandler)
     },
     components: {
-      mySwipe, shopItem, BackToTop
+      mySwipe, shopItem, FooterTab, BackToTop
     }
   }
 </script>
