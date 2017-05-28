@@ -18,6 +18,10 @@ Vue.use(Vuex)
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.use(infiniteScroll)
+
+// 混入全局过滤器
+Vue.mixin({filters: filter})
+
 //  创建store
 const store = new Vuex.Store(storeConfig)
 //  创建路由实例

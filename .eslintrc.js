@@ -27,8 +27,6 @@ module.exports = {
     'semi': 0,
     //  中缀操作符周围要不要有空格
     "space-infix-ops": 0,
-    //  没有使用的变量仅做提示
-    "no-unused-vars": 1,
     //  比较不必使用全等比较运算符
     "eqeqeq": 0,
     //  允许使用eval函数

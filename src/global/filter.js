@@ -1,10 +1,9 @@
 /**
  * Created by guojingfeng on 2016/12/30.
  */
-import Vue from 'vue'
 //  全局过滤器
 const baseUrl = 'https://fuss10.elemecdn.com'
-Vue.filter('transformImgUrl', (path, type) => {
+var transformImgUrl = (path, type) => {
   //  转换首页食物分类的图片路径
   if (type == 0){
     return baseUrl + path
@@ -20,8 +19,13 @@ Vue.filter('transformImgUrl', (path, type) => {
       return ''
     }
   }
-})
-Vue.filter('transformDistance', (distance) => {
+}
+var transformDistance = (distance) => {
   //  转换首页食物分类的图片路径
   return (distance/1000).toFixed(2) + 'km'
-})
+}
+
+export default {
+  transformDistance,
+  transformImgUrl
+}

@@ -626,7 +626,7 @@
         var position = {x: self.scroller.scrollTop, y: 0}
         var target = {x: self.scroller.children[index].offsetTop};
         (function () {
-          var tween = new TWEEN.Tween(position)
+          new TWEEN.Tween(position)
             .to(target, 300)
             .easing(TWEEN.Easing.Quartic.Out) //  使用四次方的缓动
             .onUpdate(function () {
