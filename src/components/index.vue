@@ -22,6 +22,7 @@
       <shop-item v-for="item in shopList" :item="item"></shop-item>
     </section>
     <p class="index-loadmore"> <span>正在载入更多商家...</span> </p>
+    <back-to-top v-show="showBack"></back-to-top>
   </div>
 </template>
 <style scoped>
@@ -97,6 +98,8 @@
 <script>
   import mySwipe from './index/mySwipe.vue'
   import shopItem from './common/shopItem.vue'
+  import BackToTop from './common/BackToTop.vue'
+
   export default{
     data () {
       return {
@@ -105,6 +108,9 @@
         limit: 20, //  分页限制
         shopList: [], // 附近商家列表
         busy: false, // 网络请求状态
+        showBack: false, // 是否显示回到顶部按钮
+        scrollHeight: 0, // 当前滚动高度
+        timer: null // 滚动时设定的定时器
       }
     },
     computed: {
@@ -148,13 +154,26 @@
             geohash: this.geohash
           }
         })
+      },
+      scrollHandler (e) { // 滚动检测
+        if (this.timer != null) return
+        this.timer = setTimeout(() => {
+          document.body.scrollTop > this.$el.querySelector('.shoplist').offsetTop ? this.showBack = true : this.showBack = false
+          this.timer = null
+        }, 300)
       }
+    },
+    created () {
+      window.addEventListener('scroll', this.scrollHandler)
     },
     mounted () {
       this.loadMore()
     },
+    beforeDestroy () {
+      window.removeEventListener('scroll', this.scrollHandler)
+    },
     components: {
-      mySwipe, shopItem
+      mySwipe, shopItem, BackToTop
     }
   }
 </script>

@@ -141,6 +141,7 @@
         <h3>没有结果</h3>
       </section>
     </div>
+    <back-to-top v-show="showBack"></back-to-top>
   </div>
 </template>
 <style scoped>
@@ -606,6 +607,8 @@
 </style>
 <script>
   import shopItem from '../common/shopItem.vue'
+  import BackToTop from '../common/BackToTop.vue'
+
   export default{
     data () {
       return {
@@ -661,6 +664,9 @@
         categoryId: this.$route.params.categoryId, //  当前选中小分类的细分类的ID,默认路由中的分类ID
         deliverMode: [], //  支持的派送筛选
         activityAttrs: [], //  商家属性筛选
+        showBack: false, // 是否显示回到顶部按钮
+        scrollHeight: 0, // 当前滚动高度
+        timer: null // 滚动时设定的定时器
       }
     },
     computed: {
@@ -850,17 +856,28 @@
       },
       goBack(){ //  路由回退
         this.$router.back()
+      },
+      scrollHandler (e) { // 滚动检测
+        if (this.timer != null) return
+        this.timer = setTimeout(() => {
+          document.body.scrollTop > this.$el.querySelector('.shoplist>.item:nth-child(5)').offsetTop ? this.showBack = true : this.showBack = false
+          this.timer = null
+        }, 300)
       }
     },
     created () {
+      window.addEventListener('scroll', this.scrollHandler)
       this.loadData()
     },
     mounted(){
       //  获取隐藏在头部下面的div高度
       this.hiddenHeight = document.getElementsByClassName('fixed-header')[0].offsetHeight
     },
+    beforeDestroy () {
+      window.removeEventListener('scroll', this.scrollHandler)
+    },
     components: {
-      shopItem
+      shopItem, BackToTop
     }
   }
 </script>
