@@ -695,7 +695,7 @@
   }
 </style>
 <script>
-  import FooterTab from '../index/FooterTab.vue'
+  import FooterTab from '../common/FooterTab.vue'
 
   export default{
     data () {

@@ -99,7 +99,7 @@
 <script>
   import mySwipe from './index/mySwipe.vue'
   import shopItem from './common/shopItem.vue'
-  import FooterTab from './index/FooterTab.vue'
+  import FooterTab from './common/FooterTab.vue'
   import BackToTop from './common/BackToTop.vue'
 
   export default{
