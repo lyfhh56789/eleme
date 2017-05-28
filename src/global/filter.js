@@ -5,6 +5,7 @@
 const baseUrl = 'https://fuss10.elemecdn.com'
 var transformImgUrl = (path, type) => {
   //  转换首页食物分类的图片路径
+  if (!path) return ''
   if (type == 0){
     return baseUrl + path
   } else if (type == 1){

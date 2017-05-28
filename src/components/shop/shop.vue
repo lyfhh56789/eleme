@@ -18,7 +18,7 @@
               <span v-if="shop.delivery_mode" class="shopheader-server">{{ shop.delivery_mode.text }}</span>
               <span v-else class="shopheader-server">商家配送</span>
               <span v-if="shop.order_lead_time != 0" class="shopheader-server">{{ shop.order_lead_time }}分钟送达</span>
-              <span class="shopheader-server">{{ shop.piecewise_agent_fee.tips }}</span>
+              <span v-if="shop.piecewise_agent_fee" class="shopheader-server">{{ shop.piecewise_agent_fee.tips }}</span>
             </p>
             <div class="shopheader-activities">
               <ul>
@@ -374,6 +374,7 @@
         })
       },
       transImgUrl(path){
+        if (!path) return '/'
         var reg = /gif|jpe?g|png$/i; // 匹配图片后缀
         try {
           //  忽略一个数据未加载成功前path的值为undefined造成的错误

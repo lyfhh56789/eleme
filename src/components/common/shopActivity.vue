@@ -1,7 +1,7 @@
 <template>
-  <div class="activity-wrap nowrap">
+  <div v-if="activity" class="activity-wrap nowrap">
     <i class="activity-icon" style="color: rgb(255, 255, 255);"
-       :style="{'background-color': '#'+ activity.icon_color ,'border-color': '#'+ activity.icon_color}">
+       :style="{'background-color': '#' + activity.icon_color, 'border-color': '#' + activity.icon_color}">
       {{ activity.icon_name }} </i>
     <span class="activity-description">
       <span v-if="type === 'activity'">{{ activity.tips }}</span>

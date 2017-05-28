@@ -28,6 +28,7 @@ const store = new Vuex.Store(storeConfig)
 const router = new VueRouter({
   routes: routes
 })
+
 //  resource配置项
 //  模拟表单提交
 Vue.http.options.emulateJSON = true
@@ -37,10 +38,9 @@ Vue.http.options.root = process.env.NODE_ENV !== 'production' ? '/api' : '/api'
 Vue.http.interceptors.push((request, next) => {
   // continue to next interceptor
   next((response) => {
-    // 预解析数据
-    response.data = JSON.parse(response.data)
   })
 })
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
