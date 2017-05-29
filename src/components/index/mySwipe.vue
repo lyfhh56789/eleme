@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="foods.length !== 0">
     <swipe :auto="-1" class="foodentry">
       <swipe-item class="slide1">
         <template v-for="(item,index) in foods">
@@ -59,26 +59,13 @@
 <script>
   import { Swipe, SwipeItem } from 'vue-swipe'
   export default{
-    data () {
-      return {
-        foods: []
-      }
-    },
-    computed: {
-      geohash(){
-        return this.$store.state.geohash
+    props: {
+      foods: {
+        type: Array,
+        required: true
       }
     },
     methods: {
-      loadData () {
-        var params = {
-          action: 'swipe'
-        }
-        params.geohash = this.geohash
-        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
-          this.foods = res.data
-        })
-      },
       gotoCategory(link){
         //  处理特殊的饿了么路由接链
         var params = decodeURIComponent(link).split('?')[1].split('&')
@@ -94,9 +81,6 @@
           }
         })
       },
-    },
-    mounted () {
-      this.loadData()
     },
     components: {
       Swipe, SwipeItem

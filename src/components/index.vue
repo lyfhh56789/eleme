@@ -33,7 +33,7 @@
         </template>
       </div>
     </header>
-    <my-swipe></my-swipe>
+    <my-swipe :foods="banner"></my-swipe>
     <h3 class="index-title">
       <svg>
         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#shop"></use>
@@ -184,6 +184,9 @@
     data () {
       return {
         //  地理位置信息
+        latitude: null,
+        longitude: null,
+        location: {}, // 当前地理位置信息
         currentPage: 1, // 分页页码
         limit: 20, //  分页限制
         shopList: [], // 附近商家列表
@@ -192,7 +195,8 @@
         scrollHeight: 0, // 当前滚动高度
         timer: null, // 滚动时设定的定时器
         weather: null, // 天气
-        hotSearchWords: [] // 热搜词
+        hotSearchWords: [], // 热搜词
+        banner: [] // banner数据
       }
     },
     computed: {
@@ -200,17 +204,8 @@
         // 分页偏移量
         return (this.currentPage - 1) * this.limit
       },
-      latitude(){ //  纬度
-        return this.$store.state.latitude
-      },
-      longitude(){ // 经度
-        return this.$store.state.longitude
-      },
       name(){ //  已经选择的城市名称
         return this.$store.state.name
-      },
-      geohash(){
-        return this.$store.state.geohash
       }
     },
     methods: {
@@ -219,14 +214,35 @@
         var params = {
           action: 'shop_list'
         }
-        params.latitude = this.latitude
-        params.longitude = this.longitude
+        params.latitude = this.location.latitude
+        params.longitude = this.location.longitude
         params.offset = this.offset
         params.limit = this.limit
         this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
           this.currentPage ++;
           this.shopList = this.shopList.concat(res.data)
           this.busy = false
+        })
+      },
+      getLocation () { // 获取用户地理位置信息
+        return new Promise(function (resolve, reject) {
+          window.navigator.geolocation.getCurrentPosition(function (position) {
+            resolve(position)
+          }, function (error) {
+            reject(error)
+          })
+        })
+      },
+      getLocationDetail (position) {
+        this.$http({url: 'eleme_api.php', params: {action: 'location', latitude: position.coords.latitude, longitude: position.coords.longitude}}).then(function (res) {
+          this.location = res.data
+          this.latitude = res.data.latitude
+          this.longitude = res.data.longitude
+          this.$store.commit('setLocation', res.data)
+          this.getWeather()
+          this.getHotSearchWords()
+          this.getBanner()
+          this.loadMore()
         })
       },
       getWeather () {
@@ -249,11 +265,20 @@
           this.hotSearchWords = res.data
         })
       },
+      getBanner () {
+        var params = {
+          action: 'swipe'
+        }
+        params.geohash = this.location.geohash
+        this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
+          this.banner = res.data
+        })
+      },
       gotoSearch(){ //  跳转搜素界面
         this.$router.push({
           name: 'search',
           params: {
-            geohash: this.geohash
+            geohash: this.location.geohash
           }
         })
       },
@@ -266,12 +291,13 @@
       }
     },
     created () {
-      this.getWeather()
-      this.getHotSearchWords()
+      this.getLocation().then((position) => {
+        this.getLocationDetail(position)
+      }).catch(function (error) {
+        window.alert('无法获取到用户信息')
+        console.log(error)
+      })
       window.addEventListener('scroll', this.scrollHandler)
-    },
-    mounted () {
-      this.loadMore()
     },
     beforeDestroy () {
       window.removeEventListener('scroll', this.scrollHandler)

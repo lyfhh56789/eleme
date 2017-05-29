@@ -672,10 +672,10 @@
     },
     computed: {
       latitude(){ //  纬度
-        return this.$store.state.latitude
+        return this.$store.state.location.latitude
       },
       longitude(){ // 经度
-        return this.$store.state.longitude
+        return this.$store.state.location.longitude
       },
       offset(){
         return (this.page - 1) * this.limit

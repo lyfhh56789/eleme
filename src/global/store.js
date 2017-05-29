@@ -20,11 +20,7 @@ var storeConfig = {
         }]
      }]
      */
-    cityName: '上海', //  当前的城市名称
-    name: '', //  当前的地理位置名称
-    geohash: 'wtw25b9ts78', //  当前地理位置的哈希值
-    latitude: 30.94121, //  当前纬度
-    longitude: 121.4561, // 当前经度
+    location: null, // 当前地理位置信息
     shopCar: {}, // 购物车
     shopCarAnimate: false, // 购物车动画
     shop: {}, //  商家信息
@@ -51,10 +47,7 @@ var storeConfig = {
       state.cityName = name
     },
     setLocation(state, obj){ //  设置当前的地理位置信息
-      state.name = obj.name
-      state.geohash = obj.geohash
-      state.latitude = obj.latitude
-      state.longitude = obj.longitude
+      state.location = obj
     },
     setShop(state, object){
       state.shop = object

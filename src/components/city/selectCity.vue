@@ -186,7 +186,6 @@
       this.loadData('guess')
       this.loadData('hot')
       this.loadData('group')
-      console.log(123)
     },
     components: {
     }

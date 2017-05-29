@@ -633,10 +633,10 @@
     },
     computed: {
       latitude(){ //  纬度
-        return this.$store.state.latitude
+        return this.$store.state.location.latitude
       },
       longitude(){ // 经度
-        return this.$store.state.longitude
+        return this.$store.state.location.longitude
       }
     },
     methods: {
@@ -663,9 +663,8 @@
       },
       loadAlleat () { // 大家都在吃
         this.$http({url: 'eleme_api.php', params: {action: 'discover_alleat', latitude: this.latitude, longitude: this.longitude, offset: 0, limit: 1}}).then(function (res) {
-          console.log(res)
           this.allEat = res.data[0]
-          if (this.allEat.rating_text.length > 49) this.ratingEllipsis = true
+          if (res.data.length > 0 && this.allEat.rating_text.length > 49) this.ratingEllipsis = true
         })
       },
       loadSuggest () {
