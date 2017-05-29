@@ -165,7 +165,7 @@
           </svg>
         </p>
       </section>
-      <section>
+      <section v-if="allEat">
         <div class="activity-header"><span class="line left"></span>
           <svg class="activity-icon">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#recommend"></use>
@@ -174,34 +174,35 @@
           <span class="line right"></span></div>
         <p class="activity-sub-title">总有美味在身边</p><!---->
         <div class="order-item">
-          <div class="order-owner"><img src="../../assets/avatar.png"></div>
+          <div class="order-owner">
+            <img v-if="allEat.avatar !== ''" :src="allEat.avatar | transformImgUrl(1)">
+            <img v-else src="../../assets/avatar.png">
+          </div>
           <div class="order-detail">
-            <div class="owner-name"><span class="name">O***T</span></div>
-            <div class="rating">3天前吃过
+            <div class="owner-name"><span class="name">{{ allEat.nickname }}</span></div>
+            <div class="rating">{{ allEat.ordered_day }}天前吃过
             </div>
-            <div class="comment overflow"><p>这家店简直是外卖界的一股清流，吃过最便宜实惠的一家，味道也非常不错，另外黄焖鸡比啤酒鸭好吃三倍以上<span
-              class="ellipsis">...</span><span class="sub-text">，希望能改进一下鸭的做法</span></p><span class="unfold">展开</span>
+            <div v-if="allEat.rating_text" :class="{'overflow': ratingEllipsis}" class="comment">
+              <p>{{ allEat.rating_text.substring(0, 49) }}<span v-if="ratingEllipsis && allEat.rating_text.length > 49"
+              class="ellipsis">...</span><span v-if="!ratingEllipsis && allEat.rating_text.length > 49" class="sub-text">{{ allEat.rating_text.substring(49) }}</span>
+              </p>
+              <span v-if="ratingEllipsis != null" @click="ratingEllipsis = !ratingEllipsis" class="unfold">{{ ratingEllipsis ? '展开' : '收起'}}</span>
             </div>
             <div class="foods">
               <p class="restaurant"><span class="restaurant-name"><svg class="shop-icon"><use
-                xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_shop"></use></svg>良小厨现制快餐</span><span
-                class="restaurant-data"><span>评价4.5分/</span>月售1121单</span></p>
-              <a href="eleme://restaurant?restaurant_id=155175987&amp;target_food_id=633335803&amp;animation_type=1"
-                 ubt-click="2875" ubt-data-title="附近推荐" ubt-data-dish_id="1207639704789924966"
-                 ubt-data-restaurant_id="155175987" class="food"><span class="food-amount">1份</span>
-                <p class="food-name">黄焖鸡米饭-雪碧</p><img
-                  src="https://fuss10.elemecdn.com/4/8b/2479bd9c277503223e9db62337db7jpeg.jpeg?imageMogr/format/webp/"></a><a
-              href="eleme://restaurant?restaurant_id=155175987&amp;target_food_id=633335821&amp;animation_type=1"
-              ubt-click="2875" ubt-data-title="附近推荐" ubt-data-dish_id="1207639704789924966"
-              ubt-data-restaurant_id="155175987" class="food"><span class="food-amount">1份</span>
-              <p class="food-name">啤酒鸭米饭-芬达</p><img
-                src="https://fuss10.elemecdn.com/1/f7/7aac2e7ca00303d8e8123fb6c896cjpeg.jpeg?imageMogr/format/webp/"></a>
+                xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_shop"></use></svg>{{ allEat.restaurant_name }}</span><span
+                class="restaurant-data"><span>评价{{ allEat.restaurant_rating_score }}分/</span>月售{{ allEat.restaurant_month_sale }}单</span>
+              </p>
+              <template v-if="allEat.foods" v-for="(item, index) in allEat.foods">
+                <a class="food"><span class="food-amount">{{ item.amount }}份</span>
+                  <p class="food-name">{{ item.food_name }}</p><img
+                    :src="item.image_hash | transformImgUrl(1) + '?imageMogr/format/webp/'">
+                </a>
+              </template>
             </div>
             <div class="order-footer"><p class="price">
-              实付<span class="amount">¥24</span></p><a
-              href="eleme://restaurant?restaurant_id=155175987&amp;cart_operations={&quot;clear_cart&quot;:true,&quot;add_foods&quot;:[{&quot;id&quot;:633335803,&quot;quantity&quot;:1,&quot;specs&quot;:[]},{&quot;id&quot;:633335821,&quot;quantity&quot;:1,&quot;specs&quot;:[]}]}&amp;auto_expand_cart_view=1&amp;animation_type=1"
-              ubt-click="2898" ubt-data-dish_id="1207639704789924966" ubt-data-restaurant_id="155175987"
-              class="buy">跟一单</a></div>
+              实付<span class="amount">¥{{ allEat.total_fee }}</span></p><a class="buy">跟一单</a>
+            </div>
           </div>
         </div>
         <p class="activity-more">查看更多
@@ -704,7 +705,8 @@
         partList: [], // 头部数据
         hotFood: [], // 美食热推
         day: [], // 天天特价
-        allEat: [], // 大家都在吃
+        allEat: null, // 大家都在吃
+        ratingEllipsis: null, // 默认显示全部评论
         suggest: [] // 底部限时好礼
       }
     },
@@ -741,6 +743,8 @@
       loadAlleat () { // 大家都在吃
         this.$http({url: 'eleme_api.php', params: {action: 'discover_alleat', latitude: this.latitude, longitude: this.longitude, offset: 0, limit: 1}}).then(function (res) {
           console.log(res)
+          this.allEat = res.data[0]
+          if (this.allEat.rating_text.length > 49) this.ratingEllipsis = true
         })
       },
       loadSuggest () {
