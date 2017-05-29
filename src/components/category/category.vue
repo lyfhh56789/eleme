@@ -11,7 +11,7 @@
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-left"></use>
           </svg>
         </a>
-        <div class="center"><span>{{ cateParams.target_name }}</span></div>
+        <div class="center"><span>{{ targetName }}</span></div>
         <a @click="gotoSearch" slot="right">
           <svg>
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search"></use>
@@ -21,7 +21,7 @@
       <aside class="filter">
         <div class="filter-header">
           <a @click="showCategory(0)" class="filter-nav" :class="{'active': nav === 0}" href="javascript:">
-            <span>{{ subCateName || cateParams.target_name }}</span>
+            <span>{{ subCateName || targetName }}</span>
             <svg viewBox="0 0 72 32">
               <path d="M36 32l36-32h-72z"></path>
             </svg>
@@ -661,6 +661,7 @@
         filterCount: 0, //  筛选选项个数
         subCategory: [], //  当前选中小分类的细分类
         subCateName: '', //  选中细分类后更改过滤条件名称
+        targetName: this.$route.query.targetName, // 路由中的主分类名称
         categoryId: this.$route.params.categoryId, //  当前选中小分类的细分类的ID,默认路由中的分类ID
         deliverMode: [], //  支持的派送筛选
         activityAttrs: [], //  商家属性筛选
@@ -681,9 +682,6 @@
       },
       filterLength(){ //  筛选选项个数
         return (this.deliverFilter === -1) ? this.filterCount : this.filterCount + 1;
-      },
-      cateParams(){ //  用于过滤分类选项的参数对象，包含可用的过滤属性
-        return this.$store.state.cateParams
       },
       geohash(){
         return this.$store.state.geohash
@@ -779,7 +777,7 @@
       selectCate(index){ //  选择了小分类
         if (index === 0){
           this.categoryId = this.$route.params.categoryId
-          this.subCateName = this.cateParams.target_name
+          this.subCateName = this.targetName
           this.close()
           this.loadData()
           return
@@ -808,7 +806,7 @@
           }
           params.latitude = this.latitude
           params.longitude = this.longitude
-          params.show_name = encodeURI(this.cateParams.target_name)
+          params.show_name = encodeURI(this.targetName)
           this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
             this.cateList = res.data
             this.subCategory = res.data[1] ? res.data[1].sub_categories : []

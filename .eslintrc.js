@@ -29,7 +29,5 @@ module.exports = {
     "space-infix-ops": 0,
     //  比较不必使用全等比较运算符
     "eqeqeq": 0,
-    //  允许使用eval函数
-    "no-eval": 0,
   }
 }

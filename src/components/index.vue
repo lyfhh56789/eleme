@@ -236,7 +236,6 @@
         params.latitude = this.latitude
         params.longitude = this.longitude
         this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
-          console.log(res)
           this.weather = res.data
         })
       },
@@ -247,7 +246,6 @@
         params.latitude = this.latitude
         params.longitude = this.longitude
         this.$http({url: 'eleme_api.php', params: params}).then(function (res) {
-          console.log(res)
           this.hotSearchWords = res.data
         })
       },

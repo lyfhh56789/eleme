@@ -81,18 +81,16 @@
       },
       gotoCategory(link){
         //  处理特殊的饿了么路由接链
-        var obj = {}
         var params = decodeURIComponent(link).split('?')[1].split('&')
-        for (var i = 0; i < params.length; i++){
-          obj[params[i].split('=')[0]] = params[i].split('=')[1]
-        }
-        //  使用了eval函数来解析字符串参数对象filter_key，如果你有更好的办法，请告知邮箱474224024@qq.com
-        obj.filter_key = eval('('+ obj.filter_key +')')
-        this.$store.commit('setCateParams', obj)
+        var filterKey = JSON.parse(params[0].split('=')[1])
+
         this.$router.push({
           name: 'category',
+          query: {
+            targetName: filterKey.category_schema.category_name
+          },
           params: {
-            categoryId: obj.filter_key.restaurant_category_id.id
+            categoryId: filterKey.restaurant_category_id.id
           }
         })
       },
