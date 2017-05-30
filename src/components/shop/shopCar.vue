@@ -16,7 +16,7 @@
             </a>
           </div>
           <div class="cartbody-scroller">
-            <ul class="cartlist">
+            <ul v-if="shopCar" class="cartlist">
               <li v-for="food in shopCar[0].entities" class="entityrow">
             <span class="entityname">
               <em class="name">{{ food.name }}</em>
@@ -45,7 +45,7 @@
           </div>
         </div>
       </transition>
-      <div class="cartfooter" style="z-index: 11;">
+      <div v-if="shopCar" class="cartfooter" style="z-index: 11;">
         <span @click="showShopCar" class="carticon" :class="{'empty': shopCar[0].entities.length === 0, 'shake': shopCarAnimate}" :attr-quantity="count"></span>
         <div><p class="carttotal">¥{{ payCount + packingFee }}</p>
           <p v-if="shop.piecewise_agent_fee" class="cartdelivery">{{ shop.piecewise_agent_fee.tips }}</p></div>
@@ -418,7 +418,7 @@
         return this.$store.state.shop
       },
       shopCar(){ // 用户对于该商店的购物车
-        return this.$store.state.shopCar[this.$route.params.shopId] !== undefined ? this.$store.state.shopCar[this.$route.params.shopId] : [{entities: []}]
+        return this.$store.state.shopCar[this.$route.params.shopId]
       },
       shopCarAnimate(){
         return this.$store.state.shopCarAnimate
@@ -475,7 +475,8 @@
         this.showShopCarDetail = !this.showShopCarDetail
       },
     },
-    created () {
+    beforeCreate () {
+      this.$store.commit('createShop', this.$route.params.shopId)
     },
     mounted () {
       var self = this

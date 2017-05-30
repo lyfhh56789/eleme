@@ -109,6 +109,9 @@ var storeConfig = {
         })
         value.quantity = 0
       })
+    },
+    createShop (state, shopId) {
+      state.shopCar[shopId] = [{entities: []}]
     }
   },
   actions: {
@@ -131,11 +134,7 @@ var storeConfig = {
       }
       //  创建当前商家的购物车以及检查是否购物车中有未结算的商品
       if (state.shopCar[item.shopId] === undefined){
-        state.shopCar[item.shopId] = [
-          {
-            entities: []
-          }
-        ]
+        state.shopCar[item.shopId] = [{entities: []}]
       } else {
         //  遍历本地存储的购物车数据(三重forEach，自己看着都恶心o(╯□╰)o)
         state.shopCar[item.shopId][0].entities.forEach(value1 => {
