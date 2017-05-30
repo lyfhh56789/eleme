@@ -197,8 +197,6 @@
     },
     created () {
       if (window.localStorage.getItem('searchPlaceHistory') !== null) this.histories = JSON.parse(window.localStorage.getItem('searchPlaceHistory'));
-    },
-    components: {
     }
   }
 </script>

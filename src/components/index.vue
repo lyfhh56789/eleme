@@ -213,6 +213,7 @@
     },
     methods: {
       loadMore(){
+        if (this.location === null) return
         this.busy = true
         var params = {
           action: 'shop_list'
@@ -238,7 +239,6 @@
       },
       getLocationDetail (position) {
         this.$http({url: 'eleme_api.php', params: {action: 'location', latitude: position.coords.latitude, longitude: position.coords.longitude}}).then(function (res) {
-          window.localStorage.setItem('location', JSON.stringify(res.data))
           this.latitude = res.data.latitude
           this.longitude = res.data.longitude
           this.$store.commit('setLocation', res.data)

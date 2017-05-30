@@ -45,6 +45,7 @@ var storeConfig = {
     },
     setLocation(state, obj){ //  设置当前的地理位置信息
       state.location = obj
+      window.localStorage.setItem('location', JSON.stringify(obj))
     },
     setShop(state, object){
       state.shop = object
