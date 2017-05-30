@@ -138,7 +138,7 @@
                   </div>
                 </div>
               </div>
-              <span class="discount">{{ item.foods[0].discount_rate * 10 }}折</span>
+              <span class="discount">{{ (item.foods[0].discount_rate * 10).toFixed(1) }}折</span>
             </a>
           </template>
         </div>

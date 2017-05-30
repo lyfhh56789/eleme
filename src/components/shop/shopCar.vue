@@ -46,7 +46,7 @@
         </div>
       </transition>
       <div class="cartfooter" style="z-index: 11;">
-        <span @click="showShopCar" class="carticon" :class="{'empty': shopCar[0].entities.length == 0, 'shake': shopCarAnimate}" :attr-quantity="count"></span>
+        <span @click="showShopCar" class="carticon" :class="{'empty': shopCar[0].entities.length === 0, 'shake': shopCarAnimate}" :attr-quantity="count"></span>
         <div><p class="carttotal">¥{{ payCount + packingFee }}</p>
           <p v-if="shop.piecewise_agent_fee" class="cartdelivery">{{ shop.piecewise_agent_fee.tips }}</p></div>
         <a v-if="lack > 0" href="javascript:" class="submitbutton disabled">还差¥{{ lack }}起送</a>

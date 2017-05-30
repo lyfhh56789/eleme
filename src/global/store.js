@@ -43,9 +43,6 @@ var storeConfig = {
         state.shopCar = JSON.parse(window.localStorage.getItem('shopCar'))
       }
     },
-    setCityName(state, name){ //  设置当前的城市名称
-      state.cityName = name
-    },
     setLocation(state, obj){ //  设置当前的地理位置信息
       state.location = obj
     },

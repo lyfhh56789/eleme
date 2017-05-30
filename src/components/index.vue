@@ -125,6 +125,7 @@
     box-shadow: 0 0.026667rem 0.066667rem 0 rgba(0,0,0,.2);
     color: #333;
     font-size: .346667rem;
+    border: none;
   }
   .index-6hVEQ {
     display: -webkit-box;

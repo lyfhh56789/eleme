@@ -71,13 +71,13 @@
         <span class="profile-2XuMq"><svg fill="#fff"><use xmlns:xlink="http://www.w3.org/1999/xlink"
                                                           xlink:href="#arrow-right"></use></svg></span>
       </div>
-      <div class="index-1G7HV_0"><a href="/profile/benefit/" class="index-1ryAh_0">
+      <div class="index-1G7HV_0"><a href="#" class="index-1ryAh_0">
         <p>
           <svg fill="#ff5f3e">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#luckybag"></use>
           </svg>
         </p>
-        <p class="index-3S6cZ_0">优惠</p></a><a href="/profile/points/" class="index-1ryAh_0">
+        <p class="index-3S6cZ_0">优惠</p></a><a href="#" class="index-1ryAh_0">
         <p>
           <svg fill="#6ac20b">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#profile-coins"></use>
@@ -85,17 +85,20 @@
         </p>
         <p class="index-3S6cZ_0">积分</p></a>
       </div>
-      <section class="profile-1reTe"><a href="/order/#/" class="index-2MEEn_0">
-        <aside class="index-161Mm_0">
-          <svg fill="#4aa5f0">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
-          </svg>
-        </aside>
-        <div class="index-yydpu_0">
-          我的订单
-          <span class="index-3Z8It_0"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                xlink:href="#arrow-right"></use></svg></span></div>
-      </a><a href="/gift/" class="index-2MEEn_0">
+      <section class="profile-1reTe">
+        <router-link :to="{name: 'order'}" class="index-2MEEn_0">
+            <aside class="index-161Mm_0">
+              <svg fill="#4aa5f0">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#order"></use>
+              </svg>
+            </aside>
+            <div class="index-yydpu_0">
+              我的订单
+              <span class="index-3Z8It_0"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    xlink:href="#arrow-right"></use></svg></span>
+            </div>
+        </router-link>
+        <a href="#" class="index-2MEEn_0">
         <aside class="index-161Mm_0">
           <svg fill="#fc7b53">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#point"></use>
@@ -105,7 +108,7 @@
           积分商城
           <span class="index-3Z8It_0"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink"
                                                 xlink:href="#arrow-right"></use></svg></span></div>
-      </a><a href="/vipcard/" class="index-2MEEn_0">
+      </a><a href="#" class="index-2MEEn_0">
         <aside class="index-161Mm_0">
           <svg fill="#ffc636">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#vip"></use>
@@ -117,7 +120,7 @@
                                                 xlink:href="#arrow-right"></use></svg></span></div>
       </a>
       </section>
-      <section class="profile-1reTe"><a href="/service/" class="index-2MEEn_0">
+      <section class="profile-1reTe"><a href="#" class="index-2MEEn_0">
         <aside class="index-161Mm_0">
           <svg fill="#4aa5f0">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#service"></use>
@@ -127,7 +130,7 @@
           服务中心
           <span class="index-3Z8It_0"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink"
                                                 xlink:href="#arrow-right"></use></svg></span></div>
-      </a><a href="//h.ele.me/dapp" class="index-2MEEn_0">
+      </a><a href="#" class="index-2MEEn_0">
         <aside class="index-161Mm_0">
           <svg fill="#3cabff">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#download"></use>
