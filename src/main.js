@@ -29,6 +29,12 @@ const router = new VueRouter({
   routes: routes
 })
 
+// 获取缓存地理位置信息
+var location = window.localStorage.getItem('location')
+if (location != null) {
+  store.commit('setLocation', JSON.parse(location))
+}
+
 //  resource配置项
 //  模拟表单提交
 Vue.http.options.emulateJSON = true

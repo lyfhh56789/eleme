@@ -11,10 +11,10 @@
         </defs>
       </svg>
       <div class="index-MAORp">
-        <div class="index-3vsmj">
+        <div @click="gotoCity" class="index-3vsmj">
           <svg class="index-3guVd"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#location"></use>
           </svg>
-          <span class="index-1cnKa">龙华区民治大道(沙元埔民治大道南)</span>
+          <span class="index-1cnKa">{{ location ? location.name : '正在获取地理位置信息'}}</span>
           <svg class="index-9eIfV"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow"></use>
           </svg>
         </div>
@@ -26,7 +26,7 @@
           <img alt="天气图标" class="index-wRPUE" :src="weather.image_hash | transformImgUrl(1) + '?imageMogr/format/webp/thumbnail/!69x69r/gravity/Center/crop/69x69/'">
         </aside>
       </div>
-      <a><input type="text" placeholder="搜索商家、商品" aria-label="搜索商家、商品" class="index-20Oji"></a>
+      <a><input @click="gotoSearch" type="text" placeholder="搜索商家、商品" aria-label="搜索商家、商品" class="index-20Oji"></a>
       <div v-if="hotSearchWords.length !== 0" class="index-6hVEQ">
         <template v-for="(item, index) in hotSearchWords">
           <a>{{ item.word }}</a>
@@ -187,7 +187,6 @@
         //  地理位置信息
         latitude: null,
         longitude: null,
-        location: {}, // 当前地理位置信息
         currentPage: 1, // 分页页码
         limit: 20, //  分页限制
         shopList: [], // 附近商家列表
@@ -201,6 +200,9 @@
       }
     },
     computed: {
+      location () { // 当前地理位置信息
+        return this.$store.state.location
+      },
       offset(){
         // 分页偏移量
         return (this.currentPage - 1) * this.limit
@@ -236,7 +238,7 @@
       },
       getLocationDetail (position) {
         this.$http({url: 'eleme_api.php', params: {action: 'location', latitude: position.coords.latitude, longitude: position.coords.longitude}}).then(function (res) {
-          this.location = res.data
+          window.localStorage.setItem('location', JSON.stringify(res.data))
           this.latitude = res.data.latitude
           this.longitude = res.data.longitude
           this.$store.commit('setLocation', res.data)
@@ -275,6 +277,11 @@
           this.banner = res.data
         })
       },
+      gotoCity(){ //  跳转选择城市界面
+        this.$router.push({
+          name: 'city'
+        })
+      },
       gotoSearch(){ //  跳转搜素界面
         this.$router.push({
           name: 'search',
@@ -292,12 +299,19 @@
       }
     },
     created () {
-      this.getLocation().then((position) => {
-        this.getLocationDetail(position)
-      }).catch(function (error) {
-        window.alert('无法获取到用户信息')
-        console.log(error)
-      })
+      if (this.location !== null) {
+        this.getWeather()
+        this.getHotSearchWords()
+        this.getBanner()
+        this.loadMore()
+      } else {
+        this.getLocation().then((position) => {
+          this.getLocationDetail(position)
+        }).catch(function (error) {
+          window.alert('无法获取到用户信息')
+          console.log(error)
+        })
+      }
       window.addEventListener('scroll', this.scrollHandler)
     },
     beforeDestroy () {
