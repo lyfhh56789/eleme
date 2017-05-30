@@ -15,7 +15,9 @@
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-left"></use>
           </svg>
         </div>
-        <h1 class="ElemeHeader-center">{{ title }}</h1></div>
+        <h1 class="ElemeHeader-center">{{ title }}</h1>
+        <span v-if="this.$route.name === 'login'" @click="changeLoginMethod" class="App-3QabC">{{ unUseLoginMethod }}</span>
+      </div>
     </header>
 </template>
 <style scoped>
@@ -80,6 +82,10 @@
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
   }
+  .App-3QabC {
+    padding: 0 .4rem;
+    font-size: .4rem;
+  }
 </style>
 <script>
   export default{
@@ -87,11 +93,15 @@
       title: {
         type: String,
         required: true
-      }
+      },
+      unUseLoginMethod: String
     },
     methods: {
       goBack(){ //  路由回退
         this.$router.back()
+      },
+      changeLoginMethod () { // 切换登录方式
+        this.$emit('changeLoginMethod')
       }
     }
   }

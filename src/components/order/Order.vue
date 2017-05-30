@@ -2,7 +2,7 @@
     <div class="order">
       <e-header title="订单"></e-header>
       <section class="nodatatipWrap NoDataTip-wrapper" img="no-log">
-        <img src="../../assets/error-load.png"> <h3>登录后查看外卖订单</h3><button>
+        <img src="../../assets/error-load.png"> <h3>登录后查看外卖订单</h3><button @click="toLogin">
         立即登录
       </button>
       </section>
@@ -60,6 +60,13 @@
   import FooterTab from '../common/FooterTab.vue'
 
   export default{
+    methods: {
+      toLogin () {
+        this.$router.push({
+          name: 'login'
+        })
+      }
+    },
     components: {
       EHeader, FooterTab
     }

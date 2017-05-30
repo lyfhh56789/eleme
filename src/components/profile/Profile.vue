@@ -59,7 +59,7 @@
         </defs>
       </svg>
       <e-header title="我的"></e-header>
-      <div class="profile-3g0uv"><span class="profile-1gjgY"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink"
+      <div @click="toLogin" class="profile-3g0uv"><span class="profile-1gjgY"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                        xlink:href="#avatar-default"></use></svg></span>
         <div class="profile-xfCcC"><p class="profile-1_mtk">登录/注册</p>
           <p class="profile-1UP72">
@@ -298,7 +298,13 @@
     data () {
       return {}
     },
-    methods: {},
+    methods: {
+      toLogin () {
+        this.$router.push({
+          name: 'login'
+        })
+      }
+    },
     created () {
     },
     components: {

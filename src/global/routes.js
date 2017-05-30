@@ -54,6 +54,22 @@ const Profile = resolve => {
   })
 }
 
+const Login = resolve => {
+  // require.ensure 是 Webpack 的特殊语法，用来设置 code-split point
+  // （代码分块）
+  require.ensure(['../components/login/Login.vue'], () => {
+    resolve(require('../components/login/Login.vue'))
+  })
+}
+
+const About = resolve => {
+  // require.ensure 是 Webpack 的特殊语法，用来设置 code-split point
+  // （代码分块）
+  require.ensure(['../components/about/About.vue'], () => {
+    resolve(require('../components/about/About.vue'))
+  })
+}
+
 var routes = [
   {//  首页
     path: '/',
@@ -99,6 +115,16 @@ var routes = [
     path: '/profile',
     name: 'profile',
     component: Profile
+  },
+  {//  登录
+    path: '/login',
+    name: 'login',
+    component: Login
+  },
+  {//  关于我们
+    path: '/about',
+    name: 'about',
+    component: About
   },
   {//  所有未定义路由跳转到首页
     path: '*',
