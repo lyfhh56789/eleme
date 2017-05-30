@@ -224,6 +224,8 @@
         </p>
       </section>
       <footer-tab></footer-tab>
+      <!--  加载超过3个就不需要loading动画了  -->
+      <loading v-if="loadingPercentage < 3"></loading>
     </div>
 </template>
 <style scoped>
@@ -618,6 +620,7 @@
 <script>
   import EHeader from '../common/EHeader.vue'
   import FooterTab from '../common/FooterTab.vue'
+  import loading from '../common/Loading.vue'
 
   export default{
     data () {
@@ -628,7 +631,8 @@
         day: [], // 天天特价
         allEat: null, // 大家都在吃
         ratingEllipsis: null, // 默认显示全部评论
-        suggest: [] // 底部限时好礼
+        suggest: [], // 底部限时好礼
+        loadingPercentage: 0 // 加载完成的个数
       }
     },
     computed: {
@@ -644,6 +648,7 @@
         this.$http({url: 'eleme_api.php', params: {action: 'discover_first', latitude: this.latitude, longitude: this.longitude}}).then(function (res) {
           this.partList3 = res.data[1]
           this.partList = res.data[2]
+          this.loadingPercentage++
         })
       },
       loadHotFood () {
@@ -654,22 +659,26 @@
             foods.push(res.data[i].foods[0])
           }
           this.hotFood = foods
+          this.loadingPercentage++
         })
       },
       loadDay () { // 天天特价
         this.$http({url: 'eleme_api.php', params: {action: 'discover_day', latitude: this.latitude, longitude: this.longitude}}).then(function (res) {
           this.day = res.data.query_list.slice(0, 3)
+          this.loadingPercentage++
         })
       },
       loadAlleat () { // 大家都在吃
         this.$http({url: 'eleme_api.php', params: {action: 'discover_alleat', latitude: this.latitude, longitude: this.longitude, offset: 0, limit: 1}}).then(function (res) {
           this.allEat = res.data[0]
           if (res.data.length > 0 && this.allEat.rating_text.length > 49) this.ratingEllipsis = true
+          this.loadingPercentage++
         })
       },
       loadSuggest () {
         this.$http({url: 'eleme_api.php', params: {action: 'discover_foot'}}).then(function (res) {
           this.suggest = res.data
+          this.loadingPercentage++
         })
       }
     },
@@ -681,7 +690,7 @@
       this.loadSuggest()
     },
     components: {
-      EHeader, FooterTab
+      EHeader, FooterTab, loading
     }
   }
 </script>
