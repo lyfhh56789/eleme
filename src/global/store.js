@@ -82,12 +82,14 @@ var storeConfig = {
       var packingFee = 0;
       for (var i = 0; i < state.shopCar[restaurantId][0].entities.length; i++){
         count += state.shopCar[restaurantId][0].entities[i].quantity
-        payCount += +(state.shopCar[restaurantId][0].entities[i].quantity * state.shopCar[restaurantId][0].entities[i].price).toFixed(1)
+        // 默认只有2位小数，所以不单独写小数位数判断以及计算的函数了
+        payCount += state.shopCar[restaurantId][0].entities[i].quantity * (state.shopCar[restaurantId][0].entities[i].price * 100)
         packingFee += state.shopCar[restaurantId][0].entities[i].packing_fee
       }
       state.count = count
       //  浮点的精度计算有问题
-      state.payCount = +(payCount.toFixed(1))
+      // 先将状态中的payCount计算为整数在和增减食物的钱进行相加
+      state.payCount = payCount / 100
       state.packingFee = packingFee
       //  本地存储购物车数据
       window.localStorage.setItem('shopCar', JSON.stringify(state.shopCar))

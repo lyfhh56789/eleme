@@ -22,7 +22,7 @@
               <em class="name">{{ food.name }}</em>
               <p class="entityspecs"></p>
             </span>
-                <span class="entitytotal">{{ (food.price * food.quantity).toFixed(1) }}</span>
+                <span class="entitytotal">{{ food.price * 100 * food.quantity / 100}}</span>
             <span class="entitycartbutton">
               <span class="entitybutton">
                 <a @click="minus(food.id)" href="javascript:">
